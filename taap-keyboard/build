@@ -1,0 +1,4 @@
+#!/bin/sh
+
+install -D -t $1/etc/X11/xorg.conf.d/ files/90-custom-kbd.conf
+install -D -t $1/usr/share/X11/xkb/symbols/ files/taap
