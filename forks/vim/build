@@ -1,0 +1,19 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --enable-cscope \
+    --with-features=normal \
+    --disable-gpm \
+    --disable-sysmouse \
+    --disable-gui \
+    --disable-netbeans \
+    --disable-nls \
+    --disable-perlinterp \
+    --disable-pythoninterp \
+    --disable-rubyinterp \
+    --disable-xim \
+    --without-x
+
+make
+make DESTDIR="$1" install
