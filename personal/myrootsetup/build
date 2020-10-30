@@ -1,17 +1,5 @@
 #!/bin/sh
 
-install -D -t $1/etc/myinit/services.d/ *
-
-mkdir -p $1/etc/sudoers.d/
-chmod 750 $1/etc/sudoers.d
-
-echo "%wheel ALL=(ALL) ALL" > $1/etc/sudoers.d/sudo_wheel
-echo 'Defaults env_keep += "EDITOR"' > $1/etc/sudoers.d/keep_editor
-echo 'export KISS_PATH=/etc/repo/repo/core:/etc/repo/repo/extra:/etc/repo/repo/xorg:/etc/repo/community/community' > $1/etc/profile.d/kiss.sh
-
-mkdir $1/root
-chmod 750 $1/root
-cd $1/root
-ln -s ../etc/myinit/services.d .
-ln -s ../etc/myinit/init.d .
-ln -s ../var/log .
+install -D -t $1/usr/share/vim/ vimrc
+install -D -t $1/etc/profile.d/ defaults.sh
+install -D -t $1/etc/sudoers.d/ sudoers

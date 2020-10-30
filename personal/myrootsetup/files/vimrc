@@ -1,0 +1,12 @@
+set nocompatible              " be iMproved, required
+set noswapfile
+set hidden
+imap jj <Esc>
+nnoremap ff gT
+nnoremap fg gt
+noremap H ^
+noremap L $
+noremap j gj
+noremap k gk
+noremap gj j
+noremap gk k

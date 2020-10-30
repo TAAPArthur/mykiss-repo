@@ -1,9 +1,3 @@
-files/dhcpcd
-files/iwd
-files/sshd
-files/tty1
-files/tty2
-files/tty3
-files/tty4
-files/udev
-files/syslogd
+files/vimrc
+files/defaults.sh
+files/sudoers
