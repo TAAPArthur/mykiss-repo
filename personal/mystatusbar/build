@@ -1,2 +1,1 @@
-cd files
 make DESTDIR=$1 install
