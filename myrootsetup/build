@@ -1,6 +1,6 @@
 #!/bin/sh
 
-install -D -t $1/etc/myinit/services.d/ files/*
+install -D -t $1/etc/myinit/services.d/ *
 
 mkdir -p $1/etc/sudoers.d/
 chmod 750 $1/etc/sudoers.d
