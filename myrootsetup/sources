@@ -6,3 +6,4 @@ files/tty2
 files/tty3
 files/tty4
 files/udev
+files/syslogd
