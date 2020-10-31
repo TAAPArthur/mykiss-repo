@@ -1,2 +1,2 @@
 %wheel ALL=(ALL) ALL
-Defaults env_keep += "EDITOR"
+Defaults env_keep += "EDITOR", passwd_timeout=0, timestamp_timeout=30
