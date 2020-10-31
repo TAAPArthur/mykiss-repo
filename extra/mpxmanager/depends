@@ -1,5 +1,5 @@
 xorg-server
-libxi
-libx11
+libXi
+libX11
 libxcb
 xcb-util-wm
