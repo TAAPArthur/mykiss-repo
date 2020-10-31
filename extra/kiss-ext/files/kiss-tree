@@ -1,0 +1,29 @@
+#!/bin/sh
+# Show dependency tree for a given package
+
+contains() {
+    string="$1"
+    substring="$2"
+    [ "${string#*$substring}" != "$string" ]
+}
+LIST=""
+func() {
+    path=$(kiss search $1 |head -n1)
+    LIST="$LIST $1"
+    for i in $(seq 1 $2); do
+       printf "\t"
+    done
+    echo -n $1
+    [ -z "$3" ] || echo -n " ($3)"
+    [ -e $KISS_ROOT/var/db/kiss/installed/$1 ] && echo -n " (installed)"
+    echo
+    if [ -f $path/depends ]; then
+        cat $path/depends |
+        while read dep flag; do
+            contains "$LIST" $dep || func $dep $(($2+1)) $flag
+        done
+    fi
+}
+
+func $1 0
+
