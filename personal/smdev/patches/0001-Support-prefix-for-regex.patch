@@ -1,0 +1,80 @@
+From c2bb8fd5d3ad01e8fbe8c15c653f710ede4d5502 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Mon, 2 Nov 2020 15:46:36 -0800
+Subject: [PATCH] Support '-' prefix for regex
+
+If a regex starts with '-', subsequent rules will still be proccessed.
+This mirrors mdev's behavior.
+---
+ smdev.c | 22 +++++++++++++++-------
+ 1 file changed, 15 insertions(+), 7 deletions(-)
+
+diff --git a/smdev.c b/smdev.c
+index 0418b7d..7f89be2 100644
+--- a/smdev.c
++++ b/smdev.c
+@@ -54,7 +54,7 @@ struct rulepath {
+ };
+ 
+ static int dohotplug(void);
+-static int matchrule(int, char *);
++static int matchrule(int, char *, int *);
+ static void runrulecmd(struct rule *);
+ static void parsepath(struct rule *, struct rulepath *, const char *);
+ static int removedev(struct event *);
+@@ -143,16 +143,17 @@ dohotplug(void)
+  * pregcache[] is mapped 1-1 with the rules[] table.
+  */
+ static int
+-matchrule(int ruleidx, char *devname)
++matchrule(int ruleidx, char *devname, int *passthrough)
+ {
+ 	struct rule *rule = &rules[ruleidx];
+ 	regex_t *preg;
+ 	regmatch_t pmatch;
+ 	int ret;
++	*passthrough = (rule->devregex[0] == '-');
+ 
+ 	if (!pregcache[ruleidx].cached) {
+ 		ret = regcomp(&pregcache[ruleidx].preg,
+-			      rule->devregex, REG_EXTENDED);
++			      rule->devregex + *passthrough, REG_EXTENDED);
+ 		if (ret < 0)
+ 			eprintf("regcomp:");
+ 		pregcache[ruleidx].cached = 1;
+@@ -349,21 +350,28 @@ static int
+ doevent(struct event *ev)
+ {
+ 	int i;
++	int passthrough;
++	int ret = 0;
++
+ 
+ 	for (i = 0; i < LEN(rules); i++) {
+-		if (matchrule(i, ev->devname) < 0)
++		if (matchrule(i, ev->devname, &passthrough) < 0)
+ 			continue;
+ 		ev->rule = &rules[i];
+ 		switch (ev->action) {
+ 		case ADD_ACTION:
+-			return createdev(ev);
++			ret = createdev(ev);
++			break;
+ 		case REMOVE_ACTION:
+-			return removedev(ev);
++			ret = removedev(ev);
++			break;
+ 		default:
+ 			return 0;
+ 		}
++		if(!passthrough)
++			break;
+ 	}
+-	return 0;
++	return ret;
+ }
+ 
+ /* Craft a fake event so the rest of the code can cope */
+-- 
+2.28.0
+

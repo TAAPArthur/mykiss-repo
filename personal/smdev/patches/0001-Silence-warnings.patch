@@ -1,0 +1,37 @@
+From 106d4cf3121b3fc8b6b67c16b532b8a1a165bcfc Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Mon, 2 Nov 2020 15:44:27 -0800
+Subject: [PATCH] Silence warnings
+
+---
+ config.mk | 2 +-
+ smdev.c   | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/config.mk b/config.mk
+index b1e7ae4..e8a717c 100644
+--- a/config.mk
++++ b/config.mk
+@@ -6,6 +6,6 @@ PREFIX = /usr/local
+ 
+ CC = cc
+ LD = $(CC)
+-CPPFLAGS = -D_BSD_SOURCE -D_GNU_SOURCE
++CPPFLAGS = -D_DEFAULT_SOURCE -Wno-format-truncation
+ CFLAGS   = -std=c99 -Wall -pedantic $(CPPFLAGS)
+ LDFLAGS  = -s
+diff --git a/smdev.c b/smdev.c
+index b774908..0418b7d 100644
+--- a/smdev.c
++++ b/smdev.c
+@@ -1,6 +1,7 @@
+ /* See LICENSE file for copyright and license details. */
+ #include <sys/ioctl.h>
+ #include <sys/stat.h>
++#include <sys/sysmacros.h>
+ #include <sys/types.h>
+ 
+ #include <linux/sockios.h>
+-- 
+2.28.0
+
