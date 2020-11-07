@@ -1,2 +1,0 @@
-#!/bin/sh -e
-pip install --no-binary ":all:" --no-deps --root $1 trash-cli
