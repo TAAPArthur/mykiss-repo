@@ -1,0 +1,14 @@
+root:x:0:
+arthur:x:1:arthur
+audio:x:2:arthur
+disk:x:4:arthur
+input:x:5:arthur
+kmem:x:6:
+kvm:x:7:
+lp:x:8:arthur
+mail:x:9:arthur
+optical:x:10:arthur
+storage:x:11:arthur
+tty:x:12:arthur
+video:x:13:arthur
+wheel:x:14:arthur
