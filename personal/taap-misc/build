@@ -1,0 +1,2 @@
+#!/bin/sh -e
+install -D -t $1/bin *
