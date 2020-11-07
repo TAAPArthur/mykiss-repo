@@ -1,5 +1,6 @@
 #!/bin/sh -e
 
+patch -p1 < no_mouse.patch
 ./configure \
     --prefix=/usr \
     --enable-cscope \

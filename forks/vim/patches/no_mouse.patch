@@ -1,0 +1,14 @@
+diff --git a/src/feature.h b/src/feature.h
+index 0c68f79f2..99309337a 100644
+--- a/src/feature.h
++++ b/src/feature.h
+@@ -944,8 +944,8 @@
+  */
+ // Amiga console has no mouse support
+ #if defined(UNIX) || defined(VMS)
+-# define FEAT_MOUSE_XTERM
+ # ifdef FEAT_BIG
++#  define FEAT_MOUSE_XTERM
+ #  define FEAT_MOUSE_NET
+ # endif
+ # ifdef FEAT_BIG
