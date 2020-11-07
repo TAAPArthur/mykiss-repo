@@ -1,48 +1,17 @@
-#!/bin/sh
+#!/bin/sh -e
 # auto create package
-set -ex
 KISS_FALLBACK_REPO=${KISS_FALLBACK_REPO:-/tmp/fallback}
-
-create_pkg_pip() {
-    kiss_pkg_name=$1
-    pip_pkg_name=$2
-    kiss new $kiss_pkg_name
-    cd $kiss_pkg_name
-    pip --disable-pip-version-check download --no-deps --no-binary ":all:" $pip_pkg_name
-
-    version=$(zcat *.tar.* | sed -ne "s/^Version: /\1/p" | head -n1)
-    echo "$version 1" > version
-
-    setup_hack='def setup(**kwargs): print("\\n".join({x.split(" ")[0] for x in kwargs.get("install_requires", [])}))'
-    tar -xf *.tar.*
-    (cd $pip_pkg_name-$version; sed "s/^\(\s*\)setup(\$/\1$setup_hack\n&/" setup.py | python) | sed -rn "s/^(\w+).*$/python-\1/p"  >> depends
-    rm -r $pip_pkg_name-$version
-    rm -r *.tar.*
-    echo 'pip install --no-binary ":all:" --no-deps --root $1' $pip_pkg_name >> build
-    cat depends
-    kiss c
-
-}
-create_pkg_python() {
-    create_pkg_pip python-$2 $2 $3
-}
-
-create_pkg_arch() {
-    ARCH_REPO=https://www.archlinux.org/packages/search/json
-    data=$(curl -L "$ARCH_REPO?name=$1")
-    echo $data | jq -r '.results[0].pkgver results[0].pkgrel' > version
-    echo $data | jq -r '.results[0].depends | join(" ")' > depends
-}
 
 _parse_pkgbuild() {
     pkgrel=1
     pkgver=git
-    sed -ne 's/['\''"]//g; /^\w*=[A-z0-9\.\-]*$/p' PKGBUILD |
+    sed -ne 's/['\''"]//g; /^\w*=[A-z0-9\.\-]*$/p' "$2" |
     {
         while IFS='=' read -r var value; do
             case $var in
                 pkgver) pkgver=$value ;;
                 pkgrel) pkgrel=$value ;;
+                _commit) _commit=$value;;
                 *)
                     echo "$var=$value" >> build
             esac
@@ -50,10 +19,10 @@ _parse_pkgbuild() {
         echo 'pkgdir=$1' >> build
         echo 'pkgver=$2' >> build
         echo "$pkgver $pkgrel" > version
-        cat PKGBUILD | sed -n '/^build\s*()/,/^}/p' | sed "s/^\s*//" | grep -v cd | head -n -1 | tail -n +2  >> build
-        cat PKGBUILD | sed -n '/^package\s*()/,/^}/p' | sed "s/^\s*//" | grep -v cd | head -n -1 |tail -n +2 >> build
-        cat PKGBUILD | sed -nr "s/^source=\((.*)\)/\1/p" | sed "s/[\"']//g" |
-            sed "s/\${*pkgver}*/$pkgver/g; s/\${*pkgname}*/$1/g" |
+        sed -n '/^build\s*()/,/^}/p' $2 | sed "s/^\s*//" | grep -v cd | head -n -1 | tail -n +2  >> build
+        sed -n '/^package\s*()/,/^}/p' $2 | sed "s/^\s*//" | grep -v cd | head -n -1 |tail -n +2 >> build
+        sed -nr "s/^source=\((.*)\)/\1/p" $2| sed "s/[\"']//g; s/\${*pkgver}*/$pkgver/g; s/\${*pkgname}*/$1/g ; s/\${*_commit}*/$_commit/g" |
+            sed "s/^.*:://g" |
             tr " " "\n" > sources
     }
 }
@@ -62,68 +31,68 @@ create_pkg_aur() {
     AUR_REPO="https://aur.archlinux.org/rpc/?v=5&type=info"
     data=$(curl -L "$AUR_REPO&arg=$1")
     if [ $(echo $data | jq -r ".resultcount") -eq 1 ]; then
+        echo "Coping package from AUR"
+        curl -L "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$1" > $TMP_DIR/PKGBUILD
+        [ -s "$TMP_DIR/PKGBUILD" ]
         kiss new $1
         cd $1
         echo $data | jq -r '.results[0].Depends | join("\n")' > depends
         echo $data | jq -r '.results[0].MakeDepends | join(" ")' | sed "s/$/ make/" >> depends
-        curl -L "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$1" > PKGBUILD
-        _parse_pkgbuild
-        rm PKGBUILD
+        _parse_pkgbuild $1 $TMP_DIR/PKGBUILD
         kiss c
-        return 0
     fi
-    return 1
 }
 create_pkg_arch_linux() {
     data="$(curl -L  https://www.archlinux.org/packages/search/json/?name=$1)"
-    [ $(echo "$data" | jq ".results[0]") = "null" ] && return 1
+    [ $(echo "$data" | jq ".results[0]") = "null" ] && return 
+    echo "Coping package from offical arch repos"
+    echo "https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/$1/trunk/PKGBUILD" 
+    (
+        set -x
+        curl -L -f "https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/$1/trunk/PKGBUILD" ||
+        curl -L -f "https://raw.githubusercontent.com/archlinux/svntogit-community/packages/$1/trunk/PKGBUILD" 
+    ) > $TMP_DIR/PKGBUILD 2>/dev/null
+    [ -s "$TMP_DIR/PKGBUILD" ]
     kiss new $1
     cd $1
     echo "$data" | jq -r '.results[0].depends | join("\n")' > depends
     echo "$data" | jq -r '.results[0].makedepends | join("\n")' | sed "s/$/ make/" >> depends
-    curl -L -f "https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/$1/trunk/PKGBUILD" > PKGBUILD
-    _parse_pkgbuild
-    rm PKGBUILD
-    kiss c
+    _parse_pkgbuild $1 $TMP_DIR/PKGBUILD
 }
 
-PREFIX_PATH=""
-FALLBACK_REPOS=""
-PREFIX_PATH="$PREFIX_PATH python"
 FALLBACK_REPOS="$FALLBACK_REPOS arch_linux aur"
 createPkg() {
-    for prefix in $PREFIX_PATH; do
-        mkdir -p $KISS_FALLBACK_REPO/$prefix
-        cd $KISS_FALLBACK_REPO/$prefix
-        prefix_and_sep="$prefix-"
-        prefix_len=${#prefix_and_sep}
-        if [ ${1:0:prefix_len} == $prefix_and_sep ]; then
-            pkg=${1:prefix_len}
-            [ -n "$KISS_FORCE" ] && [ -d $KISS_FALLBACK_REPO/$prefix/$1 ] && rm -R $KISS_FALLBACK_REPO/$prefix/$1
-            create_pkg_$prefix $1 $pkg
-            return
-        fi
-    done
-
-    echo "falling back"
     for fallback in $FALLBACK_REPOS; do
-        mkdir -p $KISS_FALLBACK_REPO/$fallback
-        cd $KISS_FALLBACK_REPO/$fallback
+        cd $KISS_FALLBACK_REPO
         [ -n "$KISS_FORCE" ] && [ -d $KISS_FALLBACK_REPO/$fallback/$1 ] && rm -R $KISS_FALLBACK_REPO/$fallback/$1
-        if create_pkg_$fallback $1 ; then
+        create_pkg_$fallback $1 
+        if [ -d $KISS_FALLBACK_REPO/$1 ]; then
             return
         fi
     done
     return 1
 }
+TMP_DIR=$(mktemp -d)
 createPkgAndDepends() {
-    kiss s $1 && return
-    createPkg $1
-    path=$(kiss s $1 | head -n1)
-    [ -n "$path" ]
-    vim $(cat $path/depends)
-    for depends in $(cat $path/depends); do
-        kiss s $depends || createPkgAndDepends $1
+
+    for i in $(seq 1 $2); do
+       printf "\t"
     done
+    echo "Searching for $1 ($2)"
+    path=$(kiss s $1 | head -n1)
+    if [ -z "$path" ]; then
+        createPkg $1
+        path=$(kiss s $1 | head -n1)
+        [ -n "$path" ]
+        $EDITOR -p $path/* $TMP_DIR/*
+        [ -e $path/depends ] && [ ! -s $path/depends ] && rm $path/depends
+        (cd $(dirname $path); kiss c $1)
+    fi
+    if [ -e $path/depends ]; then 
+        for depends in $(cat $path/depends); do
+            createPkgAndDepends $depends $((($2)+1))
+        done 
+    fi
 }
-createPkgAndDepends $1
+createPkgAndDepends $1 0
+[ -d "$TMP_DIR" ] && rm -r "$TMP_DIR"
