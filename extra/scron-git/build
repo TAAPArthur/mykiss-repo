@@ -1,0 +1,10 @@
+#!/bin/sh -e
+pkgname=scron-git
+_gitname=scron
+pkgdir=$1
+pkgver=$2
+
+make
+make DESTDIR="$pkgdir" PREFIX=/usr install
+
+install -Dm644 LICENSE           "$pkgdir/usr/share/licenses/$_gitname/LICENSE"

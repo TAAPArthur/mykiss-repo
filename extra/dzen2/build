@@ -1,0 +1,8 @@
+#!/bin/sh -e
+make
+make PREFIX=/usr DESTDIR="$1" install
+pkgname=dzen2
+install -Dm644 README "${1}/usr/share/doc/${pkgname}/README"
+install -Dm644 README.dzen "${1}/usr/share/doc/${pkgname}/README.dzen"
+install -Dm644 CREDITS "${1}/usr/share/doc/${pkgname}/CREDITS"
+install -Dm644 LICENSE "${1}/usr/share/licenses/${pkgname}/LICENSE"

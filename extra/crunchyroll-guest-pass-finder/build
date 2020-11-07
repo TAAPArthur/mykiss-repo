@@ -1,0 +1,6 @@
+#!/bin/sh -e
+pkgname=crunchyroll-guest-pass-finder
+pkgdir=$1
+pkgver=$2
+install -D -m 0755 "crunchyroll-guest-pass-finder.py" "$pkgdir/usr/bin/crunchyroll-guest-pass-finder"
+install -m 0744 -Dt "$pkgdir/usr/share/man/man1/" crunchyroll-guest-pass-finder.1
