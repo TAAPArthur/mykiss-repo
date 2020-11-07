@@ -1,0 +1,6 @@
+#!/bin/sh -e
+pkgbase=python-requests
+pkgdir=$1
+pkgver=$2
+python setup.py build
+python setup.py install --skip-build -O1 --root="$pkgdir"
