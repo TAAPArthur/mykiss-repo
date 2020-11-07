@@ -1,3 +1,4 @@
-files/vimrc
 files/defaults.sh
+files/rc.local
 files/sudoers
+files/vimrc

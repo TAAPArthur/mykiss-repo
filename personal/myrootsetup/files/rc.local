@@ -1,0 +1,19 @@
+#!/bin/sh
+# enable core dumps
+ulimit -c unlimited
+
+# set up some sym links
+ln -s /proc/kcore /dev/core
+# needed for bash process substitution
+ln -s /proc/self/fd /dev/
+ln -s /proc/self/fd/0 /dev/stdin
+ln -s /proc/self/fd/1 /dev/stdout
+ln -s /proc/self/fd/2 /dev/stderr
+
+# enable device management
+ls -aslt /dev
+echo /bin/ndev > /proc/sys/kernel/hotplug
+ndev -s
+
+# load arrays
+command -v mdadm >>/dev/null && mdadm --assemble --scan
