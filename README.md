@@ -20,3 +20,7 @@ Series of personal packages that I doubt anyone else would ever use
 pending
 # python
 Some pip packages in kiss format
+
+
+# nonfree
+Non free wifi modules
