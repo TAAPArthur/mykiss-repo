@@ -1,6 +1,0 @@
-git+git://git.suckless.org/smdev
-patches/0001-Reduce-size-of-makefile.patch
-patches/0001-Silence-warnings.patch
-patches/0001-Support-prefix-for-regex.patch
-files/config.h
-files/autoload-modules.sh

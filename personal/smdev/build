@@ -1,8 +1,0 @@
-#!/bin/sh -e
-patch -p1 < 0001-Silence-warnings.patch
-patch -p1 < 0001-Support-prefix-for-regex.patch
-patch -p1 < 0001-Reduce-size-of-makefile.patch
-
-make
-make DESTDIR=$1 PREFIX=/usr install
-install -D -t $1/bin/ autoload-modules.sh
