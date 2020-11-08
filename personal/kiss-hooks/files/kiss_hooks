@@ -1,0 +1,4 @@
+#!/bin/sh
+for hook in $(set +f; echo /etc/kiss_hooks.d/*.sh); do
+    [ -r "$hook" ] && . "$hook"
+done

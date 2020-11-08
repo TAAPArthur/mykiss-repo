@@ -1,0 +1,4 @@
+files/kiss_hooks
+files/remove_unwanted_files.sh
+files/set_compiler.sh
+files/time_build.sh
