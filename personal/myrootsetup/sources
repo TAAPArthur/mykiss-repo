@@ -3,3 +3,5 @@ files/kiss.sh
 files/rc.local
 files/sudoers
 files/vimrc
+files/vimrc
+files/ntp.conf
