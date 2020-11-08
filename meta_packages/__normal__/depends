@@ -1,0 +1,16 @@
+__micro__
+bash
+gt5
+htop
+indent-sort
+kiss-ext
+kiss-fallback
+kiss-hooks
+lynx
+man-pages-posix
+mandoc
+shellcheck-bin
+strace
+tpm
+tree
+vundle-git

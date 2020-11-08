@@ -21,6 +21,8 @@ pending
 # python
 Some pip packages in kiss format
 
+# meta_packages
+package groups
 
 # nonfree
 Non free wifi modules

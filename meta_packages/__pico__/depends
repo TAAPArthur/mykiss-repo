@@ -1,0 +1,13 @@
+baselayout
+busybox
+dhcpcd
+eiwd
+kiss
+musl
+myinit
+myrootsetup
+myservices
+ndev
+openssh
+tcc
+vim
