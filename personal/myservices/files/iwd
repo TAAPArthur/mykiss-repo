@@ -1,1 +1,1 @@
-exec /lib/iwd/iwd
+exec /bin/iwd
