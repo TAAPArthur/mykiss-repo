@@ -1,0 +1,3 @@
+#!/bin/sh -e
+${CC:-cc} -o call-audio call-audio.c
+install -D -t $1/bin call-audio

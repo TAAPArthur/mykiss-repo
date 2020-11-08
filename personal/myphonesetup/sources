@@ -1,1 +1,4 @@
 files/10-phone-defaults.sh
+files/g_ether.mod
+files/pp-poweroff
+files/pp-poweron
