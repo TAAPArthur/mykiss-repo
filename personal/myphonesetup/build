@@ -1,0 +1,3 @@
+#!/bin/sh
+
+install -D -t $1/etc/profile.d/ *.sh
