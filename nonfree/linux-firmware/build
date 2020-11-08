@@ -1,0 +1,3 @@
+#!/bin/sh -e
+ mkdir -p $1/usr/lib/firmware
+ cp -R * /usr/lib/firmware
