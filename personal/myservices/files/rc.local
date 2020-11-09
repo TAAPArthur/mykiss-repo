@@ -1,3 +1,0 @@
-#!/bin/sh
-[ -x /bin/rc.local ]
-exit 127

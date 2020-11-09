@@ -4,4 +4,4 @@ install -D -t $1/usr/share/vim/ vimrc
 install -D -t $1/etc/profile.d/ *.sh
 install -D -t $1/etc/sudoers.d/ sudoers
 install -D -t $1/etc/ ntp.conf
-install -D -t $1/bin/ rc.local
+install -D -t $1/etc/myinit/init.d/ rc.local
