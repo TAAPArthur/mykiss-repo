@@ -14,9 +14,5 @@ ln -s /proc/self/fd/2 /dev/stderr
 echo /bin/ndev > /proc/sys/kernel/hotplug
 ndev -s
 
-for file in /etc/myinit/init.d/*; do
-    [ -x "$file" ] && "$file"
-done
-
 # load arrays
 command -v mdadm >>/dev/null && mdadm --assemble --scan
