@@ -10,6 +10,9 @@ ln -s /proc/self/fd/0 /dev/stdin
 ln -s /proc/self/fd/1 /dev/stdout
 ln -s /proc/self/fd/2 /dev/stderr
 
+mkdir /dev/mqueue
+mount -t mqueue none /dev/mqueue
+
 # enable device management
 echo /bin/ndev > /proc/sys/kernel/hotplug
 ndev -s

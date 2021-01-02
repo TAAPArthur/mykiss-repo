@@ -4,3 +4,4 @@
 # <file system> <dir> <type> <options> <dump> <pass>
 
 tmpfs /tmp tmpfs defaults,nosuid,nodev 0 0
+tmpfs /run tmpfs  rw,nodev,nosuid,mode=755 0 0
