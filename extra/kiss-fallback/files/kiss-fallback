@@ -44,13 +44,13 @@ create_pkg_aur() {
 }
 create_pkg_arch_linux() {
     data="$(curl -L  https://www.archlinux.org/packages/search/json/?name=$1)"
-    [ $(echo "$data" | jq ".results[0]") = "null" ] && return 
+    [ $(echo "$data" | jq ".results[0]") = "null" ] && return
     echo "Coping package from offical arch repos"
-    echo "https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/$1/trunk/PKGBUILD" 
+    echo "https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/$1/trunk/PKGBUILD"
     (
         set -x
         curl -L -f "https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/$1/trunk/PKGBUILD" ||
-        curl -L -f "https://raw.githubusercontent.com/archlinux/svntogit-community/packages/$1/trunk/PKGBUILD" 
+        curl -L -f "https://raw.githubusercontent.com/archlinux/svntogit-community/packages/$1/trunk/PKGBUILD"
     ) > $TMP_DIR/PKGBUILD 2>/dev/null
     [ -s "$TMP_DIR/PKGBUILD" ]
     kiss new $1
@@ -65,7 +65,7 @@ createPkg() {
     for fallback in $FALLBACK_REPOS; do
         cd $KISS_FALLBACK_REPO
         [ -n "$KISS_FORCE" ] && [ -d $KISS_FALLBACK_REPO/$fallback/$1 ] && rm -R $KISS_FALLBACK_REPO/$fallback/$1
-        create_pkg_$fallback $1 
+        create_pkg_$fallback $1
         if [ -d $KISS_FALLBACK_REPO/$1 ]; then
             return
         fi
@@ -73,12 +73,18 @@ createPkg() {
     return 1
 }
 TMP_DIR=$(mktemp -d)
+_checked_depends=" "
 createPkgAndDepends() {
+    if [ "${_checked_depends#* $1}" != "$_checked_depends" ]; then
+        return
+    fi
 
     for i in $(seq 1 $2); do
        printf "\t"
     done
+
     echo "Searching for $1 ($2)"
+    _checked_depends="$_checked_depends $1"
     path=$(kiss s $1 | head -n1)
     if [ -z "$path" ]; then
         createPkg $1
@@ -88,10 +94,10 @@ createPkgAndDepends() {
         [ -e $path/depends ] && [ ! -s $path/depends ] && rm $path/depends
         (cd $(dirname $path); kiss c $1)
     fi
-    if [ -e $path/depends ]; then 
+    if [ -e $path/depends ]; then
         for depends in $(cat $path/depends); do
             createPkgAndDepends $depends $((($2)+1))
-        done 
+        done
     fi
 }
 createPkgAndDepends $1 0
