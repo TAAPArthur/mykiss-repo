@@ -1,6 +1,5 @@
 baselayout
 busybox
-dhcpcd
 eiwd
 kiss
 musl

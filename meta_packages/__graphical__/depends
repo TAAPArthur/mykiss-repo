@@ -1,3 +1,4 @@
+autorandr
 clip-history
 dzen2
 mpv
@@ -5,6 +6,6 @@ mpxmanager
 st
 xf86-input-libinput
 xinit
+xinput
 xorg-server
 zathura
-xinput
