@@ -6,23 +6,26 @@ contains() {
     substring="$2"
     [ "${string#*$substring}" != "$string" ]
 }
-LIST=""
+export LIST=""
 func() {
-    path=$(kiss search $1 |head -n1)
-    LIST="$LIST $1"
-    for i in $(seq 1 $2); do
+    if [ $1 -gt "${KISS_DEPTH:-1000}" ]; then
+        return
+    fi
+    path=$(kiss search $2 |head -n1)
+    for i in $(seq 1 $1); do
        printf "\t"
     done
-    echo -n $1
+    echo -n $2
     [ -z "$3" ] || echo -n " ($3)"
-    [ -e $KISS_ROOT/var/db/kiss/installed/$1 ] && echo -n " (installed)"
+    [ -e $KISS_ROOT/var/db/kiss/installed/$2 ] && echo -n " (installed)"
     echo
+    contains "$LIST" $2 && return;
+    LIST="$LIST $2"
     if [ -f $path/depends ]; then
-        cat $path/depends |
-        while read dep flag; do
-            contains "$LIST" $dep || func $dep $(($2+1)) $flag
+        for dep in $(cat $path/depends | cut -d" " -f 1); do
+            func $(($1+1)) $dep
         done
     fi
 }
 
-func $1 0
+func 0 $1
