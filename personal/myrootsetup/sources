@@ -3,5 +3,7 @@ files/00-kiss.sh
 files/rc.local
 files/sudoers
 files/vimrc
-files/vimrc
 files/ntp.conf
+files/blacklist.conf
+files/default_modules.conf
+files/nobeep.conf
