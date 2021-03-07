@@ -1,0 +1,14 @@
+#!/bin/sh -e
+# Show diff between top 2 sources of a given pkg
+
+pkg="$1"
+if ! kiss s $pkg >> /dev/null; then
+    echo "Invalid pgk $pkg"
+    exit 1
+fi
+
+kiss s $pkg | grep -v installed |  {
+    read -r forked_pkg
+    read -r community_pkg
+    diff $DIFF_ARGS $community_pkg $forked_pkg
+}
