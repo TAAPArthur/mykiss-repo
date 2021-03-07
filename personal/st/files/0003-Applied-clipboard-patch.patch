@@ -1,0 +1,39 @@
+From 0947deb4549950bcbcc9960b83fc79c1d18bec3a Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Tue, 21 Apr 2020 11:26:00 -0700
+Subject: [PATCH 03/15] Applied clipboard patch
+
+---
+ config.def.h | 2 +-
+ x.c          | 2 ++
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/config.def.h b/config.def.h
+index c4a7d10..0c78d30 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -200,7 +200,7 @@ static Shortcut shortcuts[] = {
+ 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+ 	{ MODKEY,               XK_l,           copyurl,        {.i =  0} },
+-    { TERMMOD,              XK_t,           newterm,        {.i =  0} },
++	{ TERMMOD,              XK_t,           newterm,        {.i =  0} },
+ };
+ 
+ /*
+diff --git a/x.c b/x.c
+index 120e495..49ffe68 100644
+--- a/x.c
++++ b/x.c
+@@ -673,6 +673,8 @@ setsel(char *str, Time t)
+ 	XSetSelectionOwner(xw.dpy, XA_PRIMARY, xw.win, t);
+ 	if (XGetSelectionOwner(xw.dpy, XA_PRIMARY) != xw.win)
+ 		selclear();
++
++	xclipcopy();
+ }
+ 
+ void
+-- 
+2.30.1
+

@@ -1,0 +1,34 @@
+From 4e5a59f6948f265214d3656ab52c6cbea3553128 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Sun, 7 Mar 2021 13:42:19 -0800
+Subject: [PATCH 15/15] Added externalpipe command
+
+---
+ config.def.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/config.def.h b/config.def.h
+index 4ebc13f..6fc443a 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -16,7 +16,8 @@ static int borderpx = 2;
+  * 4: value of shell in /etc/passwd
+  * 5: value of shell in config.h
+  */
+-static char *shell = "/bin/sh";
++#define SHELL "/bin/sh"
++static char *shell = SHELL;
+ char *utmp = NULL;
+ /* scroll program: to enable use a string like "scroll" */
+ char *scroll = NULL;
+@@ -200,6 +201,7 @@ static Shortcut shortcuts[] = {
+ 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+ 	{ MODKEY,               XK_l,           copyurl,        {.i =  0} },
++	{ MODKEY,               XK_e,           externalpipe,   {.v =  (char*[]){ SHELL, "-c", "tee /tmp/st.txt | xsel -s ", NULL }}},
+ 	{ TERMMOD,              XK_T,           newterm,        {.i =  0} },
+ };
+ 
+-- 
+2.30.1
+

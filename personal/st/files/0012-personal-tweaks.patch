@@ -1,0 +1,34 @@
+From ba662064157c50335318b3b85e236fe220d82c03 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Tue, 21 Apr 2020 23:27:49 -0700
+Subject: [PATCH 12/15] personal tweaks
+
+---
+ config.def.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 12df972..5752ce4 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -34,7 +34,7 @@ static float chscale = 1.0;
+  *
+  * More advanced example: L" `'\"()[]{}"
+  */
+-wchar_t *worddelimiters = L" ";
++wchar_t *worddelimiters = L" `'\"()[]{}.";
+ 
+ /* selection timeouts (in milliseconds) */
+ static unsigned int doubleclicktimeout = 300;
+@@ -202,7 +202,7 @@ static Shortcut shortcuts[] = {
+ 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+ 	{ MODKEY,               XK_l,           copyurl,        {.i =  0} },
+-	{ TERMMOD,              XK_t,           newterm,        {.i =  0} },
++	{ TERMMOD,              XK_T,           newterm,        {.i =  0} },
+ };
+ 
+ /*
+-- 
+2.30.1
+

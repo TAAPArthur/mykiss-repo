@@ -1,0 +1,15 @@
+https://dl.suckless.org/st/st-0.8.4.tar.gz
+files/0001-Applied-copyurl-patch.patch
+files/0002-Applied-newterm-patch.patch
+files/0003-Applied-clipboard-patch.patch
+files/0004-Applied-patch-working-dir.patch
+files/0005-scrollback1.patch
+files/0006-scrollback2.patch
+files/0007-scrollback3.patch
+files/0008-external-pipe.patch
+files/0009-externalpipe-eternal.patch
+files/0011-Changed-default-font-and-scroll-command.patch
+files/0012-personal-tweaks.patch
+files/0013-scroll-tweaks.patch
+files/0014-increased-term-size.patch
+files/0015-Added-externalpipe-command.patch
