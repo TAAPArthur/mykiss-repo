@@ -1,5 +1,6 @@
 files/dhcpcd
 files/iwd
+files/ntpd
 files/sshd
 files/syslogd
 files/tty1
