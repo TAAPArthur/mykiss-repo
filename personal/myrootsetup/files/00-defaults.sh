@@ -1,3 +1,6 @@
 #!/bin/sh
-export MAKEFLAGS="-j 6"
+
+export MAKEFLAGS="-j $(($(nproc)+1))"
 export EDITOR=vim
+export CC=tcc
+export DEFAULT_CC=tcc

@@ -1,4 +1,5 @@
 files/kiss_hooks
+files/kiss_set_compiler.txt
 files/remove_unwanted_files.sh
 files/set_compiler.sh
 files/time_build.sh
