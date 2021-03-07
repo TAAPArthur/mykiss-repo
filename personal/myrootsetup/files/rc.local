@@ -1,4 +1,7 @@
 #!/bin/sh
+
+# Inspired by Morpheus init scripts (http://git.2f30.org/fs/)
+
 # enable core dumps
 ulimit -c unlimited
 
@@ -13,9 +16,19 @@ ln -s /proc/self/fd/2 /dev/stderr
 mkdir /dev/mqueue
 mount -t mqueue none /dev/mqueue
 
+[ -f /etc/modules ] && modprobe /etc/modules
+
 # enable device management
 echo /bin/ndev > /proc/sys/kernel/hotplug
 ndev -s
 
+# set up loopback interface
+/bin/ip addr add 127.0.0.1/8 dev lo broadcast + scope host
+/bin/ip link set lo up
+
+# keyboard settings
+kbdrate -d 250 -r 20
+setmetamode metabit
+
 # load arrays
-command -v mdadm >>/dev/null && mdadm --assemble --scan
+[ -x /bin/mdadm ] && mdadm --assemble --scan

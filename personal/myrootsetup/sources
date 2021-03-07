@@ -5,5 +5,5 @@ files/sudoers
 files/vimrc
 files/ntp.conf
 files/blacklist.conf
-files/default_modules.conf
+files/modules
 files/nobeep.conf
