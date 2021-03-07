@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+export CFLAGS="$CFLAGS -fPIC"
+
+patch -p1 < pkcs7-fix.patch
+patch -p1 < makefile_remove_extra_options.patch
+
+make \
+    prefix="$1/usr" \
+    HAVE_X11=no \
+    HAVE_GLUT=no \
+    install

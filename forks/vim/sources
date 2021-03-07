@@ -1,2 +1,2 @@
-git+https://github.com/vim/vim
+https://github.com/vim/vim/archive/v8.2.2517.tar.gz
 patches/no_mouse.patch

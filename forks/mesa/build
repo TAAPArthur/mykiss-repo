@@ -41,9 +41,7 @@ meson \
     -Dplatforms=x11,drm \
     -Dzstd=false \
     -Dllvm=disabled \
-    -Dglx=disabled \
     -Dvulkan-drivers='' \
-    -Ddri-drivers='' \
     -Dgallium-drivers='' \
     . output
 

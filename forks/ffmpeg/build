@@ -1,0 +1,30 @@
+#!/bin/sh -e
+
+sed -i "/pragma_deprecated/d" configure
+./configure \
+    --cc="${CC:-cc}" \
+    --cxx="${CXX:-c++}" \
+    --prefix=/usr \
+    --enable-shared \
+    --enable-gpl \
+    --enable-version3 \
+    --enable-nonfree \
+    --enable-libtls \
+    --enable-libass \
+    --enable-libmp3lame \
+    --enable-libopus \
+    --enable-libvorbis \
+    --enable-libvpx \
+    --enable-libx264 \
+    --disable-libx265 \
+    --enable-libxvid \
+    --enable-libwebp \
+    --enable-libdrm \
+    --x86asmexe=nasm \
+    --disable-debug \
+    --disable-libxml2
+
+make
+make DESTDIR="$1" install
+
+rm -rf "$1/usr/share/ffmpeg/examples"

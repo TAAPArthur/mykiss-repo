@@ -26,3 +26,5 @@ make LIBS="$(curl-config --static-libs) libgit.a xdiff/lib.a -lz"
 make DESTDIR="$1" install
 
 cp -rf man "$1/usr/share/man"
+
+install -m644 -Dt "$1/usr/share/bash-completion/completions" contrib/completion/git-completion.bash

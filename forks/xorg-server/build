@@ -8,15 +8,13 @@ patch -p1 < fix-crash.patch
     --localstatedir=/var \
     --disable-systemd-logind \
     --disable-xwayland \
-    --disable-hal \
     --enable-debug \
     --disable-unit-tests \
-    --disable-glx \
-    --disable-dri \
-    --disable-dri2 \
-    --disable-dri3 \
+    --enable-dri \
+    --enable-dri2 \
+    --enable-dri3 \
     --disable-glamor \
-    --disable-glx \
+    --enable-glx \
     --disable-xwin \
     --enable-xorg \
     --enable-xvfb \

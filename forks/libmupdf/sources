@@ -1,0 +1,3 @@
+https://www.mupdf.com/downloads/archive/mupdf-1.18.0-source.tar.xz
+patches/pkcs7-fix.patch
+patches/makefile_remove_extra_options.patch
