@@ -1,6 +1,0 @@
-#!/bin/sh -e
-patch -p1 < sysmacros.patch
-sed 's@-Werror@@' -i Makefile
-
-make BINDIR=/usr/bin
-make INSTALL=/usr/bin/install BINDIR=/usr/bin DESTDIR="$1" install

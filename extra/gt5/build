@@ -1,6 +1,0 @@
-#!/bin/sh -e
-pkgname=gt5
-pkgdir=$1
-pkgver=$2
-install -D -m755 ${pkgname} ${pkgdir}/usr/bin/${pkgname}
-install -D -m644 ${pkgname}.1 ${pkgdir}/usr/share/man/man1/${pkgname}.1

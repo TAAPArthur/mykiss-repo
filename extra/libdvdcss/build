@@ -1,7 +1,0 @@
-#!/bin/sh -e
-pkgname=libdvdcss
-pkgdir=$1
-pkgver=$2
-./configure --prefix=/usr
-make
-make DESTDIR="${pkgdir}" install
