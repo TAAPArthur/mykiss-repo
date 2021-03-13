@@ -2,9 +2,6 @@
 
 # Inspired by Morpheus init scripts (http://git.2f30.org/fs/)
 
-# enable core dumps
-ulimit -c unlimited
-
 # set up some sym links
 ln -s /proc/kcore /dev/core
 # needed for bash process substitution
@@ -16,7 +13,11 @@ ln -s /proc/self/fd/2 /dev/stderr
 mkdir /dev/mqueue
 mount -t mqueue none /dev/mqueue
 
-[ -f /etc/modules ] && modprobe /etc/modules
+# module loading
+for moduleConfig in /etc/modules-load.d/*.conf; do
+    # shellcheck disable=SC2046
+    [ -r "$moduleConfig" ] && modprobe -a $(grep "^\s*[^#; ]" "$moduleConfig")
+done
 
 # enable device management
 echo /bin/ndev > /proc/sys/kernel/hotplug
