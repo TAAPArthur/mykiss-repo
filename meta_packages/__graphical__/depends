@@ -1,11 +1,15 @@
 autorandr
 clip-history
-dzen2
+dzen
 mpv
 mpxmanager
+mystatusbar
 st
+taap-keyboard
 xf86-input-libinput
 xinit
 xinput
 xorg-server
+xprop
 zathura
+zauth

@@ -1,2 +1,6 @@
+autopep8
+cloc
+ctags
 gdb
+python-pylint
 strace

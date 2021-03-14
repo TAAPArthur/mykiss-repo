@@ -7,8 +7,10 @@ kiss-ext
 kiss-fallback
 kiss-hooks
 lynx
+man-pages
 man-pages-posix
 mandoc
+mqbus
 shellcheck-bin
 strace
 tpm
