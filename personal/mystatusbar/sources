@@ -1,2 +1,1 @@
-files/Makefile
-files/mystatusbar.c
+git+https://github.com/TAAPArthur/mystatusbar
