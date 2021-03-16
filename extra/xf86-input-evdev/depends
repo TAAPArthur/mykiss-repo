@@ -1,0 +1,4 @@
+libevdev
+mtdev
+xorgproto make
+xorg-server make
