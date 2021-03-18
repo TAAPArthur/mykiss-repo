@@ -1,0 +1,5 @@
+#!/bin/sh -e
+mv Image linux-stable
+install -D -t $1/boot linux-stable board*
+mkdir $1/lib/
+cp -R modules/lib/modules $1/lib/

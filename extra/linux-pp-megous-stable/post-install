@@ -1,0 +1,2 @@
+#!/bin/sh
+echo 'remember to run "p-boot-conf /boot $boot_partition_block_device"'
