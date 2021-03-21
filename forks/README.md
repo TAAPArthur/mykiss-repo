@@ -2,6 +2,7 @@
 
 alsa-utils - allow compiling with tcc
 curl - made static
+dmenu - custom patches
 ffmpeg - removed x265 (cmake) and use libtls instead of openssl
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion

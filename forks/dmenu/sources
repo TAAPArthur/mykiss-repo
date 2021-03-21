@@ -1,0 +1,8 @@
+https://dl.suckless.org/tools/dmenu-5.0.tar.gz
+patches/0001-Add-keybindings-for-lower-raise-power-buttons.patch
+patches/0002-Only-display-text-before-r-t-Fork-of-the-tsv-patch.patch
+patches/0003-Wrap-selection.patch
+patches/dmenu-center-20200111-8cd37e1.diff
+patches/dmenu-grid-4.9.diff
+patches/dmenu-initialtext-4.7.diff
+patches/dmenu-multi-selection-4.9.diff

@@ -1,0 +1,53 @@
+From 86a9b04e2f96088cf7c0860d536943b2fc921e00 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Sun, 21 Mar 2021 01:23:11 -0700
+Subject: [PATCH 3/3] Wrap selection
+
+---
+ dmenu.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/dmenu.c b/dmenu.c
+index c7978a1..657329d 100644
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -454,6 +454,7 @@ insert:
+ 			return;
+ 		insert(NULL, nextrune(-1) - cursor);
+ 		break;
++jump_to_end:
+ 	case XK_End:
+ 		if (text[cursor] != '\0') {
+ 			cursor = strlen(text);
+@@ -473,6 +474,7 @@ insert:
+ 	case XK_Escape:
+ 		cleanup();
+ 		exit(1);
++jump_to_start:
+ 	case XK_Home:
+ 		if (sel == matches) {
+ 			cursor = 0;
+@@ -491,6 +493,9 @@ insert:
+ 		/* fallthrough */
+ 	case XF86XK_AudioRaiseVolume:
+ 	case XK_Up:
++		if(sel && !sel->left) {
++			goto jump_to_end;
++		}
+ 		if (sel && sel->left && (sel = sel->left)->right == curr) {
+ 			curr = prev;
+ 			calcoffsets();
+@@ -532,6 +537,10 @@ insert:
+ 		/* fallthrough */
+ 	case XF86XK_AudioLowerVolume:
+ 	case XK_Down:
++
++		if(sel && !sel->right) {
++			goto jump_to_start;
++		}
+ 		if (sel && sel->right && (sel = sel->right) == next) {
+ 			curr = next;
+ 			calcoffsets();
+-- 
+2.30.1
+
