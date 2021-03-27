@@ -1,4 +1,4 @@
 #!/bin/sh -e
 
 ${CC:-cc} -o call-audio call-audio.c
-install -Dt $1/usr/bin/call-audio
+install -Dt $1/usr/bin/ call-audio
