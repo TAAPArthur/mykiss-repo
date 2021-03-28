@@ -1,4 +1,4 @@
-From 0d7ed1894d702bca7d795ac0cb84a8bb07e09285 Mon Sep 17 00:00:00 2001
+From dfeb8d5ca4d1127de4dd44b36ad64daba65d64ea Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@gmail.com>
 Date: Sat, 20 Mar 2021 18:38:54 -0700
 Subject: [PATCH 2/3] Only display text before \r/\t; Fork of the tsv patch
@@ -8,7 +8,7 @@ Subject: [PATCH 2/3] Only display text before \r/\t; Fork of the tsv patch
  1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/dmenu.c b/dmenu.c
-index 37df51e..c7978a1 100644
+index 229ace5..a0fde7e 100644
 --- a/dmenu.c
 +++ b/dmenu.c
 @@ -31,6 +31,7 @@ enum { SchemeNorm, SchemeSel, SchemeOut, SchemeLast }; /* color schemes */
@@ -37,7 +37,7 @@ index 37df51e..c7978a1 100644
  		if (next) {
  			w = TEXTW(">");
  			drw_setscheme(drw, scheme[SchemeNorm]);
-@@ -584,6 +585,10 @@ readstdin(void)
+@@ -585,6 +586,10 @@ readstdin(void)
  			*p = '\0';
  		if (!(items[i].text = strdup(buf)))
  			die("cannot strdup %u bytes:", strlen(buf) + 1);

@@ -1,4 +1,4 @@
-From 86a9b04e2f96088cf7c0860d536943b2fc921e00 Mon Sep 17 00:00:00 2001
+From b182612fc6ef1af1b0ec4f6f5f15fbe83c709521 Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@gmail.com>
 Date: Sun, 21 Mar 2021 01:23:11 -0700
 Subject: [PATCH 3/3] Wrap selection
@@ -8,7 +8,7 @@ Subject: [PATCH 3/3] Wrap selection
  1 file changed, 9 insertions(+)
 
 diff --git a/dmenu.c b/dmenu.c
-index c7978a1..657329d 100644
+index a0fde7e..db219cf 100644
 --- a/dmenu.c
 +++ b/dmenu.c
 @@ -454,6 +454,7 @@ insert:
@@ -37,7 +37,7 @@ index c7978a1..657329d 100644
  		if (sel && sel->left && (sel = sel->left)->right == curr) {
  			curr = prev;
  			calcoffsets();
-@@ -532,6 +537,10 @@ insert:
+@@ -533,6 +538,10 @@ insert:
  		/* fallthrough */
  	case XF86XK_AudioLowerVolume:
  	case XK_Down:
