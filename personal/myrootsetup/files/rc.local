@@ -13,6 +13,10 @@ ln -s /proc/self/fd/2 /dev/stderr
 mkdir /dev/mqueue
 mount -t mqueue none /dev/mqueue
 
+# allow members of group sys to suspend
+chown -R :sys /sys/power
+chmod g+w /sys/power/state
+
 # module loading
 for moduleConfig in /etc/modules-load.d/*.conf; do
     # shellcheck disable=SC2046
