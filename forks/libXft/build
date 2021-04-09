@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr
+
+sed -i "s/<ft2build.h>/<freetype2\/ft2build.h>/" include/X11/Xft/Xft.h
+
+make
+make DESTDIR="$1" install

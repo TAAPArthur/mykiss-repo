@@ -4,9 +4,11 @@ alsa-utils - allow compiling with tcc
 curl - made static
 dmenu - custom patches
 ffmpeg - removed x265 (cmake) and use libtls instead of openssl
+freetype-harfbuzz - fix freetype path
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion
 herbe - custom patches
+libXft - fix freetype path
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
 libwebp - use libjpeg instead of libjpeg turbo
 mesa - disabled llvm
