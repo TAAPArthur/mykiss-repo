@@ -10,6 +10,7 @@ herbe - custom patches
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
 libwebp - use libjpeg instead of libjpeg turbo
 mesa - disabled llvm
+mtdev - replace builtin_ffs with musl's ffs so it can properly be linked against; Also provide the --build arg so it can build on the pinephone
 musl - fixing wchar_t and wint_t typedefs to work with tcc on arm64
 python - removed sqlite dependency
 vim - disable mouse support

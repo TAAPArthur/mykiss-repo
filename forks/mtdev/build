@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --build="$(uname -m)-unknown-local"
+
+sed -i "s/__builtin_ffs/ffs/g" src/common.h
+make
+make DESTDIR="$1" install
