@@ -1,0 +1,4 @@
+libX11
+libXft
+libxcb
+xcb-util-wm
