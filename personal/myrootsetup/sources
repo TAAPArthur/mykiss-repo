@@ -1,6 +1,7 @@
 files/00-defaults.sh
 files/00-kiss.sh
 files/rc.local
+files/rc.shutdown
 files/sudoers
 files/vimrc
 files/ntp.conf

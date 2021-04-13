@@ -2,6 +2,12 @@
 
 # Inspired by Morpheus init scripts (http://git.2f30.org/fs/)
 
+# set system time form hardware clock
+hwclock -s
+# Setting random seed
+[ -f /etc/random-seed ] && cat /etc/random-seed >/dev/urandom
+dd if=/dev/urandom of=/etc/random-seed count=1 bs=512 2>/dev/null
+
 # set up some sym links
 ln -s /proc/kcore /dev/core
 # needed for bash process substitution
