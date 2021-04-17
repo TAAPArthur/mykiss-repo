@@ -1,3 +1,0 @@
-#!/bin/sh
-user=$(getent passwd 1 |cut -d":" -f 1)
-exec setsid /bin/agetty --noclear -a $user $(basename $0)

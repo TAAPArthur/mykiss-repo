@@ -1,0 +1,2 @@
+#!/bin/sh
+exec setsid /bin/agetty --noclear "$(basename $0 | cut -d"-" -f2)"

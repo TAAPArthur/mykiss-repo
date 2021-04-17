@@ -1,2 +1,0 @@
-#!/bin/sh
-exec setsid /bin/agetty --noclear $(basename $0)
