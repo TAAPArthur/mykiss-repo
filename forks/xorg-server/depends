@@ -12,6 +12,7 @@ libepoxy
 libfontenc
 libpciaccess
 libressl
+libudev-zero
 libxcb
 libxkbfile
 libxshmfence

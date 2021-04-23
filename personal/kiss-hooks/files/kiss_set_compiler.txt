@@ -42,7 +42,6 @@ sudo
 util-linux
 x264
 xdotool
-xorg-server
 xvidcore
 zathura
 zlib

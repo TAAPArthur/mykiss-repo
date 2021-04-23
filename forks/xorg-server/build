@@ -2,6 +2,8 @@
 
 patch -p1 < rootless_modesetting.patch
 patch -p1 < fix-crash.patch
+sed -i "s/ModuleDuplicated\[\]/ModuleDuplicated[0]/" hw/xfree86/loader/loadmod.c
+sed -i "s/defined(__GNUC__)/1/; s/__GNUC__/__TINYC__/" hw/xfree86/common/compiler.h hw/xfree86/vbe/vbe.h
 
 ./configure \
     --prefix=/usr \
