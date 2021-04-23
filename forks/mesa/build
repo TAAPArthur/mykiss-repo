@@ -1,5 +1,8 @@
 #!/bin/sh -e
 
+for patch in *.patch; do
+    patch -p1 <$patch
+done
 # Install python-mako which is solely needed for mesa
 # and thus contained in this build.
 {
