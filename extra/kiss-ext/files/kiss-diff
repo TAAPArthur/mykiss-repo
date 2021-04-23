@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 # Show diff between top 2 sources of a given pkg
 
 cont=0
@@ -26,7 +26,7 @@ kiss s $pkg | grep -v installed |  {
     else
         us=$pkg
     fi
-    while read -r them && diff $DIFF_ARGS $them $us; do
+    while read -r them && diff ${DIFF_ARGS:--u} $them $us; do
         [ "$cont" -eq 1 ] || break
     done
 }
