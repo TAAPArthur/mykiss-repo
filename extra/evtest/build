@@ -1,4 +1,0 @@
-#!/bin/sh -e
-
-${CC:-cc} -DPATH_MAX=255 -o evtest evtest.c
-install -Dt $1/usr/bin evtest
