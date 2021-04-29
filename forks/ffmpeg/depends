@@ -5,6 +5,7 @@ libogg
 libressl
 libvorbis
 libvpx
+libwebp
 linux-headers make
 nasm          make
 opus
