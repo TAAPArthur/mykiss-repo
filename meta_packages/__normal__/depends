@@ -1,5 +1,9 @@
 __micro__
 bash
+cpm
+dash
+diffutils
+evtest
 gt5
 htop
 indent-sort
@@ -11,9 +15,8 @@ man-pages
 man-pages-posix
 mandoc
 mqbus
+python-argcomplete
 shellcheck-bin
-strace
-tpm
 tree
 vundle
 zip
