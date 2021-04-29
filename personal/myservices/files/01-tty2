@@ -1,2 +1,2 @@
 #!/bin/sh
-exec setsid /bin/agetty --noclear "$(basename $0 | cut -d"-" -f2)"
+exec setsid /bin/getty "/dev/$(basename $0 | cut -d"-" -f2)"

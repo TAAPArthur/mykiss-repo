@@ -23,6 +23,7 @@ libelf
 libepoxy
 libevdev
 libffi
+libinput
 libmupdf
 libpng
 libressl
@@ -39,7 +40,6 @@ perl
 pkgconf
 strace
 sudo
-util-linux
 x264
 xdotool
 xvidcore
