@@ -1,5 +1,4 @@
 #!/bin/sh -e
 
-patch -p1 < touchscreen.patch
 make PREFIX=/usr
 make DESTDIR="$1" PREFIX=/usr install
