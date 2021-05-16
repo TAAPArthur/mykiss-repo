@@ -18,7 +18,7 @@ mtdev - replace builtin_ffs with musl's ffs so it can properly be linked against
 musl - fixing wchar_t and wint_t typedefs to work with tcc on arm64
 python - removed sqlite dependency
 vim - disable mouse support
-xorg-server - debug mode; disabled glamor
+xorg-server - to support tcc
 
 
 # Future work

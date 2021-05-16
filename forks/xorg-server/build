@@ -10,12 +10,11 @@ sed -i "s/defined(__GNUC__)/1/; s/__GNUC__/__TINYC__/" hw/xfree86/common/compile
     --localstatedir=/var \
     --disable-systemd-logind \
     --disable-xwayland \
-    --enable-debug \
     --disable-unit-tests \
     --enable-dri \
     --enable-dri2 \
     --enable-dri3 \
-    --disable-glamor \
+    --enable-glamor \
     --enable-glx \
     --disable-xwin \
     --enable-xorg \
