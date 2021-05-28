@@ -15,4 +15,5 @@ shellcheck-bin
 strace
 tpm
 tree
-vundle-git
+vundle
+zip
