@@ -1,4 +1,0 @@
-#!/bin/sh -e
-patch -p1 < missing_include.patch
-make
-make DESTDIR=$1 install
