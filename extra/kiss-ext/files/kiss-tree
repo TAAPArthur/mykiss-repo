@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 # Show dependency tree for a given package
 
 contains() {
@@ -12,19 +12,19 @@ func() {
         return
     fi
     path=$(kiss search $2 |head -n1)
-    for i in $(seq 1 $1); do
+    for _ in $(seq 1 $1); do
        printf "\t"
     done
-    echo -n $2
-    [ -z "$3" ] || echo -n " ($3)"
-    [ -e $KISS_ROOT/var/db/kiss/installed/$2 ] && echo -n " (installed)"
+    printf %s $2
+    [ -z "$3" ] || printf %s " ($3)"
+    [ -e $KISS_ROOT/var/db/kiss/installed/$2 ] && printf %s " (installed)"
     echo
     contains "$LIST" $2 && return;
     LIST="$LIST $2"
     if [ -f $path/depends ]; then
-        for dep in $(cat $path/depends | cut -d" " -f 1); do
+        while read -r dep _ ; do
             func $(($1+1)) $dep
-        done
+        done < $path/depends
     fi
 }
 
