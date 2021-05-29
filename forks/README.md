@@ -17,7 +17,7 @@ mesa - disabled llvm; Enabled dri for arm; Build glxgears
 mpv - enabled lua
 mtdev - replace builtin_ffs with musl's ffs so it can properly be linked against; Also provide the --build arg so it can build on the pinephone
 musl - fixing wchar_t and wint_t typedefs to work with tcc on arm64
-python - removed sqlite dependency
+python - removed sqlite dependency and added readline depend
 vim - disable mouse support
 xorg-server - to support tcc
 zathra - forked to disable magic
