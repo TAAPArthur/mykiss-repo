@@ -1,0 +1,5 @@
+libmupdf make
+girara
+meson make
+pkgconf make
+zathura

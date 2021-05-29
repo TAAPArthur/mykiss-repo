@@ -1,0 +1,51 @@
+--- a/libarchive/archive_read_support_format_zip.c	2021-05-28 20:27:07.688079453 -0500
++++ b/libarchive/archive_read_support_format_zip.c	2021-05-28 20:27:03.674141111 -0500
+@@ -900,6 +900,16 @@
+ }
+ 
+ #if HAVE_LZMA_H && HAVE_LIBLZMA
++// prepare header for lzma_alone_decoder to replace zipx header
++// (see comments in 'zipx_lzma_alone_init' for justification)
++struct _alone_header
++{
++	uint8_t bytes[5] __attribute__((packed)); // lzma_params_length
++	uint64_t uncompressed_size __attribute__((packed));
++};
++#endif
++
++#if HAVE_LZMA_H && HAVE_LIBLZMA
+ /*
+  * Auxiliary function to uncompress data chunk from zipx archive
+  * (zip with lzma compression).
+@@ -925,14 +935,7 @@
+ 
+ 	// prepare header for lzma_alone_decoder to replace zipx header
+ 	// (see comments in 'zipx_lzma_alone_init' for justification)
+-#pragma pack(push)
+-#pragma pack(1)
+-	struct _alone_header
+-	{
+-		uint8_t bytes[5]; // lzma_params_length
+-		uint64_t uncompressed_size;
+-	} alone_header;
+-#pragma pack(pop)
++	struct _alone_header alone_header;
+ 	// copy 'lzma properties data' blob
+ 	memcpy(&alone_header.bytes[0], compressed_buffer + lzma_params_offset,
+ 		lzma_params_length);
+@@ -1647,13 +1650,8 @@
+ 	lzma_ret r;
+ 	const uint8_t* p;
+ 
+-#pragma pack(push)
+-#pragma pack(1)
+-	struct _alone_header {
+-	    uint8_t bytes[5];
+-	    uint64_t uncompressed_size;
+-	} alone_header;
+-#pragma pack(pop)
++
++	struct _alone_header alone_header;
+ 
+ 	if(zip->zipx_lzma_valid) {
+ 		lzma_end(&zip->zipx_lzma_stream);

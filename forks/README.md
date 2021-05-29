@@ -9,6 +9,7 @@ girara - removed json depends (cmake)
 git - added perl support; Added bash completion
 herbe - custom patches
 libXft - fix freetype path
+libarchive - allow compilation with tcc
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
 libwebp - use libjpeg instead of libjpeg turbo
 libudev-zero - apply patch (already in upstream) to support pinephone touch screen
@@ -19,7 +20,8 @@ musl - fixing wchar_t and wint_t typedefs to work with tcc on arm64
 python - removed sqlite dependency
 vim - disable mouse support
 xorg-server - to support tcc
-
+zathra - forked to disable magic
+zathura-pdf-mupdf - removed unneeded dependencies
 
 # Future work
 busybox
