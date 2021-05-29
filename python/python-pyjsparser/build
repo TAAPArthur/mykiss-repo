@@ -1,5 +1,0 @@
-#!/bin/sh -e
-pkgname=python-pyjsparser
-pkgdir=$1
-pkgver=$2
-python setup.py build

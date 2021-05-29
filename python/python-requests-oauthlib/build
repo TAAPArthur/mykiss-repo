@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+python setup.py build
+python setup.py install --root="$1" --optimize=1
+install -D -m644 LICENSE "$1/usr/share/licenses/python-requests-oauthlib/LICENSE"

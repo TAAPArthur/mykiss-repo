@@ -1,3 +1,4 @@
 python-chardet
 python-idna
 python-urllib3
+python-certifi

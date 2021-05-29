@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+python setup.py build
+python setup.py install -O1 --root="$1" --skip-build
+
+install -Dt "$1/usr/share/bash-completion/completions" argcomplete/bash_completion.d/python-argcomplete
