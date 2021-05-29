@@ -1,9 +1,0 @@
-#!/bin/sh -e
-pkgname=tpm
-pkgdir=$1
-pkgver=$2
-make
-make PREFIX=/usr DESTDIR="${pkgdir}" install
-
-install -Dm644 contrib/zsh_completion "${pkgdir}/usr/share/zsh/site-functions/_${pkgname}"
-install -Dm644 contrib/bash_completion "${pkgdir}/usr/share/bash-completion/completions/${pkgname}"
