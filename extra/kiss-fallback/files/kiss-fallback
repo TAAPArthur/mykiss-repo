@@ -7,31 +7,29 @@ _parse_pkgbuild() {
     pkgver=git
     sed -ne 's/['\''"]//g; /^\w*=[A-z0-9\.\-]*$/p' "$2" |
     {
+        SED_STR="s/\${*pkgdir}*/\$1/"
         while IFS='=' read -r var value; do
+            SED_STR="$SED_STR; s/\${*$var}*/$value/g"
             case $var in
                 pkgver) pkgver=$value ;;
                 pkgrel) pkgrel=$value ;;
-                _commit) _commit=$value;;
-                *)
-                    echo "$var=$value" >> build
             esac
         done
-        echo 'pkgdir=$1' >> build
-        echo 'pkgver=$2' >> build
         echo "$pkgver $pkgrel" > version
-        sed -n '/^build\s*()/,/^}/p' $2 | sed "s/^\s*//" | grep -v cd | head -n -1 | tail -n +2  >> build
-        sed -n '/^package\s*()/,/^}/p' $2 | sed "s/^\s*//" | grep -v cd | head -n -1 |tail -n +2 >> build
-        sed -nr "s/^source=\((.*)\)/\1/p" $2| sed "s/[\"']//g; s/\${*pkgver}*/$pkgver/g; s/\${*pkgname}*/$1/g ; s/\${*_commit}*/$_commit/g" |
-            sed "s/^.*:://g" |
-            tr " " "\n" > sources
+        sed -nE "s/^source=\((.*)\)/\1/p" $2 | sed "s/^.*:://g" | tr " " "\n" | sed "$SED_STR; s/[\"']//g;" > sources
+        {
+            echo
+            sed -n '/^build\s*()/,/^}/p' $2 | sed "s/^\s*//" | grep -v cd | head -n -1 | tail -n +2
+            sed -n '/^package\s*()/,/^}/p' $2 | sed "s/^\s*//" | grep -v cd | head -n -1 |tail -n +2
+        } | sed "$SED_STR" | sed -E 's/"(\$[0-9\/A-z]*)"([0-9\/A-z\.-]*)/"\1\2"/g'  >> build
     }
 }
 
 create_pkg_aur() {
     AUR_REPO="https://aur.archlinux.org/rpc/?v=5&type=info"
     data=$(curl -L "$AUR_REPO&arg=$1")
-    if [ $(echo $data | jq -r ".resultcount") -eq 1 ]; then
-        echo "Coping package from AUR"
+    if [ "$(echo $data | jq -r ".resultcount")" -eq 1 ]; then
+        echo "Copying package from AUR"
         curl -L "https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=$1" > $TMP_DIR/PKGBUILD
         [ -s "$TMP_DIR/PKGBUILD" ]
         kiss new $1
@@ -44,14 +42,15 @@ create_pkg_aur() {
 }
 create_pkg_arch_linux() {
     data="$(curl -L  https://www.archlinux.org/packages/search/json/?name=$1)"
-    [ $(echo "$data" | jq ".results[0]") = "null" ] && return
-    echo "Coping package from offical arch repos"
+    [ "$(echo "$data" | jq ".results[0]")" = null ] && return
+    echo "Copying package from offical arch repos"
     echo "https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/$1/trunk/PKGBUILD"
     (
         set -x
         curl -L -f "https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/$1/trunk/PKGBUILD" ||
         curl -L -f "https://raw.githubusercontent.com/archlinux/svntogit-community/packages/$1/trunk/PKGBUILD"
     ) > $TMP_DIR/PKGBUILD 2>/dev/null
+    echo here
     [ -s "$TMP_DIR/PKGBUILD" ]
     kiss new $1
     cd $1
@@ -64,7 +63,7 @@ FALLBACK_REPOS="$FALLBACK_REPOS arch_linux aur"
 createPkg() {
     for fallback in $FALLBACK_REPOS; do
         cd $KISS_FALLBACK_REPO
-        [ -n "$KISS_FORCE" ] && [ -d $KISS_FALLBACK_REPO/$fallback/$1 ] && rm -R $KISS_FALLBACK_REPO/$fallback/$1
+        [ -n "$KISS_FORCE" ] && [ -d "$KISS_FALLBACK_REPO/$fallback/$1" ] && rm -R "${KISS_FALLBACK_REPO:?}/$fallback/$1"
         create_pkg_$fallback $1
         if [ -d $KISS_FALLBACK_REPO/$1 ]; then
             return
@@ -79,7 +78,7 @@ createPkgAndDepends() {
         return
     fi
 
-    for i in $(seq 1 $2); do
+    for _ in $(seq 1 $2); do
        printf "\t"
     done
 
@@ -92,13 +91,13 @@ createPkgAndDepends() {
         [ -n "$path" ]
         $EDITOR -p $path/* $TMP_DIR/*
         [ -e $path/depends ] && [ ! -s $path/depends ] && rm $path/depends
-        (cd $(dirname $path); kiss c $1)
+        (cd "$(dirname $path)" && kiss c $1)
     fi
     if [ -e $path/depends ]; then
-        for depends in $(cat $path/depends); do
+        while read -r depends ; do
             createPkgAndDepends $depends $((($2)+1))
-        done
+        done < "$path/depends"
     fi
 }
-createPkgAndDepends $1 0
+createPkgAndDepends "${1:-$(dirname $PWD)}" 0
 [ -d "$TMP_DIR" ] && rm -r "$TMP_DIR"
