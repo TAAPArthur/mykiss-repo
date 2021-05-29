@@ -1,0 +1,4 @@
+files/defconfig
+https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.12.tar.xz
+patches/all.patch
+patches/kernel-no-perl.patch

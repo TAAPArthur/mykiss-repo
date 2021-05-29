@@ -1,5 +1,9 @@
 #!/bin/sh -e
 
+for p in *.patch; do
+    patch -p1 < $p
+done
+
 KCONFIG_ALLCONFIG=defconfig make alldefconfig
 make
 mkdir -p "$1/boot" "$1/usr/lib/modules"
