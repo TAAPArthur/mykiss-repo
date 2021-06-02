@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+
+sed -i "s/ProjectType::OUTPUT/ProjectType::PROJECT_OUTPUT/" src/model.cc
+sed -i "s:\$(KALDI_ROOT)/src/[a-z0-9]*/:/usr/lib/kaldi/:" src/Makefile
+sed -i "s:/src::" src/Makefile
+sed -i "/liblapack.a/d; /libblas.a/d; /libf2c.a/d; s/libopenblas.a \\\\/libopenblas.a/" src/Makefile
+sed -i "s:\$(OPENFST_ROOT)/lib/lib\(\w*\).a:-l\1:" src/Makefile
+
+make -C src KALDI_ROOT=/usr/include/kaldi OPENBLAS_ROOT=/usr
+install -m644 -Dt "$1/usr/lib" src/libvosk.so
+install -m644 -Dt "$1/usr/include" src/vosk_api.h

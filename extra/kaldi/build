@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+sed -i "/extras\/check_dependencies.sh/d" tools/Makefile
+sed -i "s/uname -o/uname/g" src/configure
+
+cd src
+./configure \
+    --shared \
+    --mathlib=CLAPACK \
+    --fst-root=/usr \
+    --use-cuda=no \
+    --clapack-root=/usr
+
+patch -p1 < ../kaldi.patch
+
+make  online2 lm rnnlm
+cd -
+
+install -m664 -Dt "$1/usr/lib/kaldi/" src/*/*.a
+
+for d in base itf matrix util; do
+    install -m664 -Dt "$1/usr/include/kaldi/$d" src/$d/*.h
+done
+

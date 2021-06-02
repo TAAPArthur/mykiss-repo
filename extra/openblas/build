@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+sed -i "s/install -p/install -/" Makefile.install
+make NOFORTRAN=1 USE_LOCKING=1 USE_THREAD=0
+make PREFIX="$1/usr" install
+install -Dm644 LICENSE "$1/usr/share/licenses/openblas/LICENSE"
+
+ln -s libopenblas.so "$1/usr/lib/libblas.so"
+ln -s libopenblas.a "$1/usr/lib/libblas.a"
+sed -i -e "s%$1%%" "$1/usr/lib/pkgconfig/openblas.pc"
+ln -s openblas.pc "$1/usr/lib/pkgconfig/blas.pc"

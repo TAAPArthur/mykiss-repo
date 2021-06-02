@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --enable-static \
+    --enable-shared \
+    --enable-far \
+    --enable-ngram-fsts \
+    --enable-lookahead-fsts \
+    --with-pic \
+    --disable-bin
+
+make
+make DESTDIR=$1 install

@@ -1,0 +1,21 @@
+--- kaldi.mk	2021-06-09 23:22:48.346296019 -0500
++++ kaldi.mk	2021-06-09 23:24:24.364429955 -0500
+@@ -42,15 +37,13 @@
+ $(error OPENFSTLIBS not defined.)
+ endif
+ 
+-CLAPACKLIBS = $(CLAPACKROOT)/CLAPACK-3.2.1/lapack.a $(CLAPACKROOT)/CLAPACK-3.2.1/libcblaswr.a \
+-	      $(CLAPACKROOT)/CBLAS/lib/cblas.a \
+-	      $(CLAPACKROOT)/f2c_BLAS-3.8.0/blas.a $(CLAPACKROOT)/libf2c/libf2c.a
++CLAPACKLIBS = $(CLAPACKROOT)/lib/lapack.a $(CLAPACKROOT)/lib/libopenblas.a
+ 
+-CXXFLAGS = -std=c++14 -I.. -isystem $(OPENFSTINC) -O1 $(EXTRA_CXXFLAGS) \
++CXXFLAGS = -std=c++14 -I.. -I $(OPENFSTINC) -O1 $(EXTRA_CXXFLAGS) \
+            -Wall -Wno-sign-compare -Wno-unused-local-typedefs \
+            -Wno-deprecated-declarations -Winit-self \
+            -DKALDI_DOUBLEPRECISION=$(DOUBLE_PRECISION) \
+-           -DHAVE_EXECINFO_H=1 -DHAVE_CXXABI_H -DHAVE_CLAPACK -I../../tools/CLAPACK \
++           -DHAVE_CXXABI_H -DHAVE_CLAPACK -I../../tools/CLAPACK \
+            -msse -msse2 \
+            -g
+ 

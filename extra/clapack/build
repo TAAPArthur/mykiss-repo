@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+sed -i "s/define OFF_T __off64_t/define OFF_T off64_t/" F2CLIBS/libf2c/sysdep1.h0
+sed -i '/#include "fpu_control.h"/d' F2CLIBS/libf2c/uninit.c
+
+make f2clib
+make variants lapacklib tmglib
+install -Dt "$1/usr/include" INCLUDE/*.h
+install -Dt "$1/usr/lib" lapack.a
