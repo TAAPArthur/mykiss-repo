@@ -56,17 +56,15 @@ xkb_symbols "basic" {
     key <AB10> {	[     slash,	question	]	};
 
     key <BKSL> {	[ backslash,         bar	]	};
-    key <RALT> {	[ ralt,         Multi_key 	]	};
+    key <RALT> {	[ Alt_R,         Multi_key 	]	};
 
     key <CAPS> {    [ Hyper_L,      Hyper_L]   };
 
-    //modifier_map Mod4 { Super_L, Super_R };
+    key <HYPR> {	[ NoSymbol, Hyper_L	]	};
 
-    //key <SUPR> {    [ NoSymbol, Super_L ]   };
-    //modifier_map Mod4   { <SUPR> };
-
-    key <HYPR> {    [ NoSymbol, Hyper_L ]   };
     modifier_map Mod3   { <HYPR> };
+    modifier_map Mod4   { <SUPR> };
+
 
 };
 
