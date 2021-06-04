@@ -14,7 +14,8 @@
     --without-icu \
     --without-libpsl \
     --with-pic \
-    --with-ca-fallback
+    --with-ca-fallback \
+    --with-openssl
 
 make
 make DESTDIR="$1" install
