@@ -1,0 +1,27 @@
+From 55d740f177f119e1daae4af6e0f014c3dd1605a8 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Wed, 2 Jun 2021 20:27:19 -0700
+Subject: [PATCH] Don't change tty perms
+
+---
+ getty.c | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/getty.c b/getty.c
+index cef5c4e..96fc979 100644
+--- a/getty.c
++++ b/getty.c
+@@ -76,10 +76,6 @@ main(int argc, char *argv[])
+ 	dup2(fd, 0);
+ 	dup2(fd, 1);
+ 	dup2(fd, 2);
+-	if (fchown(fd, 0, 0) < 0)
+-		weprintf("fchown %s:", tty);
+-	if (fchmod(fd, 0600) < 0)
+-		weprintf("fchmod %s:", tty);
+ 	if (fd > 2)
+ 		close(fd);
+ 
+-- 
+2.31.1
+

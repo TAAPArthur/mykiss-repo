@@ -1,0 +1,3 @@
+git+git://git.suckless.org/sbase
+patches/no-fork-on-flock.patch
+patches/tar-dash-remove.patch

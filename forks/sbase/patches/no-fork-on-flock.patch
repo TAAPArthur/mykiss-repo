@@ -1,0 +1,60 @@
+From e8c214c02732bae6882251a5032031dff010990e Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Thu, 3 Jun 2021 17:22:10 -0700
+Subject: [PATCH] no fork on flock
+
+---
+ flock.c | 30 +++++-------------------------
+ 1 file changed, 5 insertions(+), 25 deletions(-)
+
+diff --git a/flock.c b/flock.c
+index fc2b6ed..390a0c1 100644
+--- a/flock.c
++++ b/flock.c
+@@ -18,7 +18,7 @@ usage(void)
+ int
+ main(int argc, char *argv[])
+ {
+-	int fd, status, savederrno, flags = LOCK_EX, nonblk = 0, oflag = 0;
++	int fd, flags = LOCK_EX, nonblk = 0, oflag = 0;
+ 	pid_t pid;
+ 
+ 	ARGBEGIN {
+@@ -53,30 +53,10 @@ main(int argc, char *argv[])
+ 		eprintf("flock:");
+ 	}
+ 
+-	switch ((pid = fork())) {
+-	case -1:
+-		eprintf("fork:");
+-	case 0:
+-		if (oflag && close(fd) < 0)
+-			eprintf("close:");
+-		argv++;
+-		execvp(*argv, argv);
+-		savederrno = errno;
+-		weprintf("execvp %s:", *argv);
+-		_exit(126 + (savederrno == ENOENT));
+-	default:
+-		break;
+-	}
+-	if (waitpid(pid, &status, 0) < 0)
+-		eprintf("waitpid:");
+-
+-	if (close(fd) < 0)
+-		eprintf("close:");
+-
+-	if (WIFSIGNALED(status))
+-		return 128 + WTERMSIG(status);
+-	if (WIFEXITED(status))
+-		return WEXITSTATUS(status);
++    if (oflag && close(fd) < 0)
++        eprintf("close:");
++    argv++;
++    execvp(*argv, argv);
+ 
+ 	return 0;
+ }
+-- 
+2.31.1
+
