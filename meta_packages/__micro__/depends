@@ -4,6 +4,6 @@ curl
 git
 iproute2
 sbase
-sudo
+sue
 tzdata
 ubase
