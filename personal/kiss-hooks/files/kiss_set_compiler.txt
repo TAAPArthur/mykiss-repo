@@ -12,6 +12,7 @@ girara
 glib
 grub
 gtk+3
+imlib2
 iproute2
 iptables
 jq

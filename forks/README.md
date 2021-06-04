@@ -8,6 +8,7 @@ freetype-harfbuzz - fix freetype path
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion
 herbe - custom patches
+imlib2 - Used libjpeg instead turbo
 libXft - fix freetype path
 libarchive - allow compilation with tcc
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
@@ -19,6 +20,7 @@ mtdev - replace builtin_ffs with musl's ffs so it can properly be linked against
 musl - fixing wchar_t and wint_t typedefs to work with tcc on arm64
 python - removed sqlite dependency and added readline depend
 sbase - made flock not fork
+sxiv - Add WM hints patch and custom config.def.h
 ubase - made getty not change tty permissions
 vim - disable mouse support
 xorg-server - to support tcc
