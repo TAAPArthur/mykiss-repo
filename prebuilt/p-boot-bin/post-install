@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cat - <<"EOF"
+Examples:
+To install p-boot
+    dd if=p-boot.bin of=/dev/mmcblk2 bs=1024 seek=8
+or with wrapper
+    p-boot-dd /dev/mmcblk2
+
+To update: p-boot-conf $conf_dir $boot_partition_block_device
+Example:
+p-boot-conf /boot /dev/mmcblk0p1
+EOF

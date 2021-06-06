@@ -1,7 +1,0 @@
-#!/bin/sh -e
-install -D -t $1/usr/lib/p-boot/ dist/p-boot*.bin
-install -D -t $1/boot/ dist/fw.bin
-install -D -t $1/usr/bin/ dist/p-boot-conf
-cd src
-${CC:-cc} -o p-boot-conf-native conf.c
-install -D -t $1/usr/bin/ p-boot-conf-native

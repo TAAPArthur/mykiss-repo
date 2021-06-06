@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+${CC:-cc} -o p-boot-conf-native src/conf.c
+install -D -t $1/usr/bin/ src/p-boot-conf-native

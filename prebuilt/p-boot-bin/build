@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+install -m755 -Dt "$1/usr/bin" p-boot-conf p-boot-dd
+install -Dt "$1/usr/libexec/p-boot" p-boot.bin

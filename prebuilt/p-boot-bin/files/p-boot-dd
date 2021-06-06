@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+[ -b "$1" ]
+P_BOOT_BIN=${P_BOOT_BIN:-/usr/libexec/p-boot/p-boot.bin}
+[ -e "$P_BOOT_BIN" ]
+dd if="$P_BOOT_BIN" of="$1" bs=1024 seek=8
