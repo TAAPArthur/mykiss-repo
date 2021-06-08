@@ -12,7 +12,6 @@ imlib2 - Used libjpeg instead turbo
 libXft - fix freetype path
 libarchive - allow compilation with tcc
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
-libudev-zero - apply patch (already in upstream) to support pinephone touch screen
 libwebp - use libjpeg instead of libjpeg turbo
 mesa - disabled llvm; Enabled dri for arm; Build glxgears
 mpv - enabled lua
