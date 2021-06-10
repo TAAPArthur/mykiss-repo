@@ -1,4 +1,3 @@
-libX11
-libXft
+libdtext-xcb
 libxcb
 xcb-util-wm
