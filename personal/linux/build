@@ -4,8 +4,10 @@ for p in *.patch; do
     patch -p1 < $p
 done
 
-KCONFIG_ALLCONFIG=defconfig make alldefconfig
+mv my_linux_defconfig arch/x86/configs
+make my_linux_defconfig
 make
 mkdir -p "$1/boot" "$1/usr/lib/modules"
 make INSTALL_MOD_PATH="$1/usr" INSTALL_MOD_STRIP=1 modules_install
 make INSTALL_PATH="$1/boot" install
+ln -s vmlinuz $1/boot/latest

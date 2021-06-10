@@ -1,3 +1,4 @@
-files/defconfig
-https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.12.tar.xz
+https://git.kernel.org/torvalds/t/linux-5.13-rc4.tar.gz
+files/my_linux_defconfig
+patches/compatibility.patch
 patches/kernel-no-perl.patch
