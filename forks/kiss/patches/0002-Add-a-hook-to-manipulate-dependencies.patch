@@ -1,0 +1,54 @@
+From 115c9dd1356d6e3392c126d10340b3435a80e797 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Thu, 10 Jun 2021 12:43:43 -0500
+Subject: [PATCH 2/2] Add a hook to manipulate dependencies
+
+Created KISS_DEPEND_HOOK as a hook to transform the dependency file when
+read. This can be used to replace one package for another or completely
+remove a package. If not set, `cat` is used.
+
+Closes #28
+---
+ kiss | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/kiss b/kiss
+index b1182a2..2e5fd92 100755
+--- a/kiss
++++ b/kiss
+@@ -371,7 +371,9 @@ pkg_depends() {
+         # Recurse through the dependencies of the child packages.
+         while read -r dep make || [ "$dep" ]; do
+             { [ "make" != "$make" ] || ! pkg_cache "$1"; } && [ "${dep##\#*}" ] && pkg_depends "$dep" '' "$3"
+-        done 2>/dev/null < "$(pkg_find "$1")/depends" ||:
++        done 2>/dev/null <<EOF ||:
++$(${KISS_DEPEND_HOOK:-cat} "$(pkg_find "$1")/depends")
++EOF
+ 
+         # After child dependencies are added to the list,
+         # add the package which depends on them.
+@@ -463,6 +465,7 @@ pkg_fix_deps() {
+ 
+     : >> depends
+ 
++    {
+     find "$pkg_dir/${PWD##*/}/" -type f 2>/dev/null |
+ 
+     while read -r file; do
+@@ -524,9 +527,11 @@ pkg_fix_deps() {
+                 ;;
+             esac
+         done ||:
+-    done |
++    done
++    ${KISS_DEPEND_HOOK:-cat} depends
++    } |
+ 
+-    sort -uk1,1 depends - > "$tmp_dir/.fixdeps"
++    sort -uk1,1 > "$tmp_dir/.fixdeps"
+ 
+     diff -U 3 depends - < "$tmp_dir/.fixdeps" ||:
+ 
+-- 
+2.31.1
+

@@ -9,6 +9,7 @@ freetype-harfbuzz - fix freetype path
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion
 imlib2 - Used libjpeg instead turbo
+kiss - Added KISS_DEPEND_HOOK
 libXft - fix freetype path
 libarchive - allow compilation with tcc
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
