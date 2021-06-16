@@ -7,6 +7,9 @@ patch -p1 < makefile_remove_extra_options.patch
 
 make \
     prefix="$1/usr" \
-    HAVE_X11=no \
+    USE_SYSTEM_FREETYPE=yes \
+    USE_SYSTEM_HARFBUZZ=yes \
+    USE_SYSTEM_LIBJPEG=yes \
+    USE_SYSTEM_ZLIB=yes \
     HAVE_GLUT=no \
     install
