@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+for patch in *.patch; do
+    patch -p1 < "$patch"
+done
+
+make
+
+install -Dt "$1/usr/bin" busybox
+./busybox --list | while read -r bin; do
+    [ "$bin" != busybox ] && ln -s busybox "$1/usr/bin/$bin"
+done
+
+chmod u+s "$1/usr/bin/busybox"

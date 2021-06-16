@@ -1,0 +1,8 @@
+https://git.busybox.net/busybox/snapshot/busybox-1_33_1.tar.gz
+files/.config
+patches/fsck-resolve-uuid.patch
+patches/install-fix-chown.patch
+patches/libressl.patch
+patches/modprobe-kernel-version.patch
+patches/print-unicode.patch
+patches/unzip-usage-no-error.patch
