@@ -1,6 +1,6 @@
 alsa-lib
+alsa-utils
 binutils
-busybox
 dhcpcd
 eiwd
 ffmpeg
@@ -13,7 +13,6 @@ glib
 grub
 gtk+3
 imlib2
-iproute2
 iptables
 jq
 kmod
@@ -46,4 +45,3 @@ strace
 x264
 xvidcore
 zathura
-zlib

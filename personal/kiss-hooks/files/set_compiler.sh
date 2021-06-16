@@ -1,9 +1,9 @@
 #!/bin/sh
 
-KISS_ALT_CC_FILE=${KISS_ALT_CC_FILE:-/usr/share/kiss-hooks/kiss_set_compiler.txt}
-if [ -z "$KISS_DISABLE_COMPILER_CHECK" ] && grep -q $PKG $KISS_ALT_CC_FILE; then
+KISS_ALT_CC_DIR=${KISS_ALT_CC_DIR:-/usr/share/kiss-hooks}
+if [ -z "$KISS_DISABLE_COMPILER_CHECK" ] && grep -Rq "^$PKG\$" "$KISS_ALT_CC_DIR"; then
     case $TYPE in
-       pre-build) CC=gcc ;;
-       post-build) CC=${DEFAULT_CC:-cc} ;;
+       pre-build) export CC=gcc ;;
+       post-build) export CC=${DEFAULT_CC:-cc} ;;
     esac
 fi
