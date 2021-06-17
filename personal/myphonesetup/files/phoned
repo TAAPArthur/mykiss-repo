@@ -1,2 +1,3 @@
 #!/bin/sh
-exec phoned
+
+exec setgid sys phoned
