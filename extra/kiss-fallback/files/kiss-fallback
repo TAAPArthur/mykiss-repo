@@ -19,9 +19,11 @@ _parse_pkgbuild() {
         sed -nE "s/^source=\((.*)\)/\1/p" $2 | sed "s/^.*:://g" | tr " " "\n" | sed "$SED_STR; s/[\"']//g;" > sources
         {
             echo
-            sed -n '/^build\s*()/,/^}/p' $2 | sed "s/^\s*//" | grep -v cd | head -n -1 | tail -n +2
-            sed -n '/^package\s*()/,/^}/p' $2 | sed "s/^\s*//" | grep -v cd | head -n -1 |tail -n +2
-        } | sed "$SED_STR" | sed -E 's/"(\$[0-9\/A-z]*)"([0-9\/A-z\.-]*)/"\1\2"/g'  >> build
+            sed -n '/^build\s*()/,/^}/p' $2 | sed "s/^\s*//"
+            sed -n '/^package\s*()/,/^}/p' $2 | sed "s/^\s*//"
+        } | grep -v -e "cd" -e "^build" -e "^package" -e "}" | sed "$SED_STR" | sed -E 's/"(\$[0-9\/A-z]*)"([0-9\/A-z\.-]*)/"\1\2"/g'  >> build
+
+        $EDITOR -p ./* $2 </dev/tty
     }
 }
 
@@ -37,7 +39,6 @@ create_pkg_aur() {
         echo $data | jq -r '.results[0].Depends | join("\n")' > depends
         echo $data | jq -r '.results[0].MakeDepends | join(" ")' | sed "s/$/ make/" >> depends
         _parse_pkgbuild $1 $TMP_DIR/PKGBUILD
-        kiss c
     fi
 }
 create_pkg_arch_linux() {
@@ -71,7 +72,6 @@ createPkg() {
     done
     return 1
 }
-TMP_DIR=$(mktemp -d)
 _checked_depends=" "
 createPkgAndDepends() {
     if [ "${_checked_depends#* $1}" != "$_checked_depends" ]; then
@@ -89,7 +89,10 @@ createPkgAndDepends() {
         createPkg $1
         path=$(kiss s $1 | head -n1)
         [ -n "$path" ]
-        $EDITOR -p $path/* $TMP_DIR/*
+        if [ ! -s $path/build ]; then
+            rm -r $path
+            exit 1
+        fi
         [ -e $path/depends ] && [ ! -s $path/depends ] && rm $path/depends
         (cd "$(dirname $path)" && kiss c $1)
     fi
@@ -99,5 +102,6 @@ createPkgAndDepends() {
         done < "$path/depends"
     fi
 }
+TMP_DIR=$(mktemp -d)
+trap '[ -d "$TMP_DIR" ] && rm -r "$TMP_DIR"' EXIT
 createPkgAndDepends "${1:-$(dirname $PWD)}" 0
-[ -d "$TMP_DIR" ] && rm -r "$TMP_DIR"
