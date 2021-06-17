@@ -4,7 +4,6 @@ cpm
 dash
 diffutils
 evtest
-gt5
 htop
 indent-sort
 kiss-ext
@@ -15,6 +14,7 @@ man-pages
 man-pages-posix
 mandoc
 mqbus
+ncdu
 python-argcomplete
 shellcheck-bin
 tree
