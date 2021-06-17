@@ -1,8 +1,6 @@
 #!/bin/sh -e
 
-for patch in *.patch; do
-    patch -p1 <$patch
-done
+sed -i "s/dri_drivers = \[\]/dri_drivers = ['r100', 'r200', 'nouveau']/" meson.build
 # Install python-mako which is solely needed for mesa
 # and thus contained in this build.
 {
