@@ -1,8 +1,9 @@
-set nocompatible              " be iMproved, required
 set expandtab
 set hidden
+set nocompatible
 set noswapfile
 set number
+set ruler
 set shiftwidth=4
 set tabpagemax=100
 set tabstop=4
