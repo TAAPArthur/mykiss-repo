@@ -23,6 +23,7 @@ sxiv - Add WM hints patch and custom config.def.h
 ubase - made getty not change tty permissions
 vim - disable mouse support
 xorg-server - to support tcc
+xinit - Made xinit a process reaper
 zathra - forked to disable magic
 zathura-pdf-mupdf - removed unneeded dependencies
 
