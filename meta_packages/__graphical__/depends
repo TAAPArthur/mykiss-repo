@@ -1,5 +1,6 @@
 autorandr
 clip-history
+dmenu
 dzen
 liberation-fonts
 libudev-zero
@@ -8,6 +9,7 @@ mystatusbar
 notify
 st
 taap-keyboard
+xauth
 xev
 xf86-input-libinput
 xinit

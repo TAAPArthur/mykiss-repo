@@ -6,6 +6,7 @@ diffutils
 evtest
 htop
 indent-sort
+iptables
 kiss-ext
 kiss-fallback
 kiss-hooks
@@ -15,6 +16,7 @@ man-pages-posix
 mandoc
 mqbus
 ncdu
+pciutils
 python-argcomplete
 shellcheck-bin
 tree

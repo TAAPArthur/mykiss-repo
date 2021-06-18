@@ -1,6 +1,6 @@
 autopep8
 cloc
 ctags
-python-pylint
+gdb
 scunittest
 strace

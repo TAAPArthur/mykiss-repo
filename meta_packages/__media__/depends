@@ -2,6 +2,7 @@ __audio__
 amt
 libdvdcss
 mpv
+python-cloudscraper
 python-pillow
 python-requests-oauthlib
 sxiv

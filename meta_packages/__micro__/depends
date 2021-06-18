@@ -2,7 +2,6 @@ __pico__
 abduco
 curl
 git
-iproute2
 sbase
 sue
 tzdata
