@@ -1,2 +1,3 @@
 files/10-phone_modules.conf
-files/phoned
+files/kiss_set_compiler_arm.txt
+files/99-phoned
