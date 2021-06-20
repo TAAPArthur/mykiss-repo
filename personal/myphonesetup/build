@@ -3,3 +3,4 @@
 install -D -t "$1/usr/share/kiss-hooks/"   ./*.txt
 install -D -t "$1/etc/modules-load.d"      ./*.conf
 install -D -t "$1/etc/myinit/services.d/"  99-phoned
+install -D -t "$1/etc/modules-load.d/"     01-phone_specific_modules.conf

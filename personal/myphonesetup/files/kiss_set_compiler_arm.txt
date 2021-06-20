@@ -1,3 +1,5 @@
+dash
+diffutils
 libwebp
 libvpx
 m4
