@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor
+make
+
+make install DESTDIR="$1"
+install -Dm 644 -t "$1/usr/share/doc/perl-net-ssleay" README
+install -Dm 644 -t "$1/usr/share/licenses/perl-net-ssleay" LICENSE
+
+# strip rpath
+find "$1" -name '*.so' -exec chrpath -d '{}' \;
