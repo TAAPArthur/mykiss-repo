@@ -6,7 +6,6 @@ libXScrnSaver
 libXinerama
 libXrandr
 lua
-luajit
 mesa
 pkgconf make
 python  make
