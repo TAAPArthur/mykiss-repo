@@ -15,7 +15,7 @@ libarchive - allow compilation with tcc
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
 libwebp - use libjpeg instead of libjpeg turbo
 lua     - Use lua version 5.1.5
-mesa - disabled llvm; Enabled dri for arm; Build glxgears
+mesa - disabled llvm; Only build useful drivers. Enabled opengl
 mpv - enabled lua
 mtdev - replace builtin_ffs with musl's ffs so it can properly be linked against; Also provide the --build arg so it can build on the pinephone
 musl - fixing wchar_t and wint_t typedefs to work with tcc on arm64

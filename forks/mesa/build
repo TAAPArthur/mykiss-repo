@@ -1,6 +1,5 @@
 #!/bin/sh -e
 
-sed -i "s/dri_drivers = \[\]/dri_drivers = ['r100', 'r200', 'nouveau']/" meson.build
 # Install python-mako which is solely needed for mesa
 # and thus contained in this build.
 {
@@ -40,10 +39,13 @@ meson \
     --localstatedir=/var \
     --buildtype=release \
     -Dplatforms=x11 \
-    -Dzstd=false \
+    -Dzstd=disabled \
     -Dllvm=disabled \
+    -Ddri-drivers='i915' \
     -Dvulkan-drivers='' \
-    -Dgallium-drivers='' \
+    -Dgallium-drivers='swrast' \
+    -Dgles1=enabled \
+    -Dgles2=enabled \
     . output
 
 ninja -C output
