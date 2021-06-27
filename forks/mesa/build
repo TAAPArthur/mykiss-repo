@@ -32,6 +32,7 @@ export CFLAGS="$CFLAGS -DGLX_X86_READONLY_TEXT"
 # https://github.com/mesa3d/mesa/commit/9f37c9903b87f86a533bfaffa72f0ecb285b02b2
 sed -i "/pre_args += '-DUSE_ELF_TLS'/d" meson.build
 
+[ "$(uname -m)" = x86_64 ] && DRI_DRIVERS="i915,i965"
 meson \
     --prefix=/usr \
     --sysconfdir=/etc \
@@ -41,9 +42,9 @@ meson \
     -Dplatforms=x11 \
     -Dzstd=disabled \
     -Dllvm=disabled \
-    -Ddri-drivers='i915' \
+    -Ddri-drivers="$DRI_DRIVERS" \
     -Dvulkan-drivers='' \
-    -Dgallium-drivers='swrast' \
+    -Dgallium-drivers='swrast,lima' \
     -Dgles1=enabled \
     -Dgles2=enabled \
     . output
