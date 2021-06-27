@@ -1,6 +1,6 @@
 autopep8
 cloc
 ctags
-gdb
+perl-authen-sasl
+perl-io-socket-ssl
 scunittest
-strace
