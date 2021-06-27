@@ -14,7 +14,6 @@ kiss - Added KISS_DEPEND_HOOK; Added patched until they are merged upstream
 libXft - fix freetype path
 libarchive - allow compilation with tcc
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
-libwebp - use libjpeg instead of libjpeg turbo
 lua     - Use lua version 5.1.5
 mesa - disabled llvm; Only build useful drivers. Enabled opengl
 mpv - enabled lua
