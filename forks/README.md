@@ -32,7 +32,6 @@ zathra - forked to disable magic
 zathura-pdf-mupdf - removed unneeded dependencies
 
 # Future work
-busybox
 fontconfig
 freetype-harfbuzz
 fribidi
@@ -49,9 +48,6 @@ libsndfile
 libwebp
 meson
 mpv
-ncurses
-sbase
-sed
 strace
 tiff
 x264

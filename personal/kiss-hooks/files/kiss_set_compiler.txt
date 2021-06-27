@@ -1,11 +1,13 @@
 alsa-lib
 alsa-utils
 binutils
+cairo
 dhcpcd
 eiwd
 ffmpeg
 fontconfig
 freetype-harfbuzz
+fribidi
 gcc
 gdb
 girara
@@ -14,7 +16,6 @@ grub
 gtk+3
 imlib2
 iptables
-jq
 kmod
 lame
 libass
@@ -34,10 +35,8 @@ linux-headers
 mesa
 mpv
 musl
-ncurses
 openblas
 pango
-pciutils
 perl
 pkgconf
 python
