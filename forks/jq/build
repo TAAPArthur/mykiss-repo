@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --disable-maintainer-mode \
+    --disable-shared \
+    --with-oniguruma=no
+
+sed -i "s/#ifdef __GNUC__/#if 1/" src/jv.h
+
+make
+make DESTDIR="$1" install

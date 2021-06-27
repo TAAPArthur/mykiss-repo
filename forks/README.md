@@ -10,6 +10,7 @@ girara - removed json depends (cmake)
 git - added perl support; Added bash completion
 glib - Remove json-glib
 imlib2 - Used libjpeg instead turbo
+jq - Disabled shared lib and forked to remove GNUC hardcoding
 kiss - Added KISS_DEPEND_HOOK; Added patched until they are merged upstream
 libXft - fix freetype path
 libarchive - allow compilation with tcc
