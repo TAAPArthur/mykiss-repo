@@ -8,6 +8,7 @@ ffmpeg - removed x265 (cmake) and use libtls instead of openssl
 freetype-harfbuzz - fix freetype path
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion
+glib - Remove json-glib
 imlib2 - Used libjpeg instead turbo
 kiss - Added KISS_DEPEND_HOOK; Added patched until they are merged upstream
 libXft - fix freetype path
