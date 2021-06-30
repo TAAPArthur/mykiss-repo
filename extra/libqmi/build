@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --without-udev \
+    --disable-maintainer-mode \
+    --disable-firmware-update
+
+make
+make DESTDIR="$1" install

@@ -27,6 +27,7 @@ libffi
 libinput
 libmupdf
 libpng
+libqmi
 libressl
 libvpx
 libxml2
