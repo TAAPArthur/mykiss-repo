@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr
+
+sed -i "s/__GNUC__/__TINYC__/g" ./*.h ./*.c
+make
+install -Dt "$1/usr/include" argp*.h
+install -Dt "$1/usr/lib" lib*.a
