@@ -1,6 +1,7 @@
 #!/bin/sh -e
 
 sed -i "/pragma_deprecated/d" configure
+export CFLAGS="$CFLAGS -DHAVE_PRAGMA_DEPRECATED=0"
 ./configure \
     --cc="${CC:-cc}" \
     --cxx="${CXX:-c++}" \
@@ -20,6 +21,7 @@ sed -i "/pragma_deprecated/d" configure
     --enable-libxvid \
     --enable-libwebp \
     --enable-libdrm \
+    --enable-libv4l2 \
     --x86asmexe=nasm \
     --disable-debug \
     --disable-libxml2

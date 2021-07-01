@@ -3,6 +3,7 @@ lame
 libass
 libogg
 libressl
+libv4l
 libvorbis
 libvpx
 libwebp
