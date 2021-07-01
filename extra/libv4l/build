@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+export CFLAGS=-Dlinux
+export LDFLAGS="-largp -L$PWD/lib/libv4lconvert/.libs -L$PWD/lib/libv4l2/.libs"
+./configure  \
+    --prefix=/usr \
+    --disable-silent-rules \
+    --disable-static
+sed -i "s/uint32_t :2;/uint32_t _:2;/" lib/include/libdvbv5/atsc_eit.h
+make
+make DESTDIR="$1" install
