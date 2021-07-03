@@ -6,6 +6,6 @@ install -D -t "$1/etc/"                   ntp.conf
 install -D -t "$1/etc/myinit/init.d/"     rc.local
 install -D -t "$1/etc/myinit/shutdown.d/" rc.shutdown
 
-install -D -t "$1/etc/modprobe.d/"        blacklist.conf nobeep.conf
+install -D -t "$1/etc/modprobe.d/"        blacklist.conf nobeep.conf sound.conf
 install -D -t "$1/etc/modules-load.d/"    00-startup_modules.conf
 
