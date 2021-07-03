@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+if [ -x /bin/alsactl ]; then
+    alsactl -L restore
+    grep -q SoftVol
+fi
+exit 127
