@@ -1,6 +1,7 @@
 #!/bin/sh
-
 # Inspired by Morpheus init scripts (http://git.2f30.org/fs/)
+
+exec > /var/log/rc.local.log 2>&1
 
 # set system time form hardware clock
 hwclock -s
