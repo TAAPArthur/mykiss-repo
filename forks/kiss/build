@@ -1,23 +1,19 @@
 #!/bin/sh -e
 
 for p in *.patch; do
-    patch -p1 <$p
-done
-mkdir -p "$1/usr/bin"
-
-# Install kiss utilities.
-cp -f kiss contrib/* "$1/usr/bin/"
-
-# Install distribution documentation.
-for doc in docs/site/*.txt; do
-    install -Dm644 "$doc" "$1/usr/share/doc/kiss/${doc##*/}"
+    patch -p1 <"$p"
 done
 
-# Install the Wiki.
-cp -r wiki "$1/usr/share/doc/kiss/wiki"
 
-# Remove unnecessary pages.
-rm -f "$1/usr/share/doc/kiss/wiki/README.txt" \
-      "$1/usr/share/doc/kiss/news.txt" \
-      "$1/usr/share/doc/kiss/blog.txt" \
-      "$1/usr/share/doc/kiss/screenshots.txt"
+mkdir -p \
+    "$1/usr/bin" \
+    "$1/usr/share/doc/kiss"
+
+cp -f  kiss contrib/*  "$1/usr/bin"
+cp -f  docs/site/*.txt "$1/usr/share/doc/kiss"
+cp -rf docs/site/wiki  "$1/usr/share/doc/kiss"
+
+rm -f \
+    "$1/usr/share/doc/kiss/README.txt" \
+    "$1/usr/share/doc/kiss/post.txt" \
+    "$1/usr/share/doc/kiss/tidbits.txt"
