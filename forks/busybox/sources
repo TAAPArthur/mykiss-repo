@@ -1,4 +1,4 @@
-https://git.busybox.net/busybox/snapshot/busybox-1_33_1.tar.gz
+https://git.busybox.net/busybox/snapshot/busybox-MAJOR_MINOR_PATCH.tar.bz2
 files/.config
 patches/fsck-resolve-uuid.patch
 patches/install-fix-chown.patch
