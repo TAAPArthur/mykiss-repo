@@ -1,21 +1,30 @@
 #!/bin/sh -e
 
+# Upstream recently broke static linking. It is still supported via LDFLAGS but
+# this disables output of the shared library. This sed call adds -all-static to
+# the curl commands' compilation (keeping libraries in tact).
+# See: https://github.com/curl/curl/issues/7475
+sed -i 's/\(curl_LDADD =\)/\1 -all-static/' src/Makefile.in
+
+
 ./configure \
     --prefix=/usr \
+    --disable-ares \
+    --disable-ldap \
+    --disable-manual \
+    --enable-hidden-symbols \
     --enable-ipv6 \
     --enable-unix-sockets \
-    --enable-hidden-symbols \
+    --with-ca-fallback \
+    --with-openssl \
+    --with-pic \
+    --without-icu \
     --without-libidn \
     --without-libidn2 \
-    --disable-manual \
-    --disable-ldap \
-    --disable-ares \
-    --without-librtmp \
-    --without-icu \
     --without-libpsl \
-    --with-pic \
-    --with-ca-fallback \
-    --with-openssl
+    --without-librtmp
+
+sed -i 's/link_static_flag=.*/link_static_flag=""/' libtool
 
 make
 make DESTDIR="$1" install
