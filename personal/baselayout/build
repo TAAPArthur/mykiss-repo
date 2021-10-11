@@ -5,11 +5,16 @@ for d in boot dev etc home mnt usr var opt run; do
     install -dm 755 "$1/$d"
 done
 
+MAIN_USER=${MAIN_USER:-arthur}
+
+sed -i "s/MAIN_USER/$MAIN_USER/g" group passwd
+
 install -dm 555  "$1/proc"
 install -dm 555  "$1/sys"
-install -dm 0750 "$1/root"
-install -dm 0750 "$1/home/arthur"
 install -dm 1777 "$1/tmp"
+install -dm 0750 "$1/root"
+install -dm 0750 "$1/home/$MAIN_USER"
+chown 1:1 "/home/$MAIN_USER"
 
 # Setup /usr hierarchy.
 for d in bin include lib share src; do
@@ -29,11 +34,6 @@ ln -s usr/lib "$1/lib"
 ln -s usr/lib "$1/lib64"
 ln -s lib     "$1/usr/lib64"
 
-# Setup /var.
-for d in cache local opt log/old lib/misc empty service; do
-    install -dm 755 "$1/var/$d"
-done
-
 install -dm 1777 "$1/var/tmp"
 install -dm 1777 "$1/var/spool/mail"
 
@@ -41,16 +41,9 @@ ln -s spool/mail  "$1/var/mail"
 ln -s ../run      "$1/var/run"
 ln -s ../run/lock "$1/var/lock"
 
-# Setup /usr/local (usually for any programs installed outside package manager).
-for d in bin etc games include lib man sbin share src; do
-    install -dm 755 "$1/usr/local/$d"
-done
-
-ln -s ../man "$1/usr/local/share/man"
-
 # /etc skeleton files.
-for f in fstab group host.conf hosts issue os-release \
-         passwd profile securetty shells mime.types; do
+for f in fstab group host.conf hosts issue \
+         passwd profile securetty shells ; do
     install -m 644 "$f" "$1/etc"
 done
 
