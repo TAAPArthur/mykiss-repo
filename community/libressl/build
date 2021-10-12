@@ -7,4 +7,5 @@
 make
 make DESTDIR="$1" install
 
+install cacert.pem "$1/etc/ssl/cert.pem"
 install -Dm 755 update-certdata.sh "$1/etc/ssl"
