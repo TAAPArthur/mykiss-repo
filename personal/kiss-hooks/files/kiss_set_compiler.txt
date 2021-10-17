@@ -4,6 +4,7 @@ binutils
 cairo
 dhcpcd
 eiwd
+e2fsprogs
 ffmpeg
 fontconfig
 freetype-harfbuzz

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-case $TYPE in
+case $1 in
    pre-build)
        IFS=. read -r _start _ < /proc/uptime
    ;;
@@ -16,11 +16,11 @@ case $TYPE in
        [ "$h" = 0 ] || u="$u${h}h "
        [ "$m" = 0 ] || u="$u${m}m "
 
-       log "$PKG" "Build finished in ${u:-${s}s}"
+       log "$2" "Build finished in ${u:-${s}s}"
        if [ "$s" -gt 240 ]; then
-           logger -t kiss -i "Long build for $PKG: ${s}s"
+           logger -t kiss -i "Long build for $2: ${s}s"
            mkdir -p ~/.local/share/kiss/
-           echo "${s}s $PKG" >> ~/.local/share/kiss/long_build.log
+           echo "${s}s $2" >> ~/.local/share/kiss/long_build.log
        fi
        )
    ;;
