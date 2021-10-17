@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/sh -e
 
-install -D -t $1/etc/myinit/services.d/ *
+install -D -t "$1/etc/myinit/services.d/" -- *
 
-mkdir $1/root
-chmod 750 $1/root
-cd $1/root
+mkdir "$1/root"
+chmod 750 "$1/root"
+cd "$1/root"
 ln -s ../etc/myinit/services.d .
 ln -s ../etc/myinit/init.d .
 ln -s ../var/log .

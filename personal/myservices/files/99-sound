@@ -2,6 +2,6 @@
 
 if [ -x /bin/alsactl ]; then
     alsactl -L restore
-    grep -q SoftVol
+    amixer | grep -q SoftVol
 fi
 exit 127
