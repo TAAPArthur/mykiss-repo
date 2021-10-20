@@ -3,8 +3,8 @@ alsa-utils
 binutils
 cairo
 dhcpcd
-eiwd
 e2fsprogs
+eiwd
 ffmpeg
 fontconfig
 freetype-harfbuzz
@@ -13,6 +13,8 @@ gcc
 gdb
 girara
 glib
+gmp
+gnutls
 grub
 gtk+3
 imlib2
@@ -37,6 +39,7 @@ linux-headers
 mesa
 mpv
 musl
+nettle
 openblas
 pango
 perl

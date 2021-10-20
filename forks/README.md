@@ -4,7 +4,7 @@ alsa-utils - allow compiling with tcc
 busybox - Removed some unneeded options; disabled gcc specific options
 curl - made static
 dmenu - custom patches
-ffmpeg - removed x265 (cmake) and use libtls instead of openssl; Silence deprecation related warnings; enabled libv4l
+ffmpeg - removed x265 (cmake) and webp; Use ~libtls~ gnutls instead of openssl; Silence deprecation related warnings; enabled libv4l; Explicitly add sdl2 depend
 freetype-harfbuzz - fix freetype path
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion
@@ -45,7 +45,6 @@ libinput - Made static
 libmupdf
 libpng - Made static
 libsndfile
-libwebp
 meson
 mpv
 strace
