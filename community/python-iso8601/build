@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+python setup.py build
+python setup.py install --skip-build -O1 --root="$1"
+install -m0644 -D "LICENSE" "$1/usr/share/licenses/python-iso8601/LICENSE"
