@@ -12,7 +12,6 @@ glib - Remove json-glib
 jq - Disabled shared lib and forked to remove GNUC hardcoding
 kiss - Added KISS_DEPEND_HOOK; Added patched until they are merged upstream
 libXft - fix freetype path
-libarchive - allow compilation with tcc
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
 libnl - Make static
 lua     - Use lua version 5.1.5
