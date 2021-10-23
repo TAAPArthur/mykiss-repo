@@ -1,7 +1,0 @@
-#!/bin/sh -ex
-zcat /proc/config.gz > linux/.config
-(cd linux; make oldconfig && make prepare)
-make KBUILD_DIR="linux"
-DESTDIR="$1/lib/modules/$(ls -t /lib/modules/ |head -n1)/kernel/drivers/net/wireless"
-gzip wl.ko
-install -m 755 -D -t "$DESTDIR" wl.ko.gz

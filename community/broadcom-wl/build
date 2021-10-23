@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+make
+gzip wl.ko
+install -m 755 -D -t "$1/lib/modules/$(uname -r)/kernel/drivers/net/wireless" wl.ko.gz
