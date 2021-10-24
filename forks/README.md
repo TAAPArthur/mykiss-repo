@@ -9,6 +9,7 @@ freetype-harfbuzz - fix freetype path
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion
 glib - Remove json-glib
+gtk+3 - Remove libXcomposite dependency
 jq - Disabled shared lib and forked to remove GNUC hardcoding
 keyutils - disable shared
 kiss - Use custom fork
