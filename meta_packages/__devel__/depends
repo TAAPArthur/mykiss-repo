@@ -4,3 +4,4 @@ ctags
 perl-authen-sasl
 perl-io-socket-ssl
 scunittest
+shellcheck-bin

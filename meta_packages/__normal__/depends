@@ -1,14 +1,12 @@
 __micro__
-bash
 cpm
-dash
 evtest
-htop
 indent-sort
 iptables
+iw
 kiss-ext
 kiss-fallback
-kiss-hooks
+links
 lynx
 man-pages
 man-pages-posix
@@ -17,7 +15,6 @@ mqbus
 ncdu
 pciutils
 python-argcomplete
-shellcheck-bin
 tree
 vundle
 zip

@@ -1,8 +1,10 @@
 __pico__
 abduco
+bash
 curl
 git
+kiss-hooks
+make
 sbase
 sue
-tzdata
 ubase
