@@ -2,11 +2,14 @@
 
 make \
     CC="${CC:-cc}" \
+    ZLIB=yes
+
+make \
+    CC="${CC:-cc}" \
     SHARED=no \
     OPT="$CFLAGS -fPIC" \
     ZLIB=yes \
     PREFIX=/usr \
     SBINDIR=/usr/bin \
-    SHAREDIR=/usr/share/hwdata
-
-make DESTDIR="$1" install install-lib
+    SHAREDIR=/usr/share/hwdata \
+    DESTDIR="$1" install install-lib
