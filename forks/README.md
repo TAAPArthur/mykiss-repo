@@ -29,6 +29,7 @@ shellcheck-bin - Replace x86_64 with ARCH to be generic across all architectures
 sxiv - Add WM hints patch and custom config.def.h
 ubase - made getty not change tty permissions
 vim - disable mouse support
+xsel - fork to remove autogen
 xorg-server - to support tcc
 xinit - Made xinit a process reaper
 zathra - forked to disable magic
