@@ -1,9 +1,0 @@
-libX11
-libXcomposite
-libXext
-libXinerama
-libXrender
-libXtst
-libXxf86vm
-xorgproto make
-xorg-util-macros make
