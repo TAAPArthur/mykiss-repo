@@ -28,7 +28,6 @@ libepoxy
 libevdev
 libffi
 libinput
-libmupdf
 libpng
 libqmi
 libressl

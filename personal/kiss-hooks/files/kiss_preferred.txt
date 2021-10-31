@@ -101,7 +101,6 @@ sbase /usr/bin/rev
 sbase /usr/bin/rm
 sbase /usr/bin/rmdir
 ubase /usr/bin/rmmod
-sed /usr/bin/sed
 sbase /usr/bin/seq
 sbase /usr/bin/setsid
 dash /usr/bin/sh
@@ -181,12 +180,9 @@ busybox /usr/bin/grep
 busybox /usr/bin/ls
 busybox /usr/bin/od
 busybox /usr/bin/tar
-sed /usr/share/man/man1/sed.1
 busybox /usr/bin/crond
 ncurses /usr/share/terminfo/s/st
 ncurses /usr/share/terminfo/s/st-256color
-busybox /usr/bin/iostat
-busybox /usr/bin/mpstat
 sbase /usr/bin/dd
 sbase /usr/bin/mknod
 busybox /usr/bin/mount
