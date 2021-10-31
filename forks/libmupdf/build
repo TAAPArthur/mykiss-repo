@@ -1,12 +1,15 @@
 #!/bin/sh -e
 
-export CFLAGS="$CFLAGS -fPIC"
+export CFLAGS="$CFLAGS"
 
 patch -p1 < pkcs7-fix.patch
-patch -p1 < makefile_remove_extra_options.patch
+sed -i "s/-MMD -MP -o/-o/" Makefile
+sed -i "s/,--gc-sections//" Makerules
+sed -i "s/,-s//" Makerules
 
 make \
-    prefix="$1/usr" \
+    prefix="/usr" \
+    DESTDIR="$1" \
     USE_SYSTEM_FREETYPE=yes \
     USE_SYSTEM_HARFBUZZ=yes \
     USE_SYSTEM_LIBJPEG=yes \
