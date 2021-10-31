@@ -17,7 +17,7 @@ libXft - fix freetype path
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
 libnl - Make static
 mesa - disabled llvm; Only build useful drivers. Enabled opengl
-mpv - enabled lua
+mpv - enabled lua; use personal fork
 mtdev - replace builtin_ffs with musl's ffs so it can properly be linked against; Also provide the --build arg so it can build on the pinephone
 musl - fixing wchar_t and wint_t typedefs to work with tcc on arm64
 ncurses - disabled shared pkg
