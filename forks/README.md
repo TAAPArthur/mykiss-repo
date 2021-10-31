@@ -33,7 +33,7 @@ xsel - fork to remove autogen
 xorg-server - to support tcc
 xinit - Made xinit a process reaper
 zathra - forked to disable magic
-zathura-pdf-mupdf - removed unneeded dependencies
+zathura-pdf-mupdf - removed unneeded dependencies and made build static
 
 # Future work
 fontconfig

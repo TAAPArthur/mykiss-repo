@@ -1,5 +1,6 @@
 #!/bin/sh -e
 
+sed -i "s/shared_module/static_library/" meson.build
 meson build \
     --prefix=/usr \
 
