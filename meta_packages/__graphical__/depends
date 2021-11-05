@@ -16,7 +16,5 @@ xinit
 xinput
 xmouse-control
 xorg-server
-xprop
 xset
 xsetroot
-zathura
