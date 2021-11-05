@@ -3,5 +3,6 @@ cloc
 ctags
 perl-authen-sasl
 perl-io-socket-ssl
+perl-net-ssleay
 scunittest
 shellcheck-bin

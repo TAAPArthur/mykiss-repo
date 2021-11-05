@@ -1,4 +1,0 @@
-#!/bin/sh -e
-
-make OPT_DEP_DEFAULT=0 HAVE_INOTIFY=1 lib
-make PREFIX=/usr DESTDIR="$1" install install-lib

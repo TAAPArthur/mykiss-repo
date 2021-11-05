@@ -16,5 +16,8 @@ xinit
 xinput
 xmouse-control
 xorg-server
+xprop
+xrandr-invert-colors
+xrectsel
 xset
 xsetroot
