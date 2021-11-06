@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --mandir=/usr/share/man \
+    --enable-graphics \
+    --with-x \
+    --without-windows  \
+
+make
+make DESTDIR="$1" install

@@ -1,6 +1,0 @@
-#!/bin/sh -e
-
-
-./configure --enable-graphics --with-x --without-windows  --prefix=/usr
-make
-make DESTDIR=$1 install

@@ -16,6 +16,7 @@ kiss - Use custom fork
 libXft - fix freetype path
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
 libnl - Make static
+links - enable graphics
 mesa - disabled llvm; Only build useful drivers. Enabled opengl
 mpv - enabled lua; use personal fork
 mtdev - replace builtin_ffs with musl's ffs so it can properly be linked against; Also provide the --build arg so it can build on the pinephone
