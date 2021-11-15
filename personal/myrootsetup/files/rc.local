@@ -41,3 +41,6 @@ ndev -s
 
 # load arrays
 [ -x /bin/mdadm ] && mdadm --assemble --scan
+
+# restore sound
+[ -x /bin/alsactl ] && [ -r /var/lib/alsa/asound.state ] && alsactl -L restore
