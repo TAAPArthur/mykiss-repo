@@ -7,4 +7,3 @@ files/04-dhcpcd
 files/06-iwd
 files/08-ntpd
 files/10-sshd
-files/99-sound

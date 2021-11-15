@@ -1,7 +1,0 @@
-#!/bin/sh -e
-
-if [ -x /bin/alsactl ]; then
-    alsactl -L restore || true
-    amixer | grep -q SoftVol
-fi
-exit 127
