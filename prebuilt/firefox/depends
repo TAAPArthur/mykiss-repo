@@ -9,6 +9,7 @@ freetype-harfbuzz
 gdk-pixbuf
 glib
 gtk+3
+libXcomposite
 libdrm
 libffi
 libjpeg
