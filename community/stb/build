@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+install -Dt "$1/usr/include/stb" -- *.h
