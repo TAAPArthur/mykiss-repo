@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+make DESTDIR="$1" install
+ln -s pledger "$1/usr/bin/ledger"
