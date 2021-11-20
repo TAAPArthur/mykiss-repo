@@ -19,8 +19,8 @@ _parse_pkgbuild() {
         sed -nE "s/^source=\((.*)\)/\1/p" "$2" | sed "s/^.*:://g" | tr " " "\n" | sed "$SED_STR; s/[\"']//g;" > sources
         {
             echo
-            sed -n '/^build\s*()/,/^}/p'   "$2"
-            sed -n '/^package\s*()/,/^}/p' "$2"
+            sed -n '/^build.*\s*()/,/^}/p'   "$2"
+            sed -n '/^package.*\s*()/,/^}/p' "$2"
         } | grep -v -e "cd" -e "^build" -e "^package" -e "}" | sed "$SED_STR" | sed -E 's/^\s*//; s/"(\$[0-9\/A-z]*)"([0-9\/A-z\.-]*)/"\1\2"/g'  >> build
 
         $EDITOR -p ./* "$2" </dev/tty
