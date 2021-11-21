@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+unzip "miniz-$2.zip"
+${CC:-cc} -o miniz.o -c miniz.c
+ar rcs libminiz.a miniz.o
+install -Dt "$1/usr/include" miniz.h
+install -Dt "$1/usr/lib" libminiz.a
