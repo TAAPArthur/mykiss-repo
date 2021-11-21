@@ -1,10 +1,7 @@
 #!/bin/sh -e
 
-pkgbase=python-toml
 python setup.py build
 python setup.py install --skip-build \
     --optimize=1 \
     --prefix=/usr \
     --root="$1"
-install -vDm 644 LICENSE -t "$1/usr/share/licenses/${pkgname}"
-install -vDm 644 README.rst -t "$1/usr/share/doc/${pkgname}"
