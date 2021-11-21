@@ -4,5 +4,6 @@ ctags
 perl-authen-sasl
 perl-io-socket-ssl
 perl-net-ssleay
+python-pyflakes
 scunittest
 shellcheck-bin

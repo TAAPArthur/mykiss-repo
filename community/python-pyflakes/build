@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+python setup.py build
+python setup.py install --prefix=/usr --root="$1" --optimize=1
+
+# We have python 3 as default python, and want to keep compatibility with the old pyflakes3k naming
+ln -s pyflakes "$1/usr/bin/pyflakes3k"
+
+install -Dm644 LICENSE "$1/usr/share/licenses/python-pyflakes/LICENSE"
