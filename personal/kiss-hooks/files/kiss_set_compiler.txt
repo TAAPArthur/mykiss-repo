@@ -44,6 +44,7 @@ pango
 perl
 pkgconf
 python
+python-pillow
 strace
 x264
 xvidcore
