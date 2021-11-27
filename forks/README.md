@@ -11,6 +11,7 @@ git - added perl support; Added bash completion
 glib - Remove json-glib
 gtk+3 - Remove libXcomposite dependency
 jq - Disabled shared lib and forked to remove GNUC hardcoding
+iptables - remove non-portable install flags
 keyutils - disable shared
 kiss - Use custom fork
 libXft - fix freetype path
