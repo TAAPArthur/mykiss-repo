@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+for p in *.patch; do
+    patch -p1 <"$p"
+done
+
+touch config.h
+
+make
+install -Dt "$1/usr/bin" mtm

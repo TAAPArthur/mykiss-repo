@@ -22,6 +22,7 @@ libudev-zero - don't install helper
 mesa - disabled llvm; Only build useful drivers. Enabled opengl
 mpv - enabled lua; use personal fork
 mtdev - replace builtin_ffs with musl's ffs so it can properly be linked against; Also provide the --build arg so it can build on the pinephone
+mtm - fullscreen patch and use alt instead of ctrl-g as a modifier
 musl - fixing wchar_t and wint_t typedefs to work with tcc on arm64
 ncurses - disabled shared pkg
 nsxiv - use personal fork

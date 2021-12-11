@@ -1,0 +1,5 @@
+https://github.com/deadpixi/mtm/archive/refs/tags/1.2.1.tar.gz
+files/config.h
+patches/0002-Fullscreen.patch
+patches/0003-Change-bindings-when-fullscreen.patch
+patches/0004-Allow-COMMAND_KEY-to-not-require-control.patch

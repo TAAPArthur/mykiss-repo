@@ -1,0 +1,39 @@
+From c1f8374f63d64444ee39f17597bd84006b82143a Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@disroot.org>
+Date: Sat, 11 Dec 2021 00:05:19 -0800
+Subject: [PATCH 4/4] Allow COMMAND_KEY to not require control
+
+---
+ config.def.h | 2 +-
+ mtm.c        | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 9aa0d9f..1a9abd5 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -35,7 +35,7 @@
+ /* The default command prefix key, when modified by cntrl.
+  * This can be changed at runtime using the '-c' flag.
+  */
+-#define COMMAND_KEY 'g'
++#define COMMAND_KEY CTL(L'g')
+ 
+ /* The change focus keys. */
+ #define MOVE_UP         CODE(KEY_UP)
+diff --git a/mtm.c b/mtm.c
+index 0c5279a..68ed35f 100644
+--- a/mtm.c
++++ b/mtm.c
+@@ -70,7 +70,7 @@ struct NODE{
+ 
+ /*** GLOBALS AND PROTOTYPES */
+ static NODE *root, *focused, *lastfocused = NULL;
+-static int commandkey = CTL(COMMAND_KEY), nfds = 1; /* stdin */
++static int commandkey = COMMAND_KEY, nfds = 1; /* stdin */
+ static fd_set fds;
+ static char iobuf[BUFSIZ];
+ 
+-- 
+2.33.0
+
