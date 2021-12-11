@@ -1,0 +1,39 @@
+From de9ef8f80aea17ea172c8fdaff9db8aaf67ed74b Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Tue, 21 Apr 2020 11:49:14 -0700
+Subject: [PATCH 11/14] Changed default font and term size
+
+---
+ config.def.h | 2 +-
+ st.c         | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 80d10af..662ce59 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -5,7 +5,7 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++static char *font = "Ubuntu Mono:size=16";
+ static int borderpx = 2;
+ 
+ /*
+diff --git a/st.c b/st.c
+index 17fbfcb..9a4017b 100644
+--- a/st.c
++++ b/st.c
+@@ -35,7 +35,7 @@
+ #define ESC_ARG_SIZ   16
+ #define STR_BUF_SIZ   ESC_BUF_SIZ
+ #define STR_ARG_SIZ   ESC_ARG_SIZ
+-#define HISTSIZE      2000
++#define HISTSIZE      10000
+ 
+ /* macros */
+ #define IS_SET(flag)		((term.mode & (flag)) != 0)
+-- 
+2.33.0
+

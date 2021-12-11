@@ -1,14 +1,14 @@
-From ba662064157c50335318b3b85e236fe220d82c03 Mon Sep 17 00:00:00 2001
+From 2d061ee9cb0854ea9050780699cff8374922500f Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@gmail.com>
 Date: Tue, 21 Apr 2020 23:27:49 -0700
-Subject: [PATCH 12/15] personal tweaks
+Subject: [PATCH 12/14] personal tweaks
 
 ---
  config.def.h | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/config.def.h b/config.def.h
-index 12df972..5752ce4 100644
+index 662ce59..f0a5895 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -34,7 +34,7 @@ static float chscale = 1.0;
@@ -20,15 +20,15 @@ index 12df972..5752ce4 100644
  
  /* selection timeouts (in milliseconds) */
  static unsigned int doubleclicktimeout = 300;
-@@ -202,7 +202,7 @@ static Shortcut shortcuts[] = {
+@@ -199,7 +199,7 @@ static Shortcut shortcuts[] = {
+ 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
  	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
  	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
- 	{ MODKEY,               XK_l,           copyurl,        {.i =  0} },
 -	{ TERMMOD,              XK_t,           newterm,        {.i =  0} },
 +	{ TERMMOD,              XK_T,           newterm,        {.i =  0} },
  };
  
  /*
 -- 
-2.30.1
+2.33.0
 

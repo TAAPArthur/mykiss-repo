@@ -1,7 +1,7 @@
-From 8494b7b0015c747193c96f988b4b405c433a3687 Mon Sep 17 00:00:00 2001
+From f592eb8e839a5af4eeccc7911199b92f99fed17e Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@gmail.com>
 Date: Tue, 21 Apr 2020 11:33:48 -0700
-Subject: [PATCH 04/15] Applied patch working dir
+Subject: [PATCH 07/14] Applied patch working dir
 
 ---
  st.1 |  8 ++++++++
@@ -42,7 +42,7 @@ index 39120b4..b82beb3 100644
  defines the
  .I font
 diff --git a/x.c b/x.c
-index 49ffe68..48c2bf9 100644
+index 4e6f6c8..5f62002 100644
 --- a/x.c
 +++ b/x.c
 @@ -251,6 +251,7 @@ static char *opt_io    = NULL;
@@ -53,7 +53,7 @@ index 49ffe68..48c2bf9 100644
  
  static int oldbutton = 3; /* button event on startup: 3 = release */
  
-@@ -1983,12 +1984,12 @@ run(void)
+@@ -1987,12 +1988,12 @@ run(void)
  void
  usage(void)
  {
@@ -70,7 +70,7 @@ index 49ffe68..48c2bf9 100644
  	    "          [-T title] [-t title] [-w windowid] -l line"
  	    " [stty_args ...]\n", argv0, argv0);
  }
-@@ -2040,6 +2041,9 @@ main(int argc, char *argv[])
+@@ -2044,6 +2045,9 @@ main(int argc, char *argv[])
  	case 'v':
  		die("%s " VERSION "\n", argv0);
  		break;
@@ -80,7 +80,7 @@ index 49ffe68..48c2bf9 100644
  	default:
  		usage();
  	} ARGEND;
-@@ -2059,6 +2063,7 @@ run:
+@@ -2063,6 +2067,7 @@ run:
  	xinit(cols, rows);
  	xsetenv();
  	selinit();
@@ -89,5 +89,5 @@ index 49ffe68..48c2bf9 100644
  
  	return 0;
 -- 
-2.30.1
+2.33.0
 

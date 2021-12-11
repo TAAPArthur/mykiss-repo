@@ -1,18 +1,18 @@
-From c619c3d839f7b395628107af6136f32c28e99b9d Mon Sep 17 00:00:00 2001
+From 6943d0db29611bd3dc98734d830e625ebdd25cc0 Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@gmail.com>
 Date: Sun, 7 Mar 2021 04:23:23 -0800
-Subject: [PATCH 08/15] external pipe
+Subject: [PATCH 09/14] external pipe
 
 ---
  st.c | 61 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
- st.h |  1 +
- 2 files changed, 61 insertions(+), 1 deletion(-)
+ st.h |  2 ++
+ 2 files changed, 62 insertions(+), 1 deletion(-)
 
 diff --git a/st.c b/st.c
-index e0fdcf0..d5ee1f4 100644
+index 05a18f6..a2b4b33 100644
 --- a/st.c
 +++ b/st.c
-@@ -731,8 +731,14 @@ sigchld(int a)
+@@ -733,8 +733,14 @@ sigchld(int a)
  	if ((p = waitpid(pid, &stat, WNOHANG)) < 0)
  		die("waiting for pid %hd failed: %s\n", pid, strerror(errno));
  
@@ -28,7 +28,7 @@ index e0fdcf0..d5ee1f4 100644
  
  	if (WIFEXITED(stat) && WEXITSTATUS(stat))
  		die("child exited with status %d\n", WEXITSTATUS(stat));
-@@ -2022,6 +2028,59 @@ strparse(void)
+@@ -2020,6 +2026,59 @@ strparse(void)
  	}
  }
  
@@ -89,17 +89,18 @@ index e0fdcf0..d5ee1f4 100644
  strdump(void)
  {
 diff --git a/st.h b/st.h
-index 67c8928..75c114a 100644
+index 76f33ca..d65cd85 100644
 --- a/st.h
 +++ b/st.h
-@@ -84,6 +84,7 @@ void draw(void);
+@@ -84,6 +84,8 @@ void draw(void);
+ void newterm(const Arg *);
  void kscrolldown(const Arg *);
  void kscrollup(const Arg *);
- void newterm(const Arg *);
++void newterm(const Arg *);
 +void externalpipe(const Arg *);
  void printscreen(const Arg *);
  void printsel(const Arg *);
  void sendbreak(const Arg *);
 -- 
-2.30.1
+2.33.0
 
