@@ -10,5 +10,5 @@ patches/0009-external-pipe.patch
 patches/0010-externalpipe-eternal.patch
 patches/0011-Changed-default-font-and-term-size.patch
 patches/0012-personal-tweaks.patch
-patches/0013-scroll-tweaks.patch
+patches/0013-Allow-scrolling-from-moues-and-keys.patch
 patches/0014-Added-externalpipe-keybindings.patch
