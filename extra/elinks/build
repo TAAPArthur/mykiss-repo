@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+sed -i "s/-Wp,-MD,/-MD -MF/" Makefile.lib
+sed -i "s/#define VA_COPY(dest, src) (dest) = (src)/#define VA_COPY(dest, src) va_copy(dest, src)/" ./src/util/snprintf.h
+sed -i "s/((ssl_t \*) socket->ssl)->options |= SSL_OP_NO_TLSv1;/SSL_set_options((ssl_t *)socket->ssl, SSL_OP_NO_TLSv1);/" ./src/network/ssl/socket.c
+sed -i "s/RAND_egd(RAND_file_name(f_randfile, sizeof(f_randfile))) < 0/1/" ./src/network/ssl/ssl.c
+
+./configure \
+    --prefix=/usr \
+    --disable-mouse \
+    --disable-sysmouse \
+    --without-zlib
+
+make
+make DESTDIR="$1" install
