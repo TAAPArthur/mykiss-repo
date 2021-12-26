@@ -1,47 +1,58 @@
-From bdce5795c1ba37180325e67fcf0e7dcc36e939e5 Mon Sep 17 00:00:00 2001
+From 443801a504afe58a43dfa9713f75d153330c78a5 Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@disroot.org>
 Date: Sat, 25 Dec 2021 18:26:40 -0600
-Subject: [PATCH 3/3] Added support for complete_helper
+Subject: [PATCH 3/4] Added support for complete_helper
 
 ---
- edit.c | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+ edit.c | 21 +++++++++++++++++++--
+ 1 file changed, 19 insertions(+), 2 deletions(-)
 
 diff --git a/edit.c b/edit.c
-index ca648fc..b5e5513 100644
+index ca648fc..8917f5f 100644
 --- a/edit.c
 +++ b/edit.c
-@@ -618,6 +618,15 @@ x_try_array(const char *buf, int buflen, const char *want, int wantlen,
- 		if (!isspace((u_char)cp[-1]) && isspace((u_char)*cp))
+@@ -619,6 +619,15 @@ x_try_array(const char *buf, int buflen, const char *want, int wantlen,
  			n++;
  	}
-+    {
-+		setstr(global("COMP_CMD"), cmd, 1);
-+		setint(global("COMP_CWORD"), n);
-+		setstr(global("COMP_LINE"), buf, 1);
-+		setint(global("COMP_POINT"), want + wantlen - buf);
-+		struct tbl* _t = findcom("complete_helper", -1);
-+		if(_t->flag & ISSET)
-+			execute(_t->val.t, 0, NULL);
-+    }
  
++	setstr(global("COMP_CMD"), cmd, 1);
++	setint(global("COMP_CWORD"), n);
++	setstr(global("COMP_LINE"), buf, 1);
++	setint(global("COMP_POINT"), want + wantlen - buf);
++	struct tbl* completion_helper = findcom("complete_helper", -1);
++	if(completion_helper && completion_helper->flag & ISSET)
++		execute(completion_helper->val.t, 0, NULL);
++	bool compreply = 0;
++
  	/* Try to find the array. */
  	if (asprintf(&name, "complete_%.*s_%d", cmdlen, cmd, n) == -1)
-@@ -629,8 +638,12 @@ x_try_array(const char *buf, int buflen, const char *want, int wantlen,
+ 		internal_errorf("unable to allocate memory");
+@@ -629,8 +638,13 @@ x_try_array(const char *buf, int buflen, const char *want, int wantlen,
  			internal_errorf("unable to allocate memory");
  		v = global(name);
  		free(name);
 -		if (~v->flag & (ISSET|ARRAY))
 -			return 0;
-+		if (~v->flag & (ISSET|ARRAY)) {
++		if (~v->flag & (ISSET|ARRAY) && completion_helper && completion_helper->flag & ISSET) {
 +			v = global("COMPREPLY");
 +			if (~v->flag & (ISSET|ARRAY)) {
 +				return 0;
 +			}
++			compreply = 1;
 +        }
  	}
  
  	/* Walk the array and build words list. */
+@@ -655,6 +669,9 @@ x_try_array(const char *buf, int buflen, const char *want, int wantlen,
+ 	if (*nwords != 0)
+ 		(*words)[*nwords] = NULL;
+ 
++	if(compreply)
++		unset(v, 0);
++
+ 	return *nwords != 0;
+ }
+ 
 -- 
 2.33.0
 

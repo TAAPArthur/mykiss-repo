@@ -1,7 +1,7 @@
 From b420cbf563f9647dfaeacb6039b37d4b7a651065 Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@disroot.org>
 Date: Fri, 24 Dec 2021 17:22:54 -0600
-Subject: [PATCH 1/3] map jj to escape
+Subject: [PATCH 1/4] map jj to escape
 
 ---
  vi.c | 7 +++++++

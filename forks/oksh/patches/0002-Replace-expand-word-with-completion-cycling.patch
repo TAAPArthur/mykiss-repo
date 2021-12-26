@@ -1,7 +1,7 @@
 From 4096fcd608be920c62a60c092674c244bb1bb1b0 Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@disroot.org>
 Date: Fri, 24 Dec 2021 23:01:23 -0600
-Subject: [PATCH 2/3] Replace expand word with completion cycling
+Subject: [PATCH 2/4] Replace expand word with completion cycling
 
 ---
  vi.c | 8 ++++++--
