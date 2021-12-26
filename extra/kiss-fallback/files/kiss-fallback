@@ -1,6 +1,8 @@
 #!/bin/sh -e
 # auto create package
+
 KISS_FALLBACK_REPO=${KISS_FALLBACK_REPO:-/tmp/fallback}
+[ -e "$KISS_FALLBACK_REPO" ] || mkdir -p "$KISS_FALLBACK_REPO"
 
 _parse_pkgbuild() {
     pkgrel=1
