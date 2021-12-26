@@ -1,0 +1,47 @@
+From bdce5795c1ba37180325e67fcf0e7dcc36e939e5 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@disroot.org>
+Date: Sat, 25 Dec 2021 18:26:40 -0600
+Subject: [PATCH 3/3] Added support for complete_helper
+
+---
+ edit.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+
+diff --git a/edit.c b/edit.c
+index ca648fc..b5e5513 100644
+--- a/edit.c
++++ b/edit.c
+@@ -618,6 +618,15 @@ x_try_array(const char *buf, int buflen, const char *want, int wantlen,
+ 		if (!isspace((u_char)cp[-1]) && isspace((u_char)*cp))
+ 			n++;
+ 	}
++    {
++		setstr(global("COMP_CMD"), cmd, 1);
++		setint(global("COMP_CWORD"), n);
++		setstr(global("COMP_LINE"), buf, 1);
++		setint(global("COMP_POINT"), want + wantlen - buf);
++		struct tbl* _t = findcom("complete_helper", -1);
++		if(_t->flag & ISSET)
++			execute(_t->val.t, 0, NULL);
++    }
+ 
+ 	/* Try to find the array. */
+ 	if (asprintf(&name, "complete_%.*s_%d", cmdlen, cmd, n) == -1)
+@@ -629,8 +638,12 @@ x_try_array(const char *buf, int buflen, const char *want, int wantlen,
+ 			internal_errorf("unable to allocate memory");
+ 		v = global(name);
+ 		free(name);
+-		if (~v->flag & (ISSET|ARRAY))
+-			return 0;
++		if (~v->flag & (ISSET|ARRAY)) {
++			v = global("COMPREPLY");
++			if (~v->flag & (ISSET|ARRAY)) {
++				return 0;
++			}
++        }
+ 	}
+ 
+ 	/* Walk the array and build words list. */
+-- 
+2.33.0
+

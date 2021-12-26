@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+for p in *.patch; do
+    patch -p1 <"$p"
+done
+./configure \
+    --prefix=/usr \
+    --disable-curses \
+    --enable-ksh \
+    --enable-sh
+
+make
+make DESTDIR="$1" install

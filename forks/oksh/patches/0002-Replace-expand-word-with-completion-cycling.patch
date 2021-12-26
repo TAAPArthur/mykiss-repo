@@ -1,0 +1,52 @@
+From 4096fcd608be920c62a60c092674c244bb1bb1b0 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@disroot.org>
+Date: Fri, 24 Dec 2021 23:01:23 -0600
+Subject: [PATCH 2/3] Replace expand word with completion cycling
+
+---
+ vi.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/vi.c b/vi.c
+index b54b8a2..b12f60c 100644
+--- a/vi.c
++++ b/vi.c
+@@ -2031,13 +2031,15 @@ expand_word(int command)
+ 	int start, end;
+ 	char **words;
+ 	int i;
++    static index;
+ 
+ 	/* Undo previous expansion */
+ 	if (command == 0 && expanded == EXPAND && buf) {
+ 		restore_edstate(es, buf);
+ 		buf = NULL;
+ 		expanded = NONE;
+-		return 0;
++        if(index == 0)
++            return 0;
+ 	}
+ 	if (buf) {
+ 		free_edstate(buf);
+@@ -2056,7 +2058,7 @@ expand_word(int command)
+ 	expanded = EXPAND;
+ 	del_range(start, end);
+ 	es->cursor = start;
+-	for (i = 0; i < nwords; ) {
++	for (i = index; i < nwords; ) {
+ 		if (x_escape(words[i], strlen(words[i]), x_vi_putbuf) != 0) {
+ 			rval = -1;
+ 			break;
+@@ -2065,7 +2067,9 @@ expand_word(int command)
+ 			rval = -1;
+ 			break;
+ 		}
++        break;
+ 	}
++    index = (index+ 1) % nwords;
+ 	i = buf->cursor - end;
+ 	if (rval == 0 && i > 0)
+ 		es->cursor += i;
+-- 
+2.33.0
+
