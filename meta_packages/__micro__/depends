@@ -1,10 +1,10 @@
 __pico__
 abduco
-bash
 curl
 git
 kiss-hooks
 make
+oksh
 sbase
 sue
 ubase

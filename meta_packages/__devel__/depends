@@ -1,10 +1,10 @@
 autopep8
 cloc
 ctags
+discount
 perl-authen-sasl
 perl-io-socket-ssl
 perl-net-ssleay
-python-coverage
 python-pyflakes
 scunittest
 shellcheck-bin

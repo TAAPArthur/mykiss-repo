@@ -19,5 +19,6 @@ xorg-server
 xprop
 xrandr-invert-colors
 xrectsel
+xsane-xrandr
 xset
 xsetroot
