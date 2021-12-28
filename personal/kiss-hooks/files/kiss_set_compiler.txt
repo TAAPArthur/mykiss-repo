@@ -18,7 +18,6 @@ gnutls
 grub
 gtk+3
 imlib2
-iptables
 kmod
 lame
 libass
@@ -47,5 +46,6 @@ python
 python-pillow
 strace
 x264
+xdotool
 xvidcore
 zathura

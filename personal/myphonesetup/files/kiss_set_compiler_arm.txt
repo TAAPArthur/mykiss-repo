@@ -1,5 +1,7 @@
 dash
 diffutils
-libwebp
+libnl
 libvpx
+libwebp
 m4
+rsync
