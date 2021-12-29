@@ -1,6 +1,7 @@
 # Collection of forks
 
 alsa-utils - allow compiling with tcc
+binutils - enable complication with tcc
 busybox - Removed some unneeded options; disabled gcc specific options
 curl - made static
 dmenu - custom patches

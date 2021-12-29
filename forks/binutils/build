@@ -1,0 +1,41 @@
+#!/bin/sh -e
+
+patch -p1 < fix-fd-issue.patch
+
+# Latest binutils tarball has falsely generated (empty) manual pages.
+# Generating them requires perl. Temporary fix until next release.
+! kiss l perl || {
+    patch -p1 < fix-empty-man.patch
+    rm -f binutils/doc/*.1 ld/ld.1 gas/doc/as.1 gprof/gprof.1
+}
+
+cat > makeinfo <<EOF
+#!/bin/sh
+printf 'makeinfo (GNU texinfo) 5.2\n'
+EOF
+
+chmod +x makeinfo
+export PATH=$PATH:$PWD
+
+sed -i "s/defined(__GLIBC__)/defined(__TINYC__) || &/" ./include/plugin-api.h
+
+./configure \
+    --prefix=/usr \
+    --with-lib-path=/usr/lib:/usr/local/lib \
+    --enable-lto \
+    --enable-ld=default \
+    --enable-plugins \
+    --disable-multilib \
+    --disable-werror \
+    --disable-gdb \
+    --disable-nls \
+    --disable-readline \
+    --disable-gprof \
+    --with-mmap \
+    --with-system-zlib
+
+make configure-host
+make tooldir=/usr
+make tooldir=/usr install
+
+ln -sf ld.bfd "$1/usr/bin/ld"
