@@ -1,5 +1,1 @@
-https://github.com/ibara/oksh/releases/download/oksh-7.0/oksh-7.0.tar.gz
-patches/0001-map-jj-to-escape.patch
-patches/0002-Replace-expand-word-with-completion-cycling.patch
-patches/0003-Added-support-for-complete_helper.patch
-patches/0004-Escape-spaces-during-auto-completion.patch
+git+https://github.com/TAAPArthur/oksh.git
