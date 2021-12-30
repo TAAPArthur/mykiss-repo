@@ -6,8 +6,10 @@
 # See: https://github.com/curl/curl/issues/7475
 sed -i 's/\(curl_LDADD =\)/\1 -all-static/' src/Makefile.in
 
+find . -name "*.c" -exec sed -i "s/<zlib.h>/<miniz.h>/" {} \+
+find . -type f -exec sed -Ei 's/([^\w])-lz([^\w])/\1-lminiz\2/g; s/ -lz$/-lminiz/g' {} \+
 
-./configure \
+LDFLAGS=-static ./configure \
     --prefix=/usr \
     --disable-ares \
     --disable-ldap \
