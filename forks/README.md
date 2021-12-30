@@ -15,6 +15,7 @@ jq - Disabled shared lib and forked to remove GNUC hardcoding
 iptables - remove non-portable install flags
 keyutils - disable shared
 kiss - Use custom fork
+lcms - remove tiff depend
 libXft - fix freetype path
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs
 libnl - Make static
