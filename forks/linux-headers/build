@@ -1,4 +1,3 @@
 #!/bin/sh -e
 
-mkdir -p "$1/usr"
-mv "$(uname -m)/include" "$1/usr"
+make ARCH="$(uname -m)" prefix=/usr DESTDIR="$1" install
