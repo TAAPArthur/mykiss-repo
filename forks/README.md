@@ -6,7 +6,7 @@ busybox - Removed some unneeded options; disabled gcc specific options
 curl - made static and use miniz
 dmenu - custom patches
 ffmpeg - removed x265 (cmake) and webp; Use ~libtls~ gnutls instead of openssl; Silence deprecation related warnings; enabled libv4l; Explicitly add sdl2 depend
-freetype-harfbuzz - fix freetype path
+freetype-harfbuzz - reduce dependencies
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion
 glib - Remove json-glib
@@ -44,7 +44,6 @@ zathura-pdf-mupdf - removed unneeded dependencies and made build static
 
 # Future work
 fontconfig
-freetype-harfbuzz
 fribidi
 gdk-pixbuf
 gtk+3
