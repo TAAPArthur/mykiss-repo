@@ -1,45 +1,45 @@
 alsa-lib
 alsa-utils
-binutils
-cairo
 dhcpcd
+# tcc: error: undefined symbol 'qsort_r'
 e2fsprogs
+# src/device.c:324: error: ';' expected (got "_Pragma")
 eiwd
+#   /usr/include/SDL2/SDL_cpuinfo.h:99: error: include file 'immintrin.h' not found
 ffmpeg
-fontconfig
 freetype-harfbuzz
 fribidi
 gcc
-gdb
-girara
-glib
 gmp
 gnutls
 grub
-gtk+3
-imlib2
-kmod
+# tcc: error: unsupported linker option '-version-script'
 lame
+# tcc: error: unsupported linker option '-version-script'
 libass
+# ../xf86atomic.h:102: error: #error libdrm requires atomic operations, please define them for your CPU/compiler.
 libdrm
+# configure: error: __thread support required
 libelf
 libepoxy
+# libevdev.c:665: error: 'dev' undeclared
 libevdev
 libffi
+# meson.build:405:0: ERROR: Can't link non-PIC static library 'libinput-util' into shared library 'input'. Use the 'pic' option to static_library to build with PIC.
 libinput
+# tcc: error: unsupported linker option '--version-script=libpng.vers'
 libpng
 libqmi
 libressl
 libvpx
+# tcc: error: unsupported linker option '--version-script=./libxml2.syms'
 libxml2
 libxshmfence
-linux-headers
 mesa
 mpv
 musl
 nettle
 openblas
-pango
 perl
 pkgconf
 python
@@ -48,4 +48,3 @@ strace
 x264
 xdotool
 xvidcore
-zathura

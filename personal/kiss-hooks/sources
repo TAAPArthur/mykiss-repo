@@ -1,6 +1,7 @@
 files/kiss_hooks
 files/kiss_preferred.txt
 files/kiss_set_compiler.txt
+files/kiss_set_compiler_unsupported.txt
 files/remove_unwanted_files.sh
 files/resolve_conflicts.sh
 files/set_compiler.sh
