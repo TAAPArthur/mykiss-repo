@@ -5,6 +5,7 @@ btpd
 darkhttpd
 div
 libdvdcss
+libmupdf
 mpv
 python-beautifulsoup4
 python-cloudscraper
@@ -13,6 +14,3 @@ python-pillow
 python-pycryptodome
 python-requests-oauthlib
 youtube-dl
-zathura
-zathura-cb
-zathura-pdf-mupdf
