@@ -5,7 +5,7 @@ binutils - enable complication with tcc
 busybox - Removed some unneeded options; disabled gcc specific options
 curl - use miniz
 dmenu - custom patches
-ffmpeg - removed x265 (cmake) and webp; Use ~libtls~ gnutls instead of openssl; Silence deprecation related warnings; enabled libv4l; Explicitly add sdl2 depend
+ffmpeg - removed x265 (cmake) and webp; Use ~libtls~ gnutls instead of openssl; Silence deprecation related warnings; enabled libv4l; Remove libvpx (which allows --enable-nonfree to be removed)
 freetype-harfbuzz - reduce dependencies
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion

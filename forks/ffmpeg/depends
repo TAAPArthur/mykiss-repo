@@ -5,11 +5,9 @@ libass
 libogg
 libv4l
 libvorbis
-libvpx
 linux-headers make
 nasm          make
 opus
 pkgconf make
-sdl2
 x264
 xvidcore
