@@ -2,6 +2,8 @@
 
 sed -i "s/^XINIT/exec &/; s:tty_num=.*:tty_num=\${tty#/dev/tty}:g" startx.cpp
 sed -i "s/.include <signal.h>/&\n#include <sys\/prctl.h>/; s/signal(SIGCHLD, SIG_DFL);/prctl(PR_SET_CHILD_SUBREAPER);&/" xinit.c
+sed -i "s/alarm(15)/alarm(2)/" xinit.c
+
 
 ./configure \
     --prefix=/usr \

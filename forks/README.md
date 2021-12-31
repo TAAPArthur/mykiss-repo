@@ -45,7 +45,7 @@ ubase - made getty not change tty permissions
 vim - disable mouse support
 xsel - fork to remove autogen
 xorg-server - to support tcc
-xinit - Made xinit a process reaper
+xinit - Made xinit a process reaper and make it restart faster on errors
 
 # Future work
 fontconfig
