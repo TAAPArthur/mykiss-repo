@@ -9,7 +9,7 @@ sed -i 's/\(curl_LDADD =\)/\1 -all-static/' src/Makefile.in
 find . -name "*.c" -exec sed -i "s/<zlib.h>/<miniz.h>/" {} \+
 find . -type f -exec sed -Ei 's/([^\w])-lz([^\w])/\1-lminiz\2/g; s/ -lz$/-lminiz/g' {} \+
 
-LDFLAGS=-static ./configure \
+./configure \
     --prefix=/usr \
     --disable-ares \
     --disable-ldap \

@@ -3,7 +3,7 @@
 alsa-utils - allow compiling with tcc
 binutils - enable complication with tcc
 busybox - Removed some unneeded options; disabled gcc specific options
-curl - made static and use miniz
+curl - use miniz
 dmenu - custom patches
 ffmpeg - removed x265 (cmake) and webp; Use ~libtls~ gnutls instead of openssl; Silence deprecation related warnings; enabled libv4l; Explicitly add sdl2 depend
 freetype-harfbuzz - reduce dependencies
