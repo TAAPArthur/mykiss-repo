@@ -128,6 +128,7 @@ sbase /usr/bin/yes
 sbase /usr/share/man/man1/dd.1
 sbase /usr/share/man/man1/mknod.1
 sbase /usr/share/man/man1/strings.1
+tcc /usr/bin/cc
 ubase /usr/bin/blkdiscard
 ubase /usr/bin/chvt
 ubase /usr/bin/clear

@@ -37,6 +37,7 @@ sbase - made flock not fork
 shellcheck-bin - Replace x86_64 with ARCH to be generic across all architectures
 st - Applied custom patches like newtab and scrollback
 sxiv - Add WM hints patch and custom config.def.h
+tcc - create /usr/bin/cc symlink
 tzdata - allow compling with tcc (workaround weird multi line strings)
 ubase - made getty not change tty permissions
 vim - disable mouse support
