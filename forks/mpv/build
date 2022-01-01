@@ -1,13 +1,32 @@
 #!/bin/sh -e
 
-ln -s waf-2.0.18 waf
+# Setup docutils to generate manual pages.
+{
+    cd docutils
 
-python waf configure \
+    python3 setup.py build
+    python3 setup.py install \
+        --root="$PWD/../dist"
+
+    cd ../dist/usr/lib/python*/site-packages
+
+    PYTHONPATH=$PWD:$(python -c "import sys;print(':'.join(sys.path))")
+
+    cd -; cd ..
+    export PATH=$PWD/dist/usr/bin:$PATH
+    export PYTHONPATH
+}
+
+python waf/waf configure \
     --prefix=/usr \
     --mandir=/usr/share/man \
     --confdir=/etc/mpv \
-    --enable-lua \
-    --enable-alsa
+    --enable-alsa \
+    --enable-lua
 
-python waf build
-python waf install --destdir="$1"
+python waf/waf build
+python waf/waf install --destdir="$1"
+
+rm -rf \
+    "$1/usr/share/zsh" \
+    "$1/usr/share/bash-completion"

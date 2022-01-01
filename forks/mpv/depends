@@ -5,6 +5,7 @@ libXScrnSaver
 libXinerama
 libXrandr
 libass
+linux-headers make
 lua
 mesa
 pkgconf make
