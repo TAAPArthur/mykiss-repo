@@ -7,6 +7,7 @@ curl - use miniz
 dmenu - custom patches
 ffmpeg - removed x265 (cmake) and webp; Use ~libtls~ gnutls instead of openssl; Silence deprecation related warnings; enabled libv4l; Remove libvpx (which allows --enable-nonfree to be removed)
 freetype-harfbuzz - reduce dependencies
+elinks - fork to disable mouse
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion
 glib - Remove json-glib
