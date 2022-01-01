@@ -23,6 +23,7 @@ links - enable graphics
 linux - custom config.h
 linux-headers - headers for LTS (4.19.88) instead of downloading an entire linux release
 libudev-zero - don't install helper
+lua     - Use lua version 5.1.5
 mesa - disabled llvm; Only build useful drivers. Enabled opengl
 mpv - enabled lua; use personal fork
 mtdev - replace builtin_ffs with musl's ffs so it can properly be linked against; Also provide the --build arg so it can build on the pinephone

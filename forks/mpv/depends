@@ -6,7 +6,6 @@ libXinerama
 libXrandr
 libass
 lua
-luajit
 mesa
 pkgconf make
 python  make
