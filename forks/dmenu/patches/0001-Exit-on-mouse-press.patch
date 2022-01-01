@@ -1,0 +1,48 @@
+From ff9f37f72e613e25bc7e4df41225fce4f201d8fb Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Sat, 1 Jan 2022 10:22:12 -0800
+Subject: [PATCH] Exit on mouse press
+
+---
+ dmenu.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/dmenu.c b/dmenu.c
+index db219cf..9e7f7ed 100644
+--- a/dmenu.c
++++ b/dmenu.c
+@@ -335,6 +335,12 @@ movewordedge(int dir)
+ 	}
+ }
+ 
++static void
++mousepress(XKeyEvent *ev) {
++    cleanup();
++    exit(1);
++}
++
+ static void
+ keypress(XKeyEvent *ev)
+ {
+@@ -638,6 +644,9 @@ run(void)
+ 		case KeyPress:
+ 			keypress(&ev.xkey);
+ 			break;
++		case ButtonPress:
++			mousepress(&ev.xkey);
++			break;
+ 		case SelectionNotify:
+ 			if (ev.xselection.property == utf8)
+ 				paste();
+@@ -737,7 +746,7 @@ setup(void)
+ 	/* create menu window */
+ 	swa.override_redirect = True;
+ 	swa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
+-	swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask;
++	swa.event_mask = ExposureMask | KeyPressMask | ButtonPressMask | VisibilityChangeMask;
+ 	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, 0,
+ 	                    CopyFromParent, CopyFromParent, CopyFromParent,
+ 	                    CWOverrideRedirect | CWBackPixel | CWEventMask, &swa);
+-- 
+2.33.0
+
