@@ -9,3 +9,4 @@ make
 make DESTDIR="$1" install
 
 ln -s tcc "$1/usr/bin/cc"
+ln -s tcc "$1/usr/bin/c99"
