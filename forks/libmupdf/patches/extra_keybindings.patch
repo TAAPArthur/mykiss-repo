@@ -1,0 +1,23 @@
+--- ./platform/x11/x11_main.c
++++ ./platform/x11/x11_main.c
+@@ -981,11 +981,20 @@
+ 
+ 					case XK_Up:
+ 					case XK_KP_Up:
++					case XF86XK_AudioRaiseVolume:
+ 						len = 1; buf[0] = 'k';
+ 						break;
+ 					case XK_Down:
+ 					case XK_KP_Down:
++					case XF86XK_AudioLowerVolume:
+ 						len = 1; buf[0] = 'j';
++						break;
++					case XK_space:
++					   	if(xevt.xkey.state & ShiftMask) {
++							len = 1; buf[0] = 'k';
++						} else {
++							len = 1; buf[0] = 'j';
++						}
+ 						break;
+ 
+ 					case XK_Left:

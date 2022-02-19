@@ -1,8 +1,8 @@
 #!/bin/sh -e
 
-export CFLAGS="$CFLAGS"
-
-patch -p1 < pkcs7-fix.patch
+for p in *.patch; do
+    patch -p1 < "$p"
+done
 sed -i "s/-MMD -MP -o/-o/" Makefile
 sed -i "s/,--gc-sections//" Makerules
 sed -i "s/,-s//" Makerules

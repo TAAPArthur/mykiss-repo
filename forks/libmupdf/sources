@@ -1,2 +1,3 @@
-https://www.mupdf.com/downloads/archive/mupdf-1.18.0-source.tar.xz
+https://www.mupdf.com/downloads/archive/mupdf-1.19.0-source.tar.xz
+patches/extra_keybindings.patch
 patches/pkcs7-fix.patch
