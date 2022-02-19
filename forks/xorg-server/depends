@@ -14,6 +14,7 @@ libpciaccess
 libressl
 libudev-zero
 libxcb
+libxcvt
 libxkbfile
 libxshmfence
 linux-headers make
