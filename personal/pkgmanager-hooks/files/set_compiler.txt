@@ -32,6 +32,8 @@ libpng
 libqmi
 libressl
 libvpx
+# tcc not supported by meson
+libxcvt
 # tcc: error: unsupported linker option '--version-script=./libxml2.syms'
 libxml2
 libxshmfence
