@@ -3,3 +3,4 @@
 install -D -t "$1/etc/pkgmanager/hooks.d/"  ./*.sh
 install -D -t "$1/usr/share/pkgmanager/compiler/" set_compiler*.txt
 install -D -t "$1/usr/share/pkgmanager/conflict/" preferred_source.txt
+install -D -t "$1/usr/share/pkgmanager/flags/" -- *_flag.txt

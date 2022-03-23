@@ -1,0 +1,7 @@
+abduco
+dash
+mqbus
+myinit
+ncdu
+sue
+tcc
