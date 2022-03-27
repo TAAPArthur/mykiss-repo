@@ -42,7 +42,7 @@ sxiv - Add WM hints patch and custom config.def.h
 tcc - create /usr/bin/cc and /usr/bin/cc99 symlink
 tree - remove hard coded gcc
 tzdata - Explicitly specify destdir
-ubase - made getty not change tty permissions
+ubase - made getty not change tty permissions; Don't remove su and stat
 vim - disable mouse support
 xsel - fork to remove autogen
 xorg-server - to support tcc
