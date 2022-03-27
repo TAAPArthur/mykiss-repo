@@ -1,47 +1,46 @@
-From b182612fc6ef1af1b0ec4f6f5f15fbe83c709521 Mon Sep 17 00:00:00 2001
+From 8c413d25d4bca1d2d8a1c1d4149aff5080f864ab Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@gmail.com>
 Date: Sun, 21 Mar 2021 01:23:11 -0700
-Subject: [PATCH 3/3] Wrap selection
+Subject: [PATCH 7/8] Wrap selection
 
 ---
- dmenu.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ dmenu.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/dmenu.c b/dmenu.c
-index a0fde7e..db219cf 100644
+index ef4d548..61a504d 100644
 --- a/dmenu.c
 +++ b/dmenu.c
-@@ -454,6 +454,7 @@ insert:
+@@ -464,6 +464,7 @@ insert:
  			return;
  		insert(NULL, nextrune(-1) - cursor);
  		break;
 +jump_to_end:
  	case XK_End:
+ 	case XK_KP_End:
  		if (text[cursor] != '\0') {
- 			cursor = strlen(text);
-@@ -473,6 +474,7 @@ insert:
+@@ -484,6 +485,7 @@ insert:
  	case XK_Escape:
  		cleanup();
  		exit(1);
 +jump_to_start:
  	case XK_Home:
+ 	case XK_KP_Home:
  		if (sel == matches) {
- 			cursor = 0;
-@@ -491,6 +493,9 @@ insert:
- 		/* fallthrough */
+@@ -505,6 +507,9 @@ insert:
  	case XF86XK_AudioRaiseVolume:
  	case XK_Up:
+ 	case XK_KP_Up:
 +		if(sel && !sel->left) {
 +			goto jump_to_end;
 +		}
  		if (sel && sel->left && (sel = sel->left)->right == curr) {
  			curr = prev;
  			calcoffsets();
-@@ -533,6 +538,10 @@ insert:
- 		/* fallthrough */
+@@ -551,6 +556,9 @@ insert:
  	case XF86XK_AudioLowerVolume:
  	case XK_Down:
-+
+ 	case XK_KP_Down:
 +		if(sel && !sel->right) {
 +			goto jump_to_start;
 +		}
@@ -49,5 +48,5 @@ index a0fde7e..db219cf 100644
  			curr = next;
  			calcoffsets();
 -- 
-2.30.1
+2.35.1
 

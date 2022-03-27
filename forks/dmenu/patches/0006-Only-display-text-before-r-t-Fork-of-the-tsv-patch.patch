@@ -1,14 +1,14 @@
-From dfeb8d5ca4d1127de4dd44b36ad64daba65d64ea Mon Sep 17 00:00:00 2001
+From 58bf18df92691f0e94a750363f59bb8a3baf6ae5 Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@gmail.com>
 Date: Sat, 20 Mar 2021 18:38:54 -0700
-Subject: [PATCH 2/3] Only display text before \r/\t; Fork of the tsv patch
+Subject: [PATCH 6/8] Only display text before \r/\t; Fork of the tsv patch
 
 ---
  dmenu.c | 9 +++++++--
  1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/dmenu.c b/dmenu.c
-index 229ace5..a0fde7e 100644
+index 3e06b95..ef4d548 100644
 --- a/dmenu.c
 +++ b/dmenu.c
 @@ -31,6 +31,7 @@ enum { SchemeNorm, SchemeSel, SchemeOut, SchemeLast }; /* color schemes */
@@ -19,7 +19,7 @@ index 229ace5..a0fde7e 100644
  	struct item *left, *right;
  
  	int id; /* for multiselect */
-@@ -147,7 +148,7 @@ drawitem(struct item *item, int x, int y, int w)
+@@ -154,7 +155,7 @@ drawitem(struct item *item, int x, int y, int w)
  	else
  		drw_setscheme(drw, scheme[SchemeNorm]);
  
@@ -28,7 +28,7 @@ index 229ace5..a0fde7e 100644
  }
  
  static void
-@@ -195,7 +196,7 @@ drawmenu(void)
+@@ -202,7 +203,7 @@ drawmenu(void)
  		}
  		x += w;
  		for (item = curr; item != next; item = item->right)
@@ -37,7 +37,7 @@ index 229ace5..a0fde7e 100644
  		if (next) {
  			w = TEXTW(">");
  			drw_setscheme(drw, scheme[SchemeNorm]);
-@@ -585,6 +586,10 @@ readstdin(void)
+@@ -603,6 +604,10 @@ readstdin(void)
  			*p = '\0';
  		if (!(items[i].text = strdup(buf)))
  			die("cannot strdup %u bytes:", strlen(buf) + 1);
@@ -49,5 +49,5 @@ index 229ace5..a0fde7e 100644
  		drw_font_getexts(drw->fonts, buf, strlen(buf), &tmpmax, NULL);
  		if (tmpmax > inputw) {
 -- 
-2.30.1
+2.35.1
 

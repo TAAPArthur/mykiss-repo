@@ -1,5 +1,14 @@
+From 7f0308b2a8e466b9e0dbb53bba6c8e2848b46550 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Sun, 27 Mar 2022 03:10:44 -0700
+Subject: [PATCH 4/8] dmenu-multi-selection-4.9.diff
+
+---
+ dmenu.c | 44 ++++++++++++++++++++++++++++++++++++++------
+ 1 file changed, 38 insertions(+), 6 deletions(-)
+
 diff --git a/dmenu.c b/dmenu.c
-index 6b8f51b..6544112 100644
+index 04c2d34..096846b 100644
 --- a/dmenu.c
 +++ b/dmenu.c
 @@ -31,7 +31,8 @@ enum { SchemeNorm, SchemeSel, SchemeOut, SchemeLast }; /* color schemes */
@@ -38,7 +47,7 @@ index 6b8f51b..6544112 100644
  static void
  appenditem(struct item *item, struct item **list, struct item **last)
  {
-@@ -100,6 +113,7 @@ cleanup(void)
+@@ -109,6 +122,7 @@ cleanup(void)
  	drw_free(drw);
  	XSync(dpy, False);
  	XCloseDisplay(dpy);
@@ -46,7 +55,7 @@ index 6b8f51b..6544112 100644
  }
  
  static char *
-@@ -118,7 +132,7 @@ drawitem(struct item *item, int x, int y, int w)
+@@ -134,7 +148,7 @@ drawitem(struct item *item, int x, int y, int w)
  {
  	if (item == sel)
  		drw_setscheme(drw, scheme[SchemeSel]);
@@ -55,7 +64,7 @@ index 6b8f51b..6544112 100644
  		drw_setscheme(drw, scheme[SchemeOut]);
  	else
  		drw_setscheme(drw, scheme[SchemeNorm]);
-@@ -367,6 +381,20 @@ keypress(XKeyEvent *ev)
+@@ -391,6 +405,20 @@ keypress(XKeyEvent *ev)
  			goto draw;
  		case XK_Return:
  		case XK_KP_Enter:
@@ -76,7 +85,7 @@ index 6b8f51b..6544112 100644
  			break;
  		case XK_bracketleft:
  			cleanup();
-@@ -464,13 +492,17 @@ insert:
+@@ -495,13 +523,17 @@ insert:
  		break;
  	case XK_Return:
  	case XK_KP_Enter:
@@ -96,8 +105,8 @@ index 6b8f51b..6544112 100644
 -			sel->out = 1;
  		break;
  	case XK_Right:
- 		if (text[cursor] != '\0') {
-@@ -534,7 +566,7 @@ readstdin(void)
+ 	case XK_KP_Right:
+@@ -567,7 +599,7 @@ readstdin(void)
  			*p = '\0';
  		if (!(items[i].text = strdup(buf)))
  			die("cannot strdup %u bytes:", strlen(buf) + 1);
@@ -106,3 +115,6 @@ index 6b8f51b..6544112 100644
  		drw_font_getexts(drw->fonts, buf, strlen(buf), &tmpmax, NULL);
  		if (tmpmax > inputw) {
  			inputw = tmpmax;
+-- 
+2.35.1
+

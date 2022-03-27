@@ -1,8 +1,18 @@
+From e31ad049ab2c0d0f1ba64bf5b8aa0d3c388a69e4 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Sun, 27 Mar 2022 03:10:25 -0700
+Subject: [PATCH 3/8] dmenu-initialtext-4.7.diff
+
+---
+ dmenu.1 | 5 +++++
+ dmenu.c | 8 ++++++--
+ 2 files changed, 11 insertions(+), 2 deletions(-)
+
 diff --git a/dmenu.1 b/dmenu.1
-index 9eab758..b4947f9 100644
+index 57ea184..affdb16 100644
 --- a/dmenu.1
 +++ b/dmenu.1
-@@ -22,6 +22,8 @@ dmenu \- dynamic menu
+@@ -24,6 +24,8 @@ dmenu \- dynamic menu
  .IR color ]
  .RB [ \-w
  .IR windowid ]
@@ -11,7 +21,7 @@ index 9eab758..b4947f9 100644
  .P
  .BR dmenu_run " ..."
  .SH DESCRIPTION
-@@ -80,6 +82,9 @@ prints version information to stdout, then exits.
+@@ -88,6 +90,9 @@ prints version information to stdout, then exits.
  .TP
  .BI \-w " windowid"
  embed into windowid.
@@ -22,10 +32,10 @@ index 9eab758..b4947f9 100644
  dmenu is completely controlled by the keyboard.  Items are selected using the
  arrow keys, page up, page down, home, and end.
 diff --git a/dmenu.c b/dmenu.c
-index d605ab4..0564dfe 100644
+index 552b1fd..04c2d34 100644
 --- a/dmenu.c
 +++ b/dmenu.c
-@@ -637,7 +637,8 @@ static void
+@@ -737,7 +737,8 @@ static void
  usage(void)
  {
  	fputs("usage: dmenu [-bfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
@@ -35,7 +45,7 @@ index d605ab4..0564dfe 100644
  	exit(1);
  }
  
-@@ -680,7 +681,10 @@ main(int argc, char *argv[])
+@@ -786,7 +787,10 @@ main(int argc, char *argv[])
  			colors[SchemeSel][ColFg] = argv[++i];
  		else if (!strcmp(argv[i], "-w"))   /* embedding window id */
  			embed = argv[++i];
@@ -47,3 +57,6 @@ index d605ab4..0564dfe 100644
  			usage();
  
  	if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
+-- 
+2.35.1
+
