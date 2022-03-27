@@ -13,4 +13,4 @@ python-m3u8
 python-pillow
 python-pycryptodome
 python-requests-oauthlib
-youtube-dl
+yt-dlp

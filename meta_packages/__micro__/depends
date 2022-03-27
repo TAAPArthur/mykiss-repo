@@ -1,9 +1,5 @@
-__pico__
+__nano__
 abduco
-curl
-git
-kiss-hooks
-make
 oksh
 sbase
 sue

@@ -1,14 +1,9 @@
 baselayout
-busybox
 dash
-dhcpcd
-eiwd
-kiss
 musl
 myinit
 myrootsetup
-myservices
-ndev
-openssh
+pkgmanager
+pkgmanager-hooks
 tcc
 vim

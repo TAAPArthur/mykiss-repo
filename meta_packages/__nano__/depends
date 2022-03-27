@@ -1,0 +1,10 @@
+__pico__
+busybox
+dhcpcd
+eiwd
+myservices
+ndev
+openssh
+curl
+git
+make
