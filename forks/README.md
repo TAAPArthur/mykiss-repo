@@ -60,7 +60,6 @@ libinput - Made static
 libmupdf
 libpng - Made static
 libsndfile
-meson
 mpv
 strace
 tiff
