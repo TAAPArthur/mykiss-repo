@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+make DESTDIR="$1" install-all
+
+ln -s pkgmanager "$1/usr/bin/pkgman"
