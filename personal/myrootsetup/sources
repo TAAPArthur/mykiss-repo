@@ -1,5 +1,5 @@
 files/00-defaults.sh
-files/00-kiss.sh
+files/00-pkgman.sh
 files/00-startup_modules.conf
 files/blacklist.conf
 files/main.conf
