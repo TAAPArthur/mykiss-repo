@@ -17,7 +17,6 @@ export CFLAGS="$CFLAGS -DHAVE_PRAGMA_DEPRECATED=0"
     --enable-libx264 \
     --disable-libx265 \
     --enable-libxvid \
-    --enable-libsdl2 \
     --enable-libdrm \
     --enable-libv4l2 \
     --x86asmexe=nasm \
