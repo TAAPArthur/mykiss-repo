@@ -1,5 +1,5 @@
 #!/bin/sh -e
 
 make
-make DESTDIR=$1 install
-ln -s sue $1/usr/bin/sudo
+make DESTDIR="$1" install
+ln -s sue "$1/usr/bin/sudo"
