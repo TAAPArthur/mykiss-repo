@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+export LDFLAGS=-static
+make CC="$CC"
+make prefix="$1/usr" MANDIR="$1/usr/share/man/man1" install
