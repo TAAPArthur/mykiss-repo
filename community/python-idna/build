@@ -1,2 +1,3 @@
 #!/bin/sh -e
-pip install --no-binary ":all:" --no-deps --root $1 idna
+
+python setup.py install --root="$1" --optimize=1
