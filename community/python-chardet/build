@@ -1,5 +1,3 @@
 #!/bin/sh -e
-pkgbase=python-chardet
-pkgdir=$1
-pkgver=$2
-python setup.py install --root="$pkgdir" --optimize=1
+
+python setup.py install --root="$1" --optimize=1
