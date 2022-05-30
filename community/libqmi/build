@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --without-udev \
+    --disable-maintainer-mode \
+    --disable-firmware-update \
+    --enable-collection=minimal \
+    --disable-mm-runtime-check
+
+make
+make DESTDIR="$1" install
