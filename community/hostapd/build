@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+cd hostapd
+
+cp defconfig .config
+make PREFIX=/usr
+make BINDIR=/usr/bin DESTDIR="$1" install
