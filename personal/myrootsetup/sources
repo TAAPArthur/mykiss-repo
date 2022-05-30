@@ -9,3 +9,4 @@ files/rc.local
 files/rc.shutdown
 files/sound.conf
 files/vimrc
+files/sysctl.conf

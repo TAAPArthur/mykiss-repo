@@ -26,6 +26,8 @@ mount -t mqueue none /dev/mqueue
 /bin/ip addr add 127.0.0.1/8 dev lo broadcast + scope host
 /bin/ip link set lo up
 
+sysctl -p
+
 # allow members of group sys to suspend/hibernate
 chown :sys /sys/power/*
 chmod g+w /sys/power/state /sys/power/mem_sleep /sys/power/disk

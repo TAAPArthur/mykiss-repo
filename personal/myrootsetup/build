@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-install -D -t "$1/etc/"                   ntp.conf
+install -D -t "$1/etc/"                   ntp.conf sysctl.conf
 install -D -t "$1/etc/iwd/"               main.conf
 install -D -t "$1/etc/myinit/init.d/"     rc.local
 install -D -t "$1/etc/myinit/shutdown.d/" rc.shutdown
