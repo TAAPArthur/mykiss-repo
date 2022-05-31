@@ -1,4 +1,4 @@
 #!/bin/sh -e
-pkgdir=$1
-pkgver=$2
-make DESTDIR=$pkgdir install
+
+make
+make DESTDIR="$1" install
