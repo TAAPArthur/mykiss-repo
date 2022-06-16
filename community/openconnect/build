@@ -6,8 +6,35 @@ sed -i '/"#define HAVE_DTLS12 1" >>confdefs.h/d' configure
 ./configure \
     --prefix=/usr \
     --sbindir=/usr/bin \
+    --disable-shared \
+    --enable-static \
     --with-vpnc-script=/etc/vpnc/vpnc-script \
     --disable-nls
+
+patch -p1 <<"EOF"
+--- vpnc-script
++++ vpnc-script
+@@ -97,10 +97,6 @@
+ # OpenConnect v9.0+ provides VPNPID, so we don't need to determine it.
+ if [ -z "$VPNPID" ]; then
+     VPNPID=$PPID
+-    PCMD=`ps -c -o cmd= -p $PPID`
+-    case "$PCMD" in
+-        *sh) VPNPID=`ps -o ppid= -p $PPID` ;;
+-    esac
+ fi
+
+ DEFAULT_ROUTE_FILE=/var/run/vpnc/defaultroute.${VPNPID}
+@@ -177,7 +173,7 @@
+ 	# For systemd-resolved (version 229 and above)
+ 	MODIFYRESOLVCONF=modify_resolved_manager_old
+ 	RESTORERESOLVCONF=restore_resolved_manager_old
+-elif [ -x /sbin/resolvconf ] && [ "`basename $(readlink /sbin/resolvconf) 2> /dev/null`" != resolvectl ]; then
++elif [ -L /sbin/resolvconf ] && [ "`basename $(readlink /sbin/resolvconf) 2> /dev/null`" != resolvectl ]; then
+ 	# Optional tool on Debian, Ubuntu, Gentoo, FreeBSD and DragonFly BSD
+ 	# (ignored if symlink to resolvctl, created by some versions of systemd-resolved)
+ 	MODIFYRESOLVCONF=modify_resolvconf_manager
+EOF
 
 make
 make DESTDIR="$1" install
