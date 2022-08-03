@@ -1,3 +1,0 @@
-#!/bin/sh -e
-
-install -Dt $1/bin/ kiss-fallback
