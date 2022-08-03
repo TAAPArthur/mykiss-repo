@@ -12,7 +12,6 @@ girara - removed json depends (cmake)
 git - added perl support; Added bash completion
 glib - Remove json-glib
 gtk+3 - Remove libXcomposite dependency
-iptables - remove non-portable install flags
 kiss - Use custom fork
 lcms - remove tiff depend
 libXft - fix freetype path
