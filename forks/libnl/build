@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-./configure \
-    --prefix=/usr \
-    --sysconfdir=/etc \
-    --disable-shared
-
-make
-make DESTDIR="$1" install
