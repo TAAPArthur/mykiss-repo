@@ -30,7 +30,6 @@ mutt - for to enable header cache
 ncurses - disabled shared pkg
 nsxiv - use personal fork
 oksh - custom patches for keybindings, tab-complete and autocompletion
-pciutils - disable shared
 python - removed sqlite dependency and added readline depend
 sbase - made flock not fork
 shellcheck-bin - Replace x86_64 with ARCH to be generic across all architectures
