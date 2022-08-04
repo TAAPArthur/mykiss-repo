@@ -13,7 +13,6 @@ git - added perl support; Added bash completion
 glib - Remove json-glib
 gtk+3 - Remove libXcomposite dependency
 kiss - Use custom fork
-lcms - remove tiff depend
 libXft - fix freetype path
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs; Also add custom keybindings
 links - enable graphics
