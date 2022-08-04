@@ -13,7 +13,6 @@ git - added perl support; Added bash completion
 glib - Remove json-glib
 gtk+3 - Remove libXcomposite dependency
 iptables - remove non-portable install flags
-keyutils - disable shared
 kiss - Use custom fork
 lcms - remove tiff depend
 libXft - fix freetype path
