@@ -1,4 +1,4 @@
-https://git.kernel.org/torvalds/t/linux-5.16-rc7.tar.gz
+https://cdn.kernel.org/pub/linux/kernel/vMAJOR.x/linux-VERSION.tar.xz
 files/my_linux_defconfig
 patches/compatibility.patch
 patches/kernel-no-perl.patch

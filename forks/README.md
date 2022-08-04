@@ -22,7 +22,7 @@ libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; 
 libnl - Make static
 links - enable graphics
 linux - custom config.h
-linux-headers - headers for LTS (4.19.88) instead of downloading an entire linux release
+linux-headers - sync version with linux
 lua     - Use lua version 5.1.5
 mesa - disabled llvm; Only build useful drivers. Enabled opengl
 mpv - enabled lua; use personal fork
