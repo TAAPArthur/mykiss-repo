@@ -42,7 +42,6 @@ vim - disable mouse support
 xsel - fork to remove autogen
 xorg-server - to support tcc
 xinit - Made xinit a process reaper and make it restart faster on errors
-zlib - Make static; Unlike others this is for safety rather than tcc-compatibility. Would rather uninstalling zlib not break everything
 
 # Future work
 fontconfig
