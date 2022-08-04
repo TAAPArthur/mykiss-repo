@@ -36,7 +36,6 @@ shellcheck-bin - Replace x86_64 with ARCH to be generic across all architectures
 st - Applied custom patches like newtab and scrollback
 sxiv - Add WM hints patch and custom config.def.h
 tcc - create /usr/bin/cc and /usr/bin/cc99 symlink
-tzdata - Explicitly specify destdir
 ubase - made getty not change tty permissions; Don't remove su and stat
 vim - disable mouse support
 xsel - fork to remove autogen
