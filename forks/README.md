@@ -12,6 +12,7 @@ girara - removed json depends (cmake)
 git - added perl support; Added bash completion
 glib - Remove json-glib
 gtk+3 - Remove libXcomposite dependency
+imagemagick - removed webp depend
 kiss - Use custom fork
 libXft - fix freetype path
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs; Also add custom keybindings
