@@ -10,7 +10,7 @@ freetype-harfbuzz - reduce dependencies; Be explicit about DESTDIR
 elinks - fork to disable mouse
 girara - removed json depends (cmake)
 git - added perl support; Added bash completion
-glib - Remove json-glib
+glib - Removed pcre2 depend and add explict DESTDIR
 gtk+3 - Remove libXcomposite dependency
 imagemagick - removed webp depend
 kiss - Use custom fork
