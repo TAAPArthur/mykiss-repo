@@ -8,7 +8,9 @@ sed -i "s/,--gc-sections//" Makerules
 sed -i "s/,-s//" Makerules
 
 make \
-    prefix="/usr" \
+    prefix=/usr \
+    shared=yes \
+    build=release \
     DESTDIR="$1" \
     USE_SYSTEM_FREETYPE=yes \
     USE_SYSTEM_HARFBUZZ=yes \
