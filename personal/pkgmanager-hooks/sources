@@ -1,7 +1,6 @@
 files/00-set_compiler.sh
-files/01-set_flags.sh
+files/10-source-fix.sh
 files/aliases
 files/preferred_source.txt
 files/set_compiler.txt
 files/set_compiler_unsupported.txt
-files/static_flag.txt
