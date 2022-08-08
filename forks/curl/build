@@ -1,11 +1,8 @@
 #!/bin/sh -e
 
-export LDFLAGS="$LDFLAGS -static"
 ./configure \
     --prefix=/usr \
     --enable-ipv6 \
-    --enable-static \
-    --disable-shared \
     --enable-unix-sockets \
     --disable-manual \
     --disable-ldap \
