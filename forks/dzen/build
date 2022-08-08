@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+patch -p1 <dynamic_resize.patch
+
+make
+make DESTDIR="$1" PREFIX=/usr install
+make DESTDIR="$1" PREFIX=/usr -C gadgets  install
+
+install -Dm644 README  "$1/usr/share/doc/dzen/README"
+install -Dm644 CREDITS "$1/usr/share/doc/dzen/CREDITS"
+install -Dm644 LICENSE "$1/usr/share/licenses/dzen/LICENSE"

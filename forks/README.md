@@ -5,6 +5,7 @@ binutils - enable complication with tcc
 busybox - Removed some unneeded options; disabled gcc specific options
 curl - enable building with tcc
 dmenu - custom patches
+dzen - support dynamic resize
 ffmpeg - removed x265 (cmake) and webp; Use ~libtls~ gnutls instead of openssl; Silence deprecation related warnings; enabled libv4l; Remove libvpx (which allows --enable-nonfree to be removed)
 freetype-harfbuzz - reduce dependencies; Be explicit about DESTDIR
 elinks - fork to disable mouse

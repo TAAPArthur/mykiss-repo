@@ -1,0 +1,30 @@
+--- main.c
++++ main.c
+@@ -512,7 +512,7 @@
+ 	/* window attributes */
+ 	wa.override_redirect = (use_ewmh_dock ? 0 : 1);
+ 	wa.background_pixmap = ParentRelative;
+-	wa.event_mask = ExposureMask | ButtonReleaseMask | ButtonPressMask | ButtonMotionMask | EnterWindowMask | LeaveWindowMask | KeyPressMask;
++	wa.event_mask = ExposureMask | ButtonReleaseMask | ButtonPressMask | ButtonMotionMask | EnterWindowMask | LeaveWindowMask | KeyPressMask | StructureNotifyMask;
+ 
+ #ifdef DZEN_XINERAMA
+ 	queryscreeninfo(dzen.dpy, &si, dzen.xinescreen);
+@@ -746,6 +746,18 @@
+ 			XLookupString(&ev.xkey, buf, sizeof buf, &ksym, 0);
+ 			do_action(ksym+keymarker);
+ 			break;
++		case ConfigureNotify:
++            if (ev.xconfigure.window == dzen.title_win.win) {
++                dzen.title_win.x = ev.xconfigure.x;
++                dzen.title_win.y = ev.xconfigure.y;
++                dzen.title_win.width = ev.xconfigure.width;
++                dzen.title_win.height = ev.xconfigure.height;
++                dzen.slave_win.x = ev.xconfigure.x;
++                dzen.slave_win.y = ev.xconfigure.y;
++                dzen.slave_win.width = ev.xconfigure.width;
++                dzen.slave_win.height = ev.xconfigure.height;
++            }
++            break;
+ 
+ 		/* TODO: XRandR rotation and size  */
+ 	}
