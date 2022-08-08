@@ -1,7 +1,8 @@
 #!/bin/sh -e
 
 sed -i "/pragma_deprecated/d" configure
-export CFLAGS="$CFLAGS -DHAVE_PRAGMA_DEPRECATED=0"
+export CFLAGS="$CFLAGS -DHAVE_PRAGMA_DEPRECATED=0 -DSDL_DISABLE_IMMINTRIN_H"
+
 ./configure \
     --cc="${CC:-cc}" \
     --cxx="${CXX:-c++}" \
