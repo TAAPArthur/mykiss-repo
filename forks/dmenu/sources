@@ -7,3 +7,4 @@ patches/0005-Add-keybindings-for-lower-raise-power-buttons.patch
 patches/0006-Only-display-text-before-r-t-Fork-of-the-tsv-patch.patch
 patches/0007-Wrap-selection.patch
 patches/0008-Exit-on-mouse-press.patch
+patches/0009-dmenu-password-5.0.diff.patch
