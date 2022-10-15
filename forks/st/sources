@@ -1,7 +1,7 @@
-https://dl.suckless.org/st/st-0.8.5.tar.gz
+https://dl.suckless.org/st/st-0.9.tar.gz
+patches/0001-Use-O_CLOEXEC-when-opening-file-descriptors.patch
 patches/0005-Applied-newterm-patch.patch
 patches/0006-Applied-clipboard-patch.patch
-patches/0007-Applied-patch-working-dir.patch
 patches/0008-scrollback.patch
 patches/0009-external-pipe.patch
 patches/0010-externalpipe-eternal.patch
