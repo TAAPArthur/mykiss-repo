@@ -85,6 +85,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #AllowTcpForwarding yes
 #GatewayPorts no
 X11Forwarding yes
+StreamLocalBindUnlink yes
 #X11DisplayOffset 10
 #X11UseLocalhost yes
 #PermitTTY yes
