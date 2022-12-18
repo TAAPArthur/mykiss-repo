@@ -1,3 +1,4 @@
 https://www.mupdf.com/downloads/archive/mupdf-1.20.0-source.tar.gz
 patches/extra_keybindings.patch
 patches/pkcs7-fix.patch
+patches/0001-Add-option-to-set-the-document-title.patch

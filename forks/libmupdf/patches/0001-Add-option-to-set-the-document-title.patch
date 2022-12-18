@@ -1,0 +1,56 @@
+From ae6787a4af3ac5c9906188e3742f513a3aec9ce1 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@disroot.org>
+Date: Sun, 18 Dec 2022 04:55:00 -0800
+Subject: [PATCH] Add option to set the document title
+
+---
+ platform/x11/pdfapp.c   | 3 ++-
+ platform/x11/x11_main.c | 4 +++-
+ 2 files changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/platform/x11/pdfapp.c b/platform/x11/pdfapp.c
+index 47af70d..0422cca 100644
+--- a/platform/x11/pdfapp.c
++++ b/platform/x11/pdfapp.c
+@@ -490,7 +490,8 @@ void pdfapp_open_progressive(pdfapp_t *app, char *filename, int reload, int kbps
+ 		}
+ 
+ 		app->docpath = fz_strdup(ctx, filename);
+-		app->doctitle = filename;
++        if (!app->doctitle)
++            app->doctitle = filename;
+ 		if (strrchr(app->doctitle, '\\'))
+ 			app->doctitle = strrchr(app->doctitle, '\\') + 1;
+ 		if (strrchr(app->doctitle, '/'))
+diff --git a/platform/x11/x11_main.c b/platform/x11/x11_main.c
+index 043744a..59d145f 100644
+--- a/platform/x11/x11_main.c
++++ b/platform/x11/x11_main.c
+@@ -872,6 +872,7 @@ static void usage(const char *argv0)
+ 	fprintf(stderr, "\t-C -\tRRGGBB (tint color in hexadecimal syntax)\n");
+ 	fprintf(stderr, "\t-W -\tpage width for EPUB layout\n");
+ 	fprintf(stderr, "\t-H -\tpage height for EPUB layout\n");
++	fprintf(stderr, "\t-T -\tdocument title\n");
+ 	fprintf(stderr, "\t-I -\tinvert colors\n");
+ 	fprintf(stderr, "\t-S -\tfont size for EPUB layout\n");
+ 	fprintf(stderr, "\t-U -\tuser style sheet for EPUB layout\n");
+@@ -907,7 +908,7 @@ int main(int argc, char **argv)
+ 
+ 	pdfapp_init(ctx, &gapp);
+ 
+-	while ((c = fz_getopt(argc, argv, "Ip:r:A:C:W:H:S:U:Xb:")) != -1)
++	while ((c = fz_getopt(argc, argv, "Ip:r:A:C:W:H:S:U:Xb:T:")) != -1)
+ 	{
+ 		switch (c)
+ 		{
+@@ -917,6 +918,7 @@ int main(int argc, char **argv)
+ 			gapp.tint_white = c;
+ 			break;
+ 		case 'p': password = fz_optarg; break;
++		case 'T': gapp.doctitle = fz_optarg; break;
+ 		case 'r': resolution = atoi(fz_optarg); break;
+ 		case 'I': gapp.invert = 1; break;
+ 		case 'A': fz_set_aa_level(ctx, atoi(fz_optarg)); break;
+-- 
+2.37.1
+
