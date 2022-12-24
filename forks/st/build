@@ -1,5 +1,13 @@
 #!/bin/sh -e
 
+sed -i "/newterm/s/XK_Return/XK_T/" st-newterm*.diff
+sed -i "s/shell/scroll/g" st-xresources*.diff
+sed -i "s|static int oldbutton.*|static uint buttons; /* bit field of pressed buttons */|g" st-workingdir*.diff
+
+for patch in *.diff; do
+    patch -p1 < "$patch"
+done
+
 for patch in *.patch; do
     patch -p1 < "$patch"
 done

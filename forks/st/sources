@@ -1,11 +1,6 @@
 https://dl.suckless.org/st/st-0.9.tar.gz
-patches/0001-Use-O_CLOEXEC-when-opening-file-descriptors.patch
-patches/0005-Applied-newterm-patch.patch
-patches/0006-Applied-clipboard-patch.patch
-patches/0008-scrollback.patch
-patches/0009-external-pipe.patch
-patches/0010-externalpipe-eternal.patch
-patches/0011-Changed-default-font-and-term-size.patch
+https://st.suckless.org/patches/clipboard/st-clipboard-0.8.3.diff
+https://st.suckless.org/patches/newterm/st-newterm-0.9.diff
+https://st.suckless.org/patches/workingdir/st-workingdir-20200317-51e19ea.diff
+https://st.suckless.org/patches/xresources/st-xresources-20200604-9ba7ecf.diff
 patches/0012-personal-tweaks.patch
-patches/0013-Allow-scrolling-from-moues-and-keys.patch
-patches/0014-Added-externalpipe-keybindings.patch
