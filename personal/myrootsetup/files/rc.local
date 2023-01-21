@@ -20,7 +20,9 @@ ln -s /proc/self/fd/1 /dev/stdout
 ln -s /proc/self/fd/2 /dev/stderr
 
 mkdir /dev/mqueue
-mount -t mqueue none /dev/mqueue
+mount -t mqueue none /dev/mqueue || true
+mkdir /dev/shm
+mount -t tmpfs shmfs /dev/shm || true
 
 # set up loopback interface
 /bin/ip addr add 127.0.0.1/8 dev lo broadcast + scope host
