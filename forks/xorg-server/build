@@ -17,7 +17,6 @@ sed -i "s/defined(__GNUC__)/1/; s/__GNUC__/__TINYC__/" hw/xfree86/common/compile
     --disable-xwin \
     --enable-xorg \
     --enable-xvfb \
-    --enable-debug \
     --disable-int10-module \
     --with-sha1=libcrypto \
     --with-systemd-daemon=off
