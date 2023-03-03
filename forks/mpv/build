@@ -1,31 +1,21 @@
 #!/bin/sh -e
 
-# Setup docutils to generate manual pages.
-{
-    cd docutils
+export DESTDIR="$1"
+for patch in *.patch; do
+    patch -p1 <"$patch"
+done
 
-    python3 setup.py build
-    python3 setup.py install \
-        --root="$PWD/../dist"
+muon setup \
+    -Dprefix=/usr \
+    -Dmandir=/usr/share/man \
+    -Dalsa=enabled \
+    -Dlibmpv=true \
+    -Dwayland=disabled \
+    -Dx11=enabled \
+    output
 
-    cd ../dist/usr/lib/python*/site-packages
-
-    PYTHONPATH=$PWD:$(python -c "import sys;print(':'.join(sys.path))")
-
-    cd -; cd ..
-    export PATH=$PWD/dist/usr/bin:$PATH
-    export PYTHONPATH
-}
-
-python waf/waf configure \
-    --prefix=/usr \
-    --mandir=/usr/share/man \
-    --confdir=/etc/mpv \
-    --enable-alsa \
-    --enable-lua
-
-python waf/waf build
-python waf/waf install --destdir="$1"
+ninja -C output
+muon  -C output install
 
 rm -rf \
     "$1/usr/share/zsh" \

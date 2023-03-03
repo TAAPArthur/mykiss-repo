@@ -1,0 +1,81 @@
+From 8818548926b7239e93c84278d89e623be8caae4e Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@gmail.com>
+Date: Mon, 25 Oct 2021 22:43:11 -0700
+Subject: [PATCH 1/2] options: Add watch-later-use-title
+
+A new option has been added to override the filename in
+mp_get_playback_resume_config_filename.
+
+This option was made for the case where the video path or url changes or
+just isn't unique but the user still wants progress to be saved.
+
+Examples include
+- Streaming a url where the upstream path contains transient information
+like a session id
+- Streaming a url where irrelevant query parameters are added/removed.
+- Playing from stdin since the "file name" is always "-"
+- Playing a local file from a link vs the real file
+---
+ DOCS/man/options.rst | 4 ++++
+ options/options.c    | 1 +
+ options/options.h    | 1 +
+ player/configfiles.c | 4 +++-
+ 4 files changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/DOCS/man/options.rst b/DOCS/man/options.rst
+index ed4505fb00..bf4034c476 100644
+--- a/DOCS/man/options.rst
++++ b/DOCS/man/options.rst
+@@ -1018,6 +1018,10 @@ Watch Later
+     The default is a subdirectory named "watch_later" underneath the
+     config directory (usually ``~/.config/mpv/``).
+ 
++``--watch-later-use-title``
++    Use the video title instead of the current file name for saving
++    and resuming.
++
+ ``--no-resume-playback``
+     Do not restore playback position from the ``watch_later`` configuration
+     subdirectory (usually ``~/.config/mpv/watch_later/``).
+diff --git a/options/options.c b/options/options.c
+index 8785d78182..d5dbb1ef8e 100644
+--- a/options/options.c
++++ b/options/options.c
+@@ -722,6 +722,7 @@ static const m_option_t mp_opts[] = {
+         OPT_FLAG(ignore_path_in_watch_later_config)},
+     {"watch-later-directory", OPT_STRING(watch_later_directory),
+         .flags = M_OPT_FILE},
++    {"watch-later-use-title", OPT_BOOL(watch_later_use_title)},
+     {"watch-later-options", OPT_STRINGLIST(watch_later_options)},
+ 
+     {"ordered-chapters", OPT_FLAG(ordered_chapters)},
+diff --git a/options/options.h b/options/options.h
+index 5560f40554..30f1e44ec6 100644
+--- a/options/options.h
++++ b/options/options.h
+@@ -258,6 +258,7 @@ typedef struct MPOpts {
+     int write_filename_in_watch_later_config;
+     int ignore_path_in_watch_later_config;
+     char *watch_later_directory;
++    bool watch_later_use_title;
+     char **watch_later_options;
+     int pause;
+     int keep_open;
+diff --git a/player/configfiles.c b/player/configfiles.c
+index 65dd9df425..346b246cd5 100644
+--- a/player/configfiles.c
++++ b/player/configfiles.c
+@@ -201,7 +201,9 @@ static char *mp_get_playback_resume_config_filename(struct MPContext *mpctx,
+     void *tmp = talloc_new(NULL);
+     const char *realpath = fname;
+     bstr bfname = bstr0(fname);
+-    if (!mp_is_url(bfname)) {
++    if (mpctx->opts->watch_later_use_title) {
++        realpath = mp_property_expand_string(mpctx, mpctx->opts->wintitle);
++    } else if (!mp_is_url(bfname)) {
+         if (opts->ignore_path_in_watch_later_config) {
+             realpath = mp_basename(fname);
+         } else {
+-- 
+2.37.1
+

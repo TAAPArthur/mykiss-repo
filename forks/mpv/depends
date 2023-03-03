@@ -1,9 +1,6 @@
 alsa-lib
 ffmpeg
 freetype-harfbuzz
-libXScrnSaver
-libXinerama
-libXrandr
 libass
 linux-headers make
 lua

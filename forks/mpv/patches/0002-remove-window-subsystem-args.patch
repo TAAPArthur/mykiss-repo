@@ -1,0 +1,25 @@
+From 4ada8066d9969fc43d2aa97093f680e29abb02ea Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@disroot.org>
+Date: Sun, 18 Dec 2022 03:55:30 -0800
+Subject: [PATCH 2/2] remove window subsystem args
+
+---
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index ae744236b3..77d7bcc00d 100644
+--- a/meson.build
++++ b/meson.build
+@@ -1697,7 +1697,7 @@ if get_option('cplayer')
+                  rename: 'mpv.svg')
+     install_data('etc/mpv-symbolic.svg', install_dir: join_paths(hicolor_dir, 'symbolic', 'apps'))
+ 
+-    executable('mpv', sources, dependencies: dependencies, win_subsystem: 'windows,6.0',
++    executable('mpv', sources, dependencies: dependencies, 
+                include_directories: includedir, install: true)
+ endif
+ 
+-- 
+2.37.1
+
