@@ -1,5 +1,0 @@
-#!/bin/sh -e
-
-ls
-make CC="$CC"
-make DESTDIR="$1" install
