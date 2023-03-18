@@ -1,4 +1,4 @@
-https://www.busybox.net/downloads/busybox-1.35.0.tar.bz2
+https://www.busybox.net/downloads/busybox-1.36.0.tar.bz2
 files/.config
 patches/fsck-resolve-uuid.patch
 patches/install-fix-chown.patch
@@ -6,3 +6,4 @@ patches/libressl.patch
 patches/modprobe-kernel-version.patch
 patches/print-unicode.patch
 patches/unzip-usage-no-error.patch
+patches/0001-Allow-permissions-to-be-preserved-when-running-as-no.patch

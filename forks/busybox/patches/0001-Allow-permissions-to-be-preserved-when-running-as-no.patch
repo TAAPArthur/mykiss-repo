@@ -1,0 +1,49 @@
+From a62b251cdd7c17376087f10bf80f14394cf70ee8 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@disroot.org>
+Date: Sat, 17 Dec 2022 11:34:45 -0800
+Subject: [PATCH] Allow permissions to be preserved when running as non-root
+
+Previously we explicitly checked our uid and if it wasn't 0, set
+ARCHIVE_DONT_RESTORE_PERM flag. There wasn't a lot of info in the commit
+message and this seems like a bug.
+
+This commit effectively reverts ebad0294c9 and adds a test.
+---
+ archival/tar.c                  | 4 ----
+ testsuite/tar/tar-perserve-suid | 9 +++++++++
+ 2 files changed, 9 insertions(+), 4 deletions(-)
+ create mode 100644 testsuite/tar/tar-perserve-suid
+
+diff --git a/archival/tar.c b/archival/tar.c
+index 9de37592e..07f3e5c07 100644
+--- a/archival/tar.c
++++ b/archival/tar.c
+@@ -947,10 +947,6 @@ int tar_main(int argc UNUSED_PARAM, char **argv)
+ 	                     | ARCHIVE_RESTORE_DATE
+ 	                     | ARCHIVE_UNLINK_OLD;
+ 
+-	/* Apparently only root's tar preserves perms (see bug 3844) */
+-	if (getuid() != 0)
+-		tar_handle->ah_flags |= ARCHIVE_DONT_RESTORE_PERM;
+-
+ #if ENABLE_DESKTOP
+ 	/* Lie to buildroot when it starts asking stupid questions. */
+ 	if (argv[1] && strcmp(argv[1], "--version") == 0) {
+diff --git a/testsuite/tar/tar-perserve-suid b/testsuite/tar/tar-perserve-suid
+new file mode 100644
+index 000000000..129998893
+--- /dev/null
++++ b/testsuite/tar/tar-perserve-suid
+@@ -0,0 +1,9 @@
++touch foo
++chmod 700 foo
++chmod u+s foo
++stat foo | grep Access | grep -q "4700"
++busybox tar -cf foo.tar foo
++rm foo
++busybox tar -xf foo.tar
++test -f foo
++stat foo | grep Access | grep -q "4700"
+-- 
+2.37.1
+
