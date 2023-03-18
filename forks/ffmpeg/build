@@ -7,22 +7,22 @@ export CFLAGS="$CFLAGS -DHAVE_PRAGMA_DEPRECATED=0 -DSDL_DISABLE_IMMINTRIN_H"
     --cc="${CC:-cc}" \
     --cxx="${CXX:-c++}" \
     --prefix=/usr \
-    --enable-shared \
+    --disable-debug \
+    --disable-libxml2 \
     --enable-gpl \
-    --enable-version3 \
     --enable-gnutls \
     --enable-libass \
+    --enable-libdrm \
     --enable-libmp3lame \
     --enable-libopus \
     --enable-libvorbis \
     --enable-libx264 \
     --disable-libx265 \
     --enable-libxvid \
-    --enable-libdrm \
+    --enable-shared \
+    --enable-version3 \
     --enable-libv4l2 \
-    --x86asmexe=nasm \
-    --disable-debug \
-    --disable-libxml2
+    --x86asmexe=nasm
 
 make
 make DESTDIR="$1" install
