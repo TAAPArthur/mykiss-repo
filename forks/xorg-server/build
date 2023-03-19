@@ -12,7 +12,7 @@ sed -i "s/defined(__GNUC__)/1/; s/__GNUC__/__TINYC__/" hw/xfree86/common/compile
     --enable-dri \
     --enable-dri2 \
     --enable-dri3 \
-    --enable-glamor \
+    --disable-glamor \
     --enable-glx \
     --disable-xwin \
     --enable-xorg \
