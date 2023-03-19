@@ -1,0 +1,42 @@
+From e4cca5f0d19f34e66678d9046541c4a7b369f883 Mon Sep 17 00:00:00 2001
+From: Robin Watts <Robin.Watts@artifex.com>
+Date: Tue, 22 Nov 2022 12:10:20 +0000
+Subject: [PATCH] Bug 705740: Ensure that lock debugging functions are always
+ defined.
+
+---
+ source/fitz/memory.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/source/fitz/memory.c b/source/fitz/memory.c
+index ab01e7e9a..c3d9252a1 100644
+--- a/source/fitz/memory.c
++++ b/source/fitz/memory.c
+@@ -387,4 +387,24 @@ void fz_lock_debug_unlock(fz_context *ctx, int lock)
+ #endif
+ }
+ 
++#else
++
++void
++(fz_assert_lock_held)(fz_context *ctx, int lock)
++{
++}
++
++void
++(fz_assert_lock_not_held)(fz_context *ctx, int lock)
++{
++}
++
++void (fz_lock_debug_lock)(fz_context *ctx, int lock)
++{
++}
++
++void (fz_lock_debug_unlock)(fz_context *ctx, int lock)
++{
++}
++
+ #endif
+-- 
+2.37.1
+

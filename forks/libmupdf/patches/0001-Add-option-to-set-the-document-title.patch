@@ -16,12 +16,12 @@ index 47af70d..0422cca 100644
  		}
  
  		app->docpath = fz_strdup(ctx, filename);
--		app->doctitle = filename;
-+        if (!app->doctitle)
-+            app->doctitle = filename;
- 		if (strrchr(app->doctitle, '\\'))
- 			app->doctitle = strrchr(app->doctitle, '\\') + 1;
- 		if (strrchr(app->doctitle, '/'))
+-		app->doctitle = fz_strdup(ctx, fz_basename(filename));
++		if (!app->doctitle)
++			app->doctitle = fz_strdup(ctx, fz_basename(filename));
+ 
+ 		fz_layout_document(app->ctx, app->doc, app->layout_w, app->layout_h, app->layout_em);
+ 
 diff --git a/platform/x11/x11_main.c b/platform/x11/x11_main.c
 index 043744a..59d145f 100644
 --- a/platform/x11/x11_main.c
@@ -47,7 +47,7 @@ index 043744a..59d145f 100644
  			gapp.tint_white = c;
  			break;
  		case 'p': password = fz_optarg; break;
-+		case 'T': gapp.doctitle = fz_optarg; break;
++		case 'T': gapp.doctitle = fz_strdup(ctx, fz_optarg); break;
  		case 'r': resolution = atoi(fz_optarg); break;
  		case 'I': gapp.invert = 1; break;
  		case 'A': fz_set_aa_level(ctx, atoi(fz_optarg)); break;
