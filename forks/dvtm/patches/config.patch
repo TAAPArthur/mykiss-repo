@@ -1,0 +1,67 @@
+diff --git a/config.def.h b/config.def.h
+index 513c734..7ca33d5 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -78,8 +78,10 @@ static Layout layouts[] = {
+ 
+ /* you can specifiy at most 3 arguments */
+ static KeyBinding bindings[] = {
++	{ { CTRL('Y'),         }, { scrollback_line,{ "-1" }                    } },
++	{ { CTRL('E'),         }, { scrollback_line,{ "1"  }                    } },
+ 	{ { MOD, 'c',          }, { create,         { NULL }                    } },
+-	{ { MOD, 'C',          }, { create,         { NULL, NULL, "$CWD" }      } },
++	{ { MOD, 't',          }, { create,         { NULL, NULL, "$CWD" }      } },
+ 	{ { MOD, 'x', 'x',     }, { killclient,     { NULL }                    } },
+ 	{ { MOD, 'j',          }, { focusnext,      { NULL }                    } },
+ 	{ { MOD, 'J',          }, { focusdown,      { NULL }                    } },
+@@ -120,6 +122,8 @@ static KeyBinding bindings[] = {
+ 	{ { MOD, 'E',          }, { copymode,       { "dvtm-pager" }            } },
+ 	{ { MOD, '/',          }, { copymode,       { "dvtm-pager", "/" }       } },
+ 	{ { MOD, 'p',          }, { paste,          { NULL }                    } },
++	{ { KEY_PPAGE,         }, { scrollback,     { "-1" }                    } },
++	{ { KEY_NPAGE,         }, { scrollback,     { "1"  }                    } },
+ 	{ { MOD, KEY_PPAGE,    }, { scrollback,     { "-1" }                    } },
+ 	{ { MOD, KEY_NPAGE,    }, { scrollback,     { "1"  }                    } },
+ 	{ { MOD, '?',          }, { create,         { "man dvtm", "dvtm help" } } },
+@@ -179,7 +183,7 @@ static const ColorRule colorrules[] = {
+ # define CONFIG_MOUSE /* compile in mouse support if we build against ncurses */
+ #endif
+ 
+-#define ENABLE_MOUSE true /* whether to enable mouse events by default */
++#define ENABLE_MOUSE false /* whether to enable mouse events by default */
+ 
+ #ifdef CONFIG_MOUSE
+ static Button buttons[] = {
+diff --git a/dvtm.c b/dvtm.c
+index 8382c83..e382cf0 100644
+--- a/dvtm.c
++++ b/dvtm.c
+@@ -196,6 +196,7 @@ static void paste(const char *args[]);
+ static void quit(const char *args[]);
+ static void redraw(const char *args[]);
+ static void scrollback(const char *args[]);
++static void scrollback_line(const char *args[]);
+ static void send(const char *args[]);
+ static void setlayout(const char *args[]);
+ static void incnmaster(const char *args[]);
+@@ -1340,6 +1341,20 @@ scrollback(const char *args[]) {
+ 	curs_set(vt_cursor_visible(sel->term));
+ }
+ 
++static void
++scrollback_line(const char *args[]) {
++	if (!is_content_visible(sel))
++		return;
++
++	if (!args[0] || atoi(args[0]) < 0)
++		vt_scroll(sel->term, -1);
++	else
++		vt_scroll(sel->term,  1);
++
++	draw(sel);
++	curs_set(vt_cursor_visible(sel->term));
++}
++
+ static void
+ send(const char *args[]) {
+ 	if (sel && args && args[0])

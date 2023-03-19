@@ -1,0 +1,2 @@
+git+https://github.com/martanne/dvtm.git
+patches/config.patch

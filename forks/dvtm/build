@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+patch -p1 <config.patch
+
+make DESTDIR="$1" PREFIX=/usr install
