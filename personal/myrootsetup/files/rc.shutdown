@@ -1,5 +1,6 @@
 #!/bin/sh
 
+exec > /var/log/rc.shutdown.log 2>&1
 # set random seed for use for next boot
 dd if=/dev/urandom of=/etc/random-seed count=1 bs=1024 2>/dev/null
 
