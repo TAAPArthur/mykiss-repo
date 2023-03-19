@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+sed -i "s/defined(__GNUC__)/1/" libarchive/archive_blake2.h
+
+./configure \
+    --prefix=/usr \
+    --without-nettle \
+    --without-openssl \
+    --without-xml2 \
+    --without-expat
+
+make
+make DESTDIR="$1" install
+
+sed -i "s/iconv//" "$1/usr/lib/pkgconfig/libarchive.pc"
+
+ln -s bsdcpio "$1/usr/bin/cpio"
+ln -s bsdtar  "$1/usr/bin/tar"

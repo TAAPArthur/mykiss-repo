@@ -17,6 +17,7 @@ gtk+3 - Remove libXcomposite dependency
 imagemagick - removed webp depend
 kiss - Use custom fork
 libXft - fix freetype path
+libarchive - fork to remove GNUC ifdef
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs; Also add custom keybindings
 links - enable graphics
 linux - custom config.h
