@@ -1,6 +1,7 @@
 root:x:0:
 MAIN_USER:x:1:MAIN_USER
 audio:x:2:MAIN_USER
+video:x:3:MAIN_USER
 disk:x:4:MAIN_USER
 input:x:5:MAIN_USER
 kmem:x:6:
@@ -10,6 +11,4 @@ mail:x:9:MAIN_USER
 optical:x:10:MAIN_USER
 storage:x:11:MAIN_USER
 tty:x:12:MAIN_USER
-video:x:13:MAIN_USER
-wheel:x:14:MAIN_USER
-sys:x:15:MAIN_USER
+sys:x:13:MAIN_USER
