@@ -3,6 +3,7 @@
 for patch in *.patch; do
     patch -p1 < "$patch"
 done
+sed -i "/ARCHIVE_DONT_RESTORE_OWNER/s/.*//" archival/tar.c
 
 make
 
