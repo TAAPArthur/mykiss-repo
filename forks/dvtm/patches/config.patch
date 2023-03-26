@@ -14,15 +14,6 @@ index 513c734..7ca33d5 100644
  	{ { MOD, 'x', 'x',     }, { killclient,     { NULL }                    } },
  	{ { MOD, 'j',          }, { focusnext,      { NULL }                    } },
  	{ { MOD, 'J',          }, { focusdown,      { NULL }                    } },
-@@ -120,6 +122,8 @@ static KeyBinding bindings[] = {
- 	{ { MOD, 'E',          }, { copymode,       { "dvtm-pager" }            } },
- 	{ { MOD, '/',          }, { copymode,       { "dvtm-pager", "/" }       } },
- 	{ { MOD, 'p',          }, { paste,          { NULL }                    } },
-+	{ { KEY_PPAGE,         }, { scrollback,     { "-1" }                    } },
-+	{ { KEY_NPAGE,         }, { scrollback,     { "1"  }                    } },
- 	{ { MOD, KEY_PPAGE,    }, { scrollback,     { "-1" }                    } },
- 	{ { MOD, KEY_NPAGE,    }, { scrollback,     { "1"  }                    } },
- 	{ { MOD, '?',          }, { create,         { "man dvtm", "dvtm help" } } },
 @@ -179,7 +183,7 @@ static const ColorRule colorrules[] = {
  # define CONFIG_MOUSE /* compile in mouse support if we build against ncurses */
  #endif
