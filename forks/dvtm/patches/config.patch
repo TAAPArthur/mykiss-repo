@@ -1,5 +1,14 @@
-diff --git a/config.def.h b/config.def.h
-index 513c734..7ca33d5 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -42,7 +42,7 @@
+ /* number of clients in master area */
+ #define NMASTER 1
+ /* scroll back buffer size in lines */
+-#define SCROLL_HISTORY 500
++#define SCROLL_HISTORY 2000
+ /* printf format string for the tag in the status bar */
+ #define TAG_SYMBOL   "[%s]"
+ /* curses attributes for the currently selected tags */
 --- a/config.def.h
 +++ b/config.def.h
 @@ -78,8 +78,10 @@ static Layout layouts[] = {
@@ -23,8 +32,6 @@ index 513c734..7ca33d5 100644
  
  #ifdef CONFIG_MOUSE
  static Button buttons[] = {
-diff --git a/dvtm.c b/dvtm.c
-index 8382c83..e382cf0 100644
 --- a/dvtm.c
 +++ b/dvtm.c
 @@ -196,6 +196,7 @@ static void paste(const char *args[]);
