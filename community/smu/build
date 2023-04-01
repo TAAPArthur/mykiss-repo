@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+make CFLAGS="$CFLAGS -DVERSION=\"'v$2'\"" LDFLAGS=-static
+make PREFIX=/usr DESTDIR="$1" install
