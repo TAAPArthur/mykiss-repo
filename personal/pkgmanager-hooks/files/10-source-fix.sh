@@ -57,8 +57,5 @@ elif [ "$TYPE" = pre-build ]; then
             # WIP
             sed -i "s/shared in yes no/shared in no/" "$METADATA_DIR/build"
             ;;
-        zlib)
-            sed -i -e "/export/d" -e "s/configure /configure --static /" "$METADATA_DIR/build"
-            ;;
     esac
 fi

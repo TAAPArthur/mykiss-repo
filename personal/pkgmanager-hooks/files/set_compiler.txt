@@ -31,18 +31,23 @@ libressl
 libvpx
 # tcc: error: unsupported linker option '--version-script=./libxml2.syms'
 libxml2
-libxshmfence
 linux-headers
 mesa
-mpv
 musl
 nettle
 openblas
+# can't find zlib
+pango
 perl
 pkgconf
 python
 python-pillow
+# -MT
 strace
+# -MT
 x264
-xdotool
+# --version-script
 xvidcore
+zlib
+# -MT
+zstd
