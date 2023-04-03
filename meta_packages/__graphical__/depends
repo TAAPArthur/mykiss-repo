@@ -10,7 +10,6 @@ mystatusbar
 notify
 st
 taap-keyboard
-xauth
 xev
 xf86-input-libinput
 xinit
@@ -23,3 +22,5 @@ xrectsel
 xsane-xrandr
 xset
 xsetroot
+xdotool
+xf86-video-fbdev

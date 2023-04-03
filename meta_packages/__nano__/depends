@@ -1,10 +1,11 @@
 __pico__
+binutils
 busybox
+curl
 dhcpcd
 eiwd
+git
+make
 myservices
 ndev
 openssh
-curl
-git
-make
