@@ -1,3 +1,3 @@
 https://cdn.kernel.org/pub/linux/kernel/vMAJOR.x/linux-VERSION.tar.xz
-files/my_linux_defconfig
+files/.config
 patches/compatibility.patch
