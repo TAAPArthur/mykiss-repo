@@ -2,9 +2,12 @@
 
 ./configure \
     --prefix=/usr \
-    --disable-nls \
+    --disable-backtrace \
+    --with-mujs \
+    --without-idn \
     --disable-mouse \
-    --disable-sysmouse
+    --disable-sysmouse \
+    --disable-nls
 
-make
+make -j1
 make DESTDIR="$1" install
