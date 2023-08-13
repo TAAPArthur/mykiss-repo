@@ -12,7 +12,6 @@ mv -f _ meson.build
 # and enables it if present. ie: install glvnd, rebuild mesa.
 pkg-config --exists libglvnd || glvnd_enabled=false
 
-[ "$(uname -m)" = x86_64 ] && DRI_DRIVERS="i915"
 meson setup \
     -Dprefix=/usr \
     -Dsysconfdir=/etc \
@@ -22,10 +21,11 @@ meson setup \
     -Dglx-read-only-text=true \
     -Dplatforms=x11 \
     -Dglx=auto \
+    -Denable-glcpp-tests=false \
     -Degl=enabled \
     -Dllvm=disabled \
     -Dvulkan-drivers='' \
-    -Dgallium-drivers='swrast,lima' \
+    -Dgallium-drivers='iris,swrast,lima' \
     -Dgles1=enabled \
     -Dgles2=enabled \
     -Dvalgrind=false \
