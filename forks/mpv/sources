@@ -1,4 +1,6 @@
 https://github.com/mpv-player/mpv/archive/refs/tags/v0.35.1.tar.gz
 https://files.pythonhosted.org/packages/source/d/docutils/docutils-0.18.1.tar.gz docutils
 patches/0001-options-Add-watch-later-use-title.patch
+patches/0001-player-always-try-to-detect-subtitle-language-from-f.patch
+patches/0001-player-don-t-load-unwanted-files-after-519e56f.patch
 patches/0002-remove-window-subsystem-args.patch

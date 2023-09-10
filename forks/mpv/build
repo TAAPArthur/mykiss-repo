@@ -11,6 +11,7 @@ muon setup \
     -Dalsa=enabled \
     -Dlibmpv=true \
     -Dwayland=disabled \
+    -Degl-x11=disabled \
     -Dx11=enabled \
     output
 
