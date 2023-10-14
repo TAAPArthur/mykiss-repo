@@ -1,0 +1,115 @@
+From 9aac05a8d16cb9c3241b347f6a1e3b3048dbc6ca Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@disroot.org>
+Date: Fri, 13 Oct 2023 23:40:48 -0700
+Subject: [PATCH] Replace fork with clone
+
+Instead of forking, call clone with the CLONE_FS flag. While this is not
+portable, it make this program behave a lot more transparently.
+---
+ scroll.c | 60 +++++++++++++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 46 insertions(+), 14 deletions(-)
+
+diff --git a/scroll.c b/scroll.c
+index 8f66d54..42ba26c 100644
+--- a/scroll.c
++++ b/scroll.c
+@@ -4,6 +4,11 @@
+  * See LICENSE file for copyright and license details.
+  */
+ 
++#define _GNU_SOURCE
++#include <utmp.h>
++
++#include <sched.h>
++
+ #include <sys/types.h>
+ #include <sys/ioctl.h>
+ #include <sys/wait.h>
+@@ -35,6 +40,7 @@
+ #define LENGTH(X)	(sizeof (X) / sizeof ((X)[0]))
+ 
+ const char *argv0;
++char * const *argp;
+ 
+ TAILQ_HEAD(tailhead, line) head;
+ 
+@@ -394,6 +400,44 @@ usage(void) {
+ 	die("usage: %s [-Mvh] [-m mem] [program]", argv0);
+ }
+ 
++int child_main(void* slave) {
++    forkpty;
++    if (login_tty((long)slave))
++        _exit (1);
++
++    if (argp[0]) {
++        execvp(argp[0], argp);
++    } else {
++        struct passwd *passwd = getpwuid(getuid());
++        if (passwd == NULL)
++            die("getpwid:");
++        execlp(passwd->pw_shell, passwd->pw_shell, NULL);
++    }
++
++    perror("execvp");
++    return 127;
++}
++
++int
++clonepty (int *amaster, char *name,
++         const struct termios *termp, const struct winsize *winp)
++{
++  int master, slave, pid;
++
++  if (openpty (&master, &slave, name, termp, winp) == -1)
++    return -1;
++
++    int child_tid = clone(child_main, &master, CLONE_FS, (void*) (long)slave, NULL, NULL, NULL);
++    if (child_tid == -1) {
++        close(master);
++        close(slave);
++        return -1;
++    }
++    *amaster = master;
++    close(slave);
++    return child_tid;
++}
++
+ int
+ main(int argc, char *argv[])
+ {
+@@ -426,6 +470,7 @@ main(int argc, char *argv[])
+ 	}
+ 	argc -= optind;
+ 	argv += optind;
++    argp = argv;
+ 
+ 	TAILQ_INIT(&head);
+ 
+@@ -442,22 +487,9 @@ main(int argc, char *argv[])
+ 	if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1)
+ 		die("ioctl:");
+ 
+-	child = forkpty(&mfd, NULL, &dfl, &ws);
++	child = clonepty(&mfd, NULL, &dfl, &ws);
+ 	if (child == -1)
+ 		die("forkpty:");
+-	if (child == 0) {	/* child */
+-		if (argc >= 1) {
+-			execvp(argv[0], argv);
+-		} else {
+-			struct passwd *passwd = getpwuid(getuid());
+-			if (passwd == NULL)
+-				die("getpwid:");
+-			execlp(passwd->pw_shell, passwd->pw_shell, NULL);
+-		}
+-
+-		perror("execvp");
+-		_exit(127);
+-	}
+ 
+ 	/* set maximum memory size for scrollback buffer */
+ 	if (setrlimit(RLIMIT_DATA, &rlimit) == -1)
+-- 
+2.37.1
+

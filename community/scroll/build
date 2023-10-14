@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+
+sed "s|//{|{|" config.def.h > config.h
+
+patch -p1 <0001-Replace-fork-with-clone.patch
+
+make LDFLAGS=-static
+make PREFIX=/usr/ DESTDIR="$1" install
