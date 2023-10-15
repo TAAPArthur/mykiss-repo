@@ -24,9 +24,6 @@ if [ "$TYPE" = post-extract ]; then
         libinput)
             sed -i "/link_args : version_flag,/d" meson.build
             ;;
-        musl)
-            sed -i "s/typedef \w* wchar_t/typedef __WCHAR_TYPE__ wchar_t/g; s/typedef unsigned wint_t/typedef __WINT_TYPE__ wint_t/g" ./obj/include/bits/alltypes.h
-            ;;
         ncurses)
             find . -name configure -exec sed -i "s/-stats,-lc//g" {} \+
             ;;
