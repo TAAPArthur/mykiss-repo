@@ -1,3 +1,2 @@
 git+git://git.suckless.org/sbase
-patches/0001-cp-don-t-abort-when-src-and-dest-file-are-the-same.patch
 patches/tar-dash-remove.patch
