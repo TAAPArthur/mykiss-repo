@@ -1,3 +1,4 @@
 #!/bin/sh
-[ -d /etc/ssh ] || ssh-keygen -A
+
+ls /etc/ssh/*.pub 2>/dev/null 1>&2 || ssh-keygen -A
 exec /usr/bin/sshd -D
