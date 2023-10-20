@@ -1,8 +1,11 @@
 #!/bin/sh -e
 
-for p in *.patch; do
-    patch -p1 < "$p"
-done
+#for p in *.patch; do
+#    patch -p1 < "$p"
+#done
+
+grep -lR "install -d -m 755" tools | xargs -n1 sed -i "s/install -d -m 755/install -m 755 -d/g"
+sed -i "s/ln -fsn/ln -fs/g" arch/x86/Makefile
 
 make
 mkdir -p "$1/boot" "$1/usr/lib/modules"
