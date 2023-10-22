@@ -29,7 +29,7 @@ mtm - fullscreen patch and use alt instead of ctrl-g as a modifier
 mutt - for to enable header cache
 nsxiv - use personal fork
 oksh - custom patches for keybindings, tab-complete and autocompletion
-python - removed sqlite dependency and added readline depend
+python - removed sqlite dependency and added readline depend; Patch in libressl support
 sbase - made flock not fork
 shellcheck-bin - Replace x86_64 with ARCH to be generic across all architectures
 st - Applied custom patches like newtab and scrollback
