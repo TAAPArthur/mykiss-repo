@@ -15,10 +15,14 @@ busybox /usr/bin/cpio
 busybox /usr/bin/crond
 busybox /usr/bin/grep
 busybox /usr/bin/ls
+busybox /usr/bin/mkswap
 busybox /usr/bin/mount
 busybox /usr/bin/od
 busybox /usr/bin/reset
+busybox /usr/bin/swapoff
+busybox /usr/bin/swapon
 busybox /usr/bin/tar
+busybox /usr/bin/xxd
 bzip2 /usr/bin/bunzip2
 bzip2 /usr/bin/bzcat
 bzip2 /usr/bin/bzip2
@@ -149,7 +153,6 @@ ubase /usr/bin/login
 ubase /usr/bin/lsmod
 ubase /usr/bin/lsusb
 ubase /usr/bin/mesg
-ubase /usr/bin/mkswap
 ubase /usr/bin/mountpoint
 ubase /usr/bin/passwd
 ubase /usr/bin/pidof
@@ -158,8 +161,6 @@ ubase /usr/bin/ps
 ubase /usr/bin/pwdx
 ubase /usr/bin/readahead
 ubase /usr/bin/rmmod
-ubase /usr/bin/swapoff
-ubase /usr/bin/swapon
 ubase /usr/bin/switch_root
 ubase /usr/bin/sysctl
 ubase /usr/bin/truncate
@@ -171,7 +172,6 @@ ubase /usr/share/man/man1/clear.1
 ubase /usr/share/man/man8/insmod.8
 ubase /usr/share/man/man8/lsmod.8
 ubase /usr/share/man/man8/rmmod.8
-vim /usr/bin/xxd
 xz /usr/bin/lzcat
 xz /usr/bin/lzma
 xz /usr/bin/unlzma
