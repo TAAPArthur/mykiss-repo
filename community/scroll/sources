@@ -1,2 +1,2 @@
-git+git://git.suckless.org/scroll
+git+https://codeberg.org/TAAPArthur/scroll.git
 patches/0001-Replace-fork-with-clone.patch
