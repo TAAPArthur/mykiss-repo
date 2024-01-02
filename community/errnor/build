@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+make errno
+mkdir -p "$1/usr/bin/"
+cp errno "$1/usr/bin/"
