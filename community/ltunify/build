@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+sed -i "/#include <execinfo.h>/d" ltunify.c
+make ltunify
+install -Dt "$1/usr/bin/" ltunify
