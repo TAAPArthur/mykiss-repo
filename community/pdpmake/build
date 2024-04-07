@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+cc -static -o make ./*.c
+mkdir -p "$1/usr/bin/"
+cp make "$1/usr/bin/pdpmake"
+mv make "$1/usr/bin/"
