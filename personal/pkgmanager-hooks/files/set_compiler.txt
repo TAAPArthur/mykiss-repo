@@ -3,6 +3,7 @@ alsa-utils
 dhcpcd
 # tcc: error: undefined symbol 'qsort_r'
 e2fsprogs
+efivar
 # src/device.c:324: error: ';' expected (got "_Pragma")
 eiwd
 # libavfilter/x86/vf_noise.c:62: error: invalid clobber register '%'
@@ -24,17 +25,20 @@ libelf
 # libevdev.c:665: error: 'dev' undeclared
 libevdev
 libffi
+libplacebo
 # tcc: error: unsupported linker option '--version-script=libpng.vers'
 libpng
 libqmi
 libressl
+liburing
 libvpx
 # tcc: error: unsupported linker option '--version-script=./libxml2.syms'
 libxml2
-linux-headers
 mesa
 musl
 nettle
+#static linking
+oksh
 openblas
 # can't find zlib
 pango

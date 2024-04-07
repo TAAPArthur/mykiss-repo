@@ -27,6 +27,9 @@ if [ "$TYPE" = post-extract ]; then
         ncurses)
             find . -name configure -exec sed -i "s/-stats,-lc//g" {} \+
             ;;
+        efivar)
+            sed -i "s/-vfs/-fs/" ./src/include/rules.mk
+            ;;
 
         tree)
             sed -i "/CC=/d" Makefile
