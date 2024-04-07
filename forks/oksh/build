@@ -4,7 +4,10 @@
     --prefix=/usr \
     --disable-curses \
     --enable-ksh \
-    --enable-sh
+    --enable-sh \
+    --enable-static
+
+sed -i "s/-DEMACS//g" Makefile
 
 make
 make DESTDIR="$1" install
