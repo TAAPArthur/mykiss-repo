@@ -5,4 +5,6 @@
 
 tmpfs /tmp tmpfs defaults,nosuid,nodev,size=75% 0 0
 tmpfs /run tmpfs  rw,nodev,nosuid,mode=755 0 0
+LABEL=BOOT-EFI /boot auto defaults 0 0
+LABEL=SWAP none swap defaults 0 0
 /.swapfile none swap defaults 0 0

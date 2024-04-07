@@ -7,7 +7,7 @@ done
 
 MAIN_USER=${MAIN_USER:-arthur}
 
-sed -i "s/MAIN_USER/$MAIN_USER/g" group passwd
+sed -i "s/MAIN_USER/$MAIN_USER/g" group passwd shadow
 
 install -dm 555  "$1/proc"
 install -dm 555  "$1/sys"
