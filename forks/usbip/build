@@ -1,0 +1,15 @@
+#!/bin/sh -e
+
+cd ./tools/usb/usbip
+
+CPPFLAGS='-DPACKAGE_STRING="linux" -DUSBIP_VERSION=0x00000111'
+LDFLAGS='-ludev'
+CFLAGS="-I libsrc -I src"
+
+usbip_srcs=$(find src -name "*.c" | grep -v -w usbipd)
+usbipd_srcs=$(find src -name "*.c" | grep -v -w usbip)
+
+$CC -o usbip $LDFLAGS $CFLAGS $CPPFLAGS $usbip_srcs libsrc/*.c
+$CC -o usbipd $LDFLAGS $CFLAGS $CPPFLAGS $usbipd_srcs libsrc/*.c
+
+install -D -t "$1/usr/bin" usbip usbipd
