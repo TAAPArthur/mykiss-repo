@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+patch -p1 <no_cursor.patch
+make
+make DESTDIR="$1" install
+make -C man MANPREFIX=/usr/share/man DESTDIR="$1" install
+
