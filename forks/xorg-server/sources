@@ -1,2 +1,2 @@
-https://xorg.freedesktop.org/releases/individual/xserver/xorg-server-21.1.8.tar.xz
+https://xorg.freedesktop.org/releases/individual/xserver/xorg-server-21.1.12.tar.xz
 patches/rootless_modesetting.patch
