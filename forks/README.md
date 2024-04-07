@@ -18,6 +18,7 @@ kiss - Use custom fork
 libXft - fix freetype path
 libarchive - fork to remove GNUC ifdef
 libmupdf - libjpeg and patched Makefile to removed options causing tcc to fail; also used system libs; Also add custom keybindings
+libpciaccess - fork to support muon
 libplacebo - remove python depends
 liburing - portability patch (sent upstream)
 links - enable graphics

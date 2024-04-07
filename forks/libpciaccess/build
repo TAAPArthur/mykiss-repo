@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+patch -p1 < lfs64.patch
+
+export DESTDIR="$1"
+
+muon setup \
+    -Dprefix=/usr \
+    output
+
+ninja -C output
+muon -C output install
