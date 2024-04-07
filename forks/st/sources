@@ -1,4 +1,4 @@
-https://dl.suckless.org/st/st-0.9.tar.gz
+git+git://git.suckless.org/st@9846a56bd7fdc86b
 https://st.suckless.org/patches/clipboard/st-clipboard-0.8.3.diff
 https://st.suckless.org/patches/newterm/st-newterm-0.9.diff
 https://st.suckless.org/patches/workingdir/st-workingdir-20200317-51e19ea.diff
