@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+sed -i 's/Bmake test/#&/'  boot-strap
+sed -i 's/srcdir=`Get.*/srcdir="$PWD"/'  boot-strap
+./boot-strap --prefix=/usr --install-destdir="$1" op=install
