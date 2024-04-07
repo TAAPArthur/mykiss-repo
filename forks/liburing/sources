@@ -1,0 +1,2 @@
+https://git.kernel.dk/cgit/liburing/snapshot/liburing-2.5.tar.gz
+patches/0001-Fix-portability-issues-in-configure-script.patch

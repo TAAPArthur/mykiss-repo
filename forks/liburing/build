@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+# Disable tests and examples
+echo "all:" > examples/Makefile
+echo "all:" > test/Makefile
+
+patch -p1 <0001-Fix-portability-issues-in-configure-script.patch
+
+./configure \
+    --prefix=/usr
+
+make
+make DESTDIR="$1" install
