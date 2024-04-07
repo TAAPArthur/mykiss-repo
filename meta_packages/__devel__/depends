@@ -3,6 +3,8 @@ binutils
 cloc
 ctags
 discount
+errnor
+pdpmake
 perl-authen-sasl
 perl-io-socket-ssl
 perl-net-ssleay

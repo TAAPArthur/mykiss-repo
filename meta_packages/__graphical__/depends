@@ -4,14 +4,17 @@ dmenu
 dzen
 gridded
 liberation-fonts
-libudev-zero
 mpxmanager
 mystatusbar
+navboard
 notify
 st
 taap-keyboard
+wmutils
+xdotool
 xev
 xf86-input-libinput
+xf86-video-fbdev
 xinit
 xinput
 xmouse-control
@@ -22,5 +25,3 @@ xrectsel
 xsane-xrandr
 xset
 xsetroot
-xdotool
-xf86-video-fbdev

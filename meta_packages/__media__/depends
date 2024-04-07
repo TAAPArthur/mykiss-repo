@@ -1,12 +1,12 @@
 __audio__
 __graphical__
 amt
-btpd
 darkhttpd
 div
 libdvdcss
 libmupdf
 mpv
+nanotorrent
 python-beautifulsoup4
 python-cloudscraper
 python-m3u8
