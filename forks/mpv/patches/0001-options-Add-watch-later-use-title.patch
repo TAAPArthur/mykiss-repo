@@ -1,20 +1,24 @@
-From 8818548926b7239e93c84278d89e623be8caae4e Mon Sep 17 00:00:00 2001
+From 4f47b1c6beafa412d2ef81a999960fe96ef47005 Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@gmail.com>
 Date: Mon, 25 Oct 2021 22:43:11 -0700
-Subject: [PATCH 1/2] options: Add watch-later-use-title
+Subject: [PATCH] options: Add watch-later-use-title
 
 A new option has been added to override the filename in
 mp_get_playback_resume_config_filename.
 
 This option was made for the case where the video path or url changes or
-just isn't unique but the user still wants progress to be saved.
+isn't unique but the user still wants progress to be saved.
 
 Examples include
-- Streaming a url where the upstream path contains transient information
+- streaming a url where the upstream path contains transient information
 like a session id
-- Streaming a url where irrelevant query parameters are added/removed.
+- streaming a url where irrelevant query parameters are added/removed.
 - Playing from stdin since the "file name" is always "-"
 - Playing a local file from a link vs the real file
+
+This patch makes the assumption that that the video is actually the same
+and will use hash of the media title instead of the hash of the path.
+If a title was explicitly specified, its hash will be used instead.
 ---
  DOCS/man/options.rst | 4 ++++
  options/options.c    | 1 +
@@ -23,12 +27,12 @@ like a session id
  4 files changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/DOCS/man/options.rst b/DOCS/man/options.rst
-index ed4505fb00..bf4034c476 100644
+index db167b0e5f..43ff57a4ef 100644
 --- a/DOCS/man/options.rst
 +++ b/DOCS/man/options.rst
-@@ -1018,6 +1018,10 @@ Watch Later
-     The default is a subdirectory named "watch_later" underneath the
-     config directory (usually ``~/.config/mpv/``).
+@@ -1055,6 +1055,10 @@ Watch Later
+     named "watch_later" underneath the local state directory
+     (usually ``~/.local/state/mpv/``).
  
 +``--watch-later-use-title``
 +    Use the video title instead of the current file name for saving
@@ -38,44 +42,44 @@ index ed4505fb00..bf4034c476 100644
      Do not restore playback position from the ``watch_later`` configuration
      subdirectory (usually ``~/.config/mpv/watch_later/``).
 diff --git a/options/options.c b/options/options.c
-index 8785d78182..d5dbb1ef8e 100644
+index 8640ecb27f..189c2d77e4 100644
 --- a/options/options.c
 +++ b/options/options.c
-@@ -722,6 +722,7 @@ static const m_option_t mp_opts[] = {
-         OPT_FLAG(ignore_path_in_watch_later_config)},
-     {"watch-later-directory", OPT_STRING(watch_later_directory),
+@@ -804,6 +804,7 @@ static const m_option_t mp_opts[] = {
+     {"watch-later-dir", OPT_STRING(watch_later_dir),
          .flags = M_OPT_FILE},
+     {"watch-later-directory", OPT_ALIAS("watch-later-dir")},
 +    {"watch-later-use-title", OPT_BOOL(watch_later_use_title)},
      {"watch-later-options", OPT_STRINGLIST(watch_later_options)},
  
-     {"ordered-chapters", OPT_FLAG(ordered_chapters)},
+     {"ordered-chapters", OPT_BOOL(ordered_chapters)},
 diff --git a/options/options.h b/options/options.h
-index 5560f40554..30f1e44ec6 100644
+index 69a50b3350..970a633c1c 100644
 --- a/options/options.h
 +++ b/options/options.h
-@@ -258,6 +258,7 @@ typedef struct MPOpts {
-     int write_filename_in_watch_later_config;
-     int ignore_path_in_watch_later_config;
-     char *watch_later_directory;
+@@ -274,6 +274,7 @@ typedef struct MPOpts {
+     bool write_filename_in_watch_later_config;
+     bool ignore_path_in_watch_later_config;
+     char *watch_later_dir;
 +    bool watch_later_use_title;
      char **watch_later_options;
-     int pause;
+     bool pause;
      int keep_open;
 diff --git a/player/configfiles.c b/player/configfiles.c
-index 65dd9df425..346b246cd5 100644
+index 2b94308baa..01dda29a07 100644
 --- a/player/configfiles.c
 +++ b/player/configfiles.c
-@@ -201,7 +201,9 @@ static char *mp_get_playback_resume_config_filename(struct MPContext *mpctx,
+@@ -211,7 +211,9 @@ static char *mp_get_playback_resume_config_filename(struct MPContext *mpctx,
      void *tmp = talloc_new(NULL);
      const char *realpath = fname;
      bstr bfname = bstr0(fname);
 -    if (!mp_is_url(bfname)) {
-+    if (mpctx->opts->watch_later_use_title) {
-+        realpath = mp_property_expand_string(mpctx, mpctx->opts->wintitle);
++    if(mpctx->opts->watch_later_use_title) {
++        realpath = mpctx->opts->wintitle ? mpctx->opts->wintitle : mpctx->opts->media_title;
 +    } else if (!mp_is_url(bfname)) {
          if (opts->ignore_path_in_watch_later_config) {
              realpath = mp_basename(fname);
          } else {
 -- 
-2.37.1
+2.44.0
 
