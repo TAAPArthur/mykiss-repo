@@ -1,0 +1,19 @@
+alsa-lib
+bzip2
+curl
+glib
+libepoxy
+libpng
+libudev-zero
+liburing
+libxkbcommon
+mesa
+meson make
+ncurses
+perl make
+pixman
+pkgconf make
+python  make
+samurai make
+zlib
+zstd

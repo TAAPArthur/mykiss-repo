@@ -1,0 +1,47 @@
+#!/bin/sh -e
+
+# Don't use bash
+sed 's/SHELL = bash -o pipefail/SHELL = sh/g' Makefile > _
+mv -f _ Makefile
+
+for p in *.patch; do
+    patch -p1 < "$p"
+done
+
+./configure \
+    --prefix=/usr \
+    --localstatedir=/var \
+    --sysconfdir=/etc \
+    --libexecdir=/usr/lib/qemu \
+    --target-list=aarch64-softmmu,riscv64-softmmu,x86_64-softmmu,aarch64-linux-user,riscv64-linux-user,x86_64-linux-user \
+    --disable-werror \
+    --disable-tcg-interpreter \
+    --audio-drv-list=alsa \
+    --enable-alsa \
+    --enable-bzip2 \
+    --disable-curl \
+    --enable-curses \
+    --disable-docs \
+    --disable-fuse \
+    --disable-gcrypt \
+    --disable-gnutls \
+    --disable-gtk \
+    --enable-kvm \
+    --enable-libudev \
+    --disable-libusb \
+    --disable-linux-aio \
+    --enable-linux-io-uring \
+    --disable-nettle \
+    --enable-opengl \
+    --enable-png \
+    --enable-sdl \
+    --disable-sdl-image \
+    --disable-virglrenderer \
+    --disable-vnc \
+    --disable-vnc-jpeg \
+    --disable-xkbcommon \
+    --enable-zstd \
+    --disable-debug-info
+
+make
+make DESTDIR="$1" PREFIX=/usr install

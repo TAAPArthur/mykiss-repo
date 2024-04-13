@@ -33,6 +33,7 @@ mutt - for to enable header cache
 nsxiv - use personal fork
 oksh - custom patches for keybindings, tab-complete and autocompletion
 python - removed sqlite dependency and added readline depend; Patch in libressl support
+qemu - fork to remove unneeded depends
 sbase - made flock not fork
 shellcheck-bin - Replace x86_64 with ARCH to be generic across all architectures
 st - Applied custom patches like newtab and scrollback
@@ -40,9 +41,9 @@ sxiv - Add WM hints patch and custom config.def.h
 tcc - create /usr/bin/cc and /usr/bin/cc99 symlink
 ubase - made getty not change tty permissions; Don't remove su and stat
 vim - disable mouse support
-xsel - fork to remove autogen
-xorg-server - to support tcc
 xinit - Made xinit a process reaper and make it restart faster on errors
+xorg-server - to support tcc
+xsel - fork to remove autogen
 
 # Future work
 fontconfig
