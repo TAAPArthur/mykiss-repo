@@ -42,6 +42,7 @@ tcc - create /usr/bin/cc and /usr/bin/cc99 symlink
 ubase - made getty not change tty permissions; Don't remove su and stat
 vim - disable mouse support
 xinit - Made xinit a process reaper and make it restart faster on errors
+xkeyboard-config - fork to remove meson
 xorg-server - to support tcc
 xsel - fork to remove autogen
 
