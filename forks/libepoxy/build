@@ -1,0 +1,18 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+# Disable building tests.
+: > test/meson.build
+
+sed -i "s/#ifdef __GNUC__/#if 1/" src/dispatch_common.c
+muon setup \
+    -Dprefix=/usr \
+    -Dsysconfdir=/etc \
+    -Dmandir=/usr/share/man \
+    -Dpkg_config_path=/usr/lib/pkgconfig \
+    -Dx11=true \
+    output
+
+ninja -C output
+muon -C output install
