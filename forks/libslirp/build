@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+sed "s/%SLIRP_VERSION%/$2/g" meson.build > _
+mv -f _ meson.build
+
+muon setup \
+    -Dprefix=/usr \
+    output
+
+ninja -C output
+muon  -C output install
+
