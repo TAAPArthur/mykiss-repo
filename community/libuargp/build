@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+make libargp.a
+install -Dt "$1/usr/lib" libargp.a
+install -Dt "$1/usr/include" argp.h
