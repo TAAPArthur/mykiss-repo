@@ -1,0 +1,5 @@
+libevdev
+libudev-zero
+linux-headers make
+mtdev
+muon         make
