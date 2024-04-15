@@ -15,9 +15,6 @@ if [ "$TYPE" = post-extract ]; then
         jq)
             sed -i "s/#ifdef __GNUC__/#if 1/" src/jv.h
             ;;
-        libdrm)
-            sed -i "s/defined(__NetBSD__)/1 || defined(__NetBSD__)/" xf86atomic.h
-            ;;
         libepoxy)
             #find . -type f -exec sed -i "s/__GNUC__/__TINYC__/" {} \+
             ;;

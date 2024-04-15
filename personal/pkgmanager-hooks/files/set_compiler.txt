@@ -18,12 +18,13 @@ grub
 lame
 # tcc: error: unsupported linker option '-version-script'
 libass
-# ../xf86atomic.h:102: error: #error libdrm requires atomic operations, please define them for your CPU/compiler.
+# segfaults
 libdrm
 # configure: error: __thread support required
 libelf
 # libevdev.c:665: error: 'dev' undeclared
 libevdev
+libdrm
 libffi
 libplacebo
 # tcc: error: unsupported linker option '--version-script=libpng.vers'
@@ -31,10 +32,13 @@ libpng
 libqmi
 libressl
 liburing
+libva
 libvpx
 # tcc: error: unsupported linker option '--version-script=./libxml2.syms'
 libxml2
+linux
 mesa
+mpv
 musl
 nettle
 #static linking
