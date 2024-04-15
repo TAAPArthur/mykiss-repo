@@ -1,2 +1,0 @@
-s/libjpeg-turbo/libjpeg/
-s/openssl/libressl/
