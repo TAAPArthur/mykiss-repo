@@ -6,6 +6,7 @@ libdrm
 libogg
 libv4l
 libvorbis
+libxml2
 linux-headers make
 nasm          make
 opus

@@ -8,7 +8,7 @@ export CFLAGS="$CFLAGS -DHAVE_PRAGMA_DEPRECATED=0 -DSDL_DISABLE_IMMINTRIN_H"
     --cxx="${CXX:-c++}" \
     --prefix=/usr \
     --disable-debug \
-    --disable-libxml2 \
+    --enable-libxml2 \
     --enable-gpl \
     --enable-gnutls \
     --enable-libass \
