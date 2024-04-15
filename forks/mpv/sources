@@ -1,3 +1,4 @@
-git+https://github.com/TAAPArthur/mpv.git@4f47b1c6beafa412d2ef81a999960fe96ef47005
-# https://github.com/mpv-player/mpv/archive/refs/tags/v0.37.0.tar.gz
+git+https://github.com/mpv-player/mpv@919a042833202817492d1744e087836b6b02f63f
 https://files.pythonhosted.org/packages/source/d/docutils/docutils-0.18.1.tar.gz docutils
+patches/0001-options-Add-watch-later-use-title.patch
+patches/0002-Remove-XScreenSaverDepend.patch

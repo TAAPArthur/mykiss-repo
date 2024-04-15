@@ -1,7 +1,7 @@
-From 4f47b1c6beafa412d2ef81a999960fe96ef47005 Mon Sep 17 00:00:00 2001
+From 1ef8d0b62c0ee781e8337b679697a2354e88d42d Mon Sep 17 00:00:00 2001
 From: Arthur Williams <taaparthur@gmail.com>
 Date: Mon, 25 Oct 2021 22:43:11 -0700
-Subject: [PATCH] options: Add watch-later-use-title
+Subject: [PATCH 1/2] options: Add watch-later-use-title
 
 A new option has been added to override the filename in
 mp_get_playback_resume_config_filename.
@@ -27,10 +27,10 @@ If a title was explicitly specified, its hash will be used instead.
  4 files changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/DOCS/man/options.rst b/DOCS/man/options.rst
-index db167b0e5f..43ff57a4ef 100644
+index 9f17345d96..e7a3028c26 100644
 --- a/DOCS/man/options.rst
 +++ b/DOCS/man/options.rst
-@@ -1055,6 +1055,10 @@ Watch Later
+@@ -1054,6 +1054,10 @@ Watch Later
      named "watch_later" underneath the local state directory
      (usually ``~/.local/state/mpv/``).
  
@@ -38,9 +38,9 @@ index db167b0e5f..43ff57a4ef 100644
 +    Use the video title instead of the current file name for saving
 +    and resuming.
 +
- ``--no-resume-playback``
-     Do not restore playback position from the ``watch_later`` configuration
-     subdirectory (usually ``~/.config/mpv/watch_later/``).
+ ``--resume-playback=<yes|no>``
+     Restore playback position from the ``watch_later`` configuration
+     subdirectory, usually ``~/.config/mpv/watch_later/`` (default: yes).
 diff --git a/options/options.c b/options/options.c
 index 8640ecb27f..189c2d77e4 100644
 --- a/options/options.c

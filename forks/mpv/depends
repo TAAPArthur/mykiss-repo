@@ -1,8 +1,12 @@
 alsa-lib
 ffmpeg
 freetype-harfbuzz
+libXext
+libXpresent
+libXrandr
 libass
 libplacebo
+libva
 linux-headers make
 lua
 mesa

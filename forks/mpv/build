@@ -2,9 +2,9 @@
 
 export DESTDIR="$1"
 
-# for patch in *.patch; do
-#     patch -p1 <"$patch"
-# done
+for patch in *.patch; do
+    patch -p1 <"$patch"
+done
 
 muon setup \
     -Dprefix=/usr \
@@ -12,7 +12,6 @@ muon setup \
     -Dalsa=enabled \
     -Dlibmpv=true \
     -Dwayland=disabled \
-    -Degl-x11=disabled \
     -Dx11=enabled \
     output
 

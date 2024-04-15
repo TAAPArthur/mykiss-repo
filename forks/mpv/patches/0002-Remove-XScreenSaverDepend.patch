@@ -1,0 +1,113 @@
+From fcdb63191ef36e3fc28cf986009823de35c84777 Mon Sep 17 00:00:00 2001
+From: Arthur Williams <taaparthur@disroot.org>
+Date: Mon, 15 Apr 2024 00:00:37 -0700
+Subject: [PATCH 2/2] Remove XScreenSaverDepend
+
+---
+ meson.build            |  1 -
+ video/out/x11_common.c | 14 ++++++++++++++
+ 2 files changed, 14 insertions(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index 2c2246ba23..99410cf7df 100644
+--- a/meson.build
++++ b/meson.build
+@@ -1046,7 +1046,6 @@ x11_opt = get_option('x11').require(
+ )
+ x11 = {
+     'deps': [dependency('x11', version: '>= 1.0.0', required: x11_opt),
+-             dependency('xscrnsaver', version: '>= 1.0.0', required: x11_opt),
+              dependency('xext', version: '>= 1.0.0', required: x11_opt),
+              dependency('xpresent', version: '>= 1.0.0', required: x11_opt),
+              dependency('xrandr', version: '>= 1.4.0', required: x11_opt)],
+diff --git a/video/out/x11_common.c b/video/out/x11_common.c
+index fa2f2ba38c..714fd49f4e 100644
+--- a/video/out/x11_common.c
++++ b/video/out/x11_common.c
+@@ -34,8 +34,12 @@
+ #include <X11/XKBlib.h>
+ #include <X11/XF86keysym.h>
+ 
++#define NO_X_SCRNSAVER
++#ifndef NO_X_SCRNSAVER
+ #include <X11/extensions/scrnsaver.h>
+ #include <X11/extensions/dpms.h>
++#endif
++
+ #include <X11/extensions/shape.h>
+ #include <X11/extensions/Xpresent.h>
+ #include <X11/extensions/Xrandr.h>
+@@ -400,6 +404,7 @@ static void xpresent_set(struct vo_x11_state *x11)
+ 
+ static void xrandr_read(struct vo_x11_state *x11)
+ {
++#ifndef NO_X_SCRNSAVER
+     for(int i = 0; i < x11->num_displays; i++)
+         talloc_free(x11->displays[i].name);
+ 
+@@ -509,6 +514,7 @@ static void xrandr_read(struct vo_x11_state *x11)
+     }
+ 
+     XRRFreeScreenResources(r);
++#endif
+ }
+ 
+ static int vo_x11_select_screen(struct vo *vo)
+@@ -516,6 +522,7 @@ static int vo_x11_select_screen(struct vo *vo)
+     struct vo_x11_state *x11 = vo->x11;
+     struct mp_vo_opts *opts = x11->opts;
+     int screen = -2; // all displays
++#ifndef NO_X_SCRNSAVER
+     if (!opts->fullscreen || opts->fsscreen_id != -2) {
+         screen = opts->fullscreen ? opts->fsscreen_id : opts->screen_id;
+         if (opts->fullscreen && opts->fsscreen_id == -1)
+@@ -541,6 +548,7 @@ static int vo_x11_select_screen(struct vo *vo)
+         if (screen >= x11->num_displays)
+             screen = x11->num_displays - 1;
+     }
++#endif
+     return screen;
+ }
+ 
+@@ -2251,6 +2259,7 @@ void vo_x11_wait_events(struct vo *vo, int64_t until_time_ns)
+ 
+ static void xscreensaver_heartbeat(struct vo_x11_state *x11)
+ {
++#ifndef NO_X_SCRNSAVER
+     double time = mp_time_sec();
+ 
+     if (x11->display && !x11->screensaver_enabled &&
+@@ -2259,8 +2268,10 @@ static void xscreensaver_heartbeat(struct vo_x11_state *x11)
+         x11->screensaver_time_last = time;
+         XResetScreenSaver(x11->display);
+     }
++#endif
+ }
+ 
++#ifndef NO_X_SCRNSAVER
+ static int xss_suspend(Display *mDisplay, Bool suspend)
+ {
+     int event, error, major, minor;
+@@ -2272,9 +2283,11 @@ static int xss_suspend(Display *mDisplay, Bool suspend)
+     XScreenSaverSuspend(mDisplay, suspend);
+     return 1;
+ }
++#endif
+ 
+ static void set_screensaver(struct vo_x11_state *x11, bool enabled)
+ {
++#ifndef NO_X_SCRNSAVER
+     Display *mDisplay = x11->display;
+     if (!mDisplay || x11->screensaver_enabled == enabled)
+         return;
+@@ -2302,6 +2315,7 @@ static void set_screensaver(struct vo_x11_state *x11, bool enabled)
+                 MP_WARN(x11, "DPMS state could not be set.\n");
+         }
+     }
++#endif
+ }
+ 
+ static void vo_x11_selectinput_witherr(struct vo *vo,
+-- 
+2.44.0
+
