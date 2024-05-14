@@ -1,0 +1,4 @@
+https://github.com/pypa/build/archive/refs/tags/1.2.1.tar.gz build
+https://github.com/pypa/flit/archive/refs/tags/3.9.0.tar.gz flit
+https://github.com/pypa/packaging/archive/refs/tags/24.0.tar.gz packaging
+git+https://github.com/pypa/pyproject-hooks.git@33953f25fd2f89eb11dd21172d78d398930da1c7 pyproject-hooks

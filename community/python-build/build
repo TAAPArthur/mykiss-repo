@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+
+export PYTHONPATH="$PWD/pyproject-hooks/src/:$PWD/packaging/src/:$PWD/build/src/:$PWD/flit/flit/:$PWD/flit/flit_core"
+
+(cd build; python -m build -o .. -x -n)
+
+mkdir -p "$1/usr/lib/python3.11/site-packages/"
+mv build/src/build "$1/usr/lib/python3.11/site-packages/"
+mv pyproject-hooks/src/pyproject_hooks "$1/usr/lib/python3.11/site-packages/"
+mv packaging/src/packaging "$1/usr/lib/python3.11/site-packages/"

@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+sed -i "/install._vendor./d" setup.cfg
+python setup.py build
+python setup.py install -O1 --root="$1" --skip-build
